@@ -599,6 +599,28 @@ def build_index():
         '<p class="font-body-lg text-body-lg text-primary-fixed-dim leading-relaxed">Nexaouraa delivers integrated solutions across four business verticals: <span class="font-semibold text-white" style="color: #FFFFFF;">Quality Excellence</span>, <span class="font-semibold text-white" style="color: #FFFFFF;">Operational Excellence</span>, <span class="font-semibold text-white" style="color: #FFFFFF;">Training &amp; Development</span>, and <span class="font-semibold text-white" style="color: #FFFFFF;">Business Improvement</span>.<br class="hidden sm:inline"><span class="block mt-2 font-medium text-secondary text-base">Building Quality. Improving Performance. Developing People. Driving Business Excellence.</span></p>'
     )
 
+    # Mobile responsive hero heading optimization (prevents distortion & word clipping on 320px-430px)
+    main_content = main_content.replace(
+        '<div class="max-w-7xl mx-auto px-6 lg:px-12 relative z-10">',
+        '<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 relative z-10">'
+    )
+    main_content = main_content.replace(
+        '<h1 class="text-display-lg text-primary tracking-tight font-extrabold leading-tight space-y-1 mb-2"',
+        '<h1 class="hero-main-heading text-primary tracking-tight font-extrabold leading-tight space-y-1 mb-2"'
+    )
+    main_content = main_content.replace(
+        '<span class="block text-primary font-extrabold">Business Excellence</span>',
+        '<span class="heading-line block text-primary font-extrabold">Business Excellence</span>'
+    )
+    main_content = main_content.replace(
+        '<span class="block text-secondary flex items-center gap-2"><span class="text-outline-variant font-light select-none text-2xl">/</span>Operational Excellence</span>',
+        '<span class="heading-line heading-line-flex text-secondary"><span class="heading-slash text-outline-variant font-light select-none text-2xl mr-1.5 sm:mr-2">/</span>Operational Excellence</span>'
+    )
+    main_content = main_content.replace(
+        '<span class="block text-[#ad840c] flex items-center gap-2"><span class="text-outline-variant font-light select-none text-2xl">/</span>Quality Transformation</span>',
+        '<span class="heading-line heading-line-flex text-[#ad840c]"><span class="heading-slash text-outline-variant font-light select-none text-2xl mr-1.5 sm:mr-2">/</span>Quality Transformation</span>'
+    )
+
     main_content = map_index_images(main_content)
 
     doc = build_html_document(

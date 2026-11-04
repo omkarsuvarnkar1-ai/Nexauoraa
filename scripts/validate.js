@@ -119,6 +119,23 @@ if (formMatches.length === 1) {
   errors++;
 }
 
+// 5. Check Homepage Hero Heading Responsiveness
+console.log('\n--- Checking Homepage Hero Heading Responsiveness ---');
+const indexContent = fs.readFileSync(path.join(ROOT, 'index.html'), 'utf-8');
+const stylesContent = fs.readFileSync(path.join(ROOT, 'assets', 'css', 'styles.css'), 'utf-8');
+if (indexContent.includes('hero-main-heading') && stylesContent.includes('.hero-main-heading')) {
+  console.log('[PASS] index.html utilizes .hero-main-heading responsive typography system.');
+} else {
+  console.error('[FAIL] index.html or styles.css missing .hero-main-heading!');
+  errors++;
+}
+if (stylesContent.includes('overflow-x: hidden')) {
+  console.log('[PASS] Global viewport overflow-x: hidden enforced.');
+} else {
+  console.error('[FAIL] styles.css missing overflow-x: hidden!');
+  errors++;
+}
+
 // 5. Final summary
 console.log('\n======================================================');
 if (errors === 0) {
