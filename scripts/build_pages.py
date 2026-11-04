@@ -641,23 +641,17 @@ def build_index():
             Founder Director | Nexaouraa Consultancy
           </div>
 <h2 class="font-headline-lg text-headline-lg text-primary font-bold leading-tight">
-            Business &amp; Operational Excellence | Manufacturing Transformation | Leadership &amp; Industrial Training
+            Business &amp; Operational Excellence | Manufacturing Transformation | Automotive Quality &amp; Auditing | Industrial Training
           </h2>
 <div class="space-y-3 font-body-md text-body-md text-on-surface-variant leading-relaxed">
 <p>
-            Govind Suvarnkar is an accomplished manufacturing and operational excellence professional with 20+ years of hands-on industry experience across the automotive and manufacturing sectors. His professional journey includes extensive exposure to global customer expectations, automotive OEMs, Tier-1 and Tier-2 suppliers, and manufacturing operations.
+            With 20+ years of industry experience, Govind Suvarnkar specialises in automotive quality, manufacturing excellence, auditing and operational performance.
           </p>
 <p>
-            He brings a strong combination of industry experience, strategic understanding and shop-floor execution, helping organisations transform operational challenges into sustainable business improvements.
+            His expertise spans IATF 16949, VDA 6.3, VDA 6.5, GM BIQS, Automotive Core Tools, Lean Manufacturing, Six Sigma, Kaizen and TPM.
           </p>
 <p>
-            His expertise spans Operational Excellence, Lean Manufacturing, Six Sigma, Kaizen, TPM, productivity enhancement, process optimisation, quality improvement and manufacturing system development. He focuses on eliminating operational losses, strengthening processes, building ownership across teams and driving measurable improvements in quality, cost, delivery and productivity.
-          </p>
-<p>
-            As an industry practitioner and professional trainer, he leads corporate and industrial training initiatives covering Operational Excellence, IATF 16949, ISO Management Systems, APQP, PPAP, FMEA, MSA, SPC, Problem Solving and Lean Manufacturing. He also promotes industry-oriented technical and professional skill development for engineering colleges and emerging professionals.
-          </p>
-<p>
-            Through Nexaouraa Consultancy, his mission is to bridge the gap between management expectations and shop-floor execution, enabling organisations to move beyond certification and achieve real, measurable and sustainable operational performance.
+            Through Nexaouraa Consultancy, he drives sustainable business improvement by strengthening processes, developing people and enhancing shop-floor performance.
           </p>
 </div>
 <div class="p-space-md rounded-xl bg-primary-container text-on-primary flex items-center justify-between flex-wrap gap-space-sm shadow-sm border border-secondary/20">
@@ -665,10 +659,10 @@ def build_index():
 <span class="material-symbols-outlined text-amber-400 text-2xl">verified</span>
 <div>
 <div class="font-title-md text-title-md text-surface-bright font-bold tracking-wide">
-                Building Quality. Improving Performance. Driving Business Excellence.
+                Beyond Certification. Beyond Compliance. Towards Operational Excellence.
               </div>
-<div class="font-body-sm text-body-sm text-primary-fixed-dim">
-                Founder Director • Govind Suvarnkar | Nexaouraa Consultancy
+<div class="font-body-sm text-body-sm text-primary-fixed-dim italic mt-0.5">
+                Building Quality. Improving Performance. Driving Business Excellence.
               </div>
 </div>
 </div>
