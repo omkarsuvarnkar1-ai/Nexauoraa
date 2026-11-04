@@ -9,6 +9,7 @@
     "build": "python scripts/build_pages.py",
     "validate": "node scripts/validate.js",
     "test": "node scripts/test_api.js",
+    "test:netlify": "node scripts/test_netlify_function.js",
     "verify:images": "python scripts/verify_images.py"
   },
   "keywords": [

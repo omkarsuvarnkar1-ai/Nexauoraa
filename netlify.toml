@@ -1,0 +1,30 @@
+# =============================================================================
+# Netlify Configuration - Nexaouraa Consultancy Platform
+# =============================================================================
+
+[build]
+  # Publish directory containing static HTML pages, CSS, JS, and media assets
+  publish = "."
+  # Netlify Serverless Functions directory
+  functions = "netlify/functions"
+
+[functions]
+  # Fast and reliable modern Node.js bundling for serverless functions
+  node_bundler = "esbuild"
+
+# Chatbot API Proxy: Redirects POST /api/chat to the Netlify serverless function
+# without modifying browser URLs or impacting any other static routes.
+[[redirects]]
+  from = "/api/chat"
+  to = "/.netlify/functions/chat"
+  status = 200
+  force = true
+
+# Security Headers for production hardening
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "SAMEORIGIN"
+    X-Content-Type-Options = "nosniff"
+    X-XSS-Protection = "1; mode=block"
+    Referrer-Policy = "strict-origin-when-cross-origin"
