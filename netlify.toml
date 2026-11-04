@@ -1,26 +1,41 @@
 # =============================================================================
 # Netlify Configuration - Nexaouraa Consultancy Platform
+# Custom Vanilla Node.js / Python Multi-Page Architecture
 # =============================================================================
 
 [build]
-  # Publish directory containing static HTML pages, CSS, JS, and media assets
+  # Master build command that compiles all 6 static pages
+  command = "python scripts/build_pages.py"
+  # Root directory containing final static HTML pages, assets, docs, and images
   publish = "."
   # Netlify Serverless Functions directory
   functions = "netlify/functions"
 
+[dev]
+  # Explicitly tell Netlify CLI to use custom mode (stops Hydrogen/Remix misdetection)
+  framework = "#custom"
+  # Local development command (runs scripts/serve.js)
+  command = "npm run dev"
+  # Target port where scripts/serve.js listens
+  targetPort = 3000
+  # Netlify Dev local proxy port
+  port = 8888
+  # Static asset directory
+  publish = "."
+
 [functions]
-  # Fast and reliable modern Node.js bundling for serverless functions
+  # Fast, reliable esbuild bundling for serverless functions
   node_bundler = "esbuild"
 
 # Chatbot API Proxy: Redirects POST /api/chat to the Netlify serverless function
-# without modifying browser URLs or impacting any other static routes.
+# without modifying browser URLs or impacting any static routes.
 [[redirects]]
   from = "/api/chat"
   to = "/.netlify/functions/chat"
   status = 200
   force = true
 
-# Security Headers for production hardening
+# HTTP Security Headers
 [[headers]]
   for = "/*"
   [headers.values]

@@ -6,7 +6,7 @@ authentic company profile credentials, and zero-error routing.
 import os
 import re
 
-ROOT = r"C:\Users\Omkar\Downloads\stitch_nexaouraa_manufacturing_consultancy_platform"
+ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 STITCH_DIR = os.path.join(ROOT, "archive", "raw_stitch_export")
 
 # -----------------------------------------------------------------------------
