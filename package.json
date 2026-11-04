@@ -12,6 +12,7 @@
     "test:heading": "node scripts/test_mobile_heading.js",
     "test:headings:responsive": "node scripts/test_headings_responsiveness.js",
     "test:scroll": "node scripts/test_scroll_suite.js",
+    "test:validation": "node scripts/test_form_validation.js",
     "test:netlify": "node scripts/test_netlify_function.js",
     "verify:images": "python scripts/verify_images.py",
     "verify:whatsapp": "python scripts/verify_whatsapp_links.py"

@@ -696,3 +696,32 @@ nav > .group:hover > button::after {
   }
 }
 
+/* --------------------------------------------------------------------------
+   Form Field Interactive Validation (Mobile & Email)
+   -------------------------------------------------------------------------- */
+.input-field-error,
+input.input-field-error,
+textarea.input-field-error,
+select.input-field-error {
+  border-color: #ef4444 !important;
+  box-shadow: 0 0 0 1.5px #ef4444 !important;
+}
+
+.field-validation-msg {
+  color: #ef4444 !important;
+  font-size: 0.8125rem;
+  line-height: 1.25rem;
+  font-weight: 500;
+  margin-top: 0.375rem;
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.field-validation-msg .material-symbols-outlined {
+  font-size: 1rem;
+  line-height: 1;
+  color: #ef4444;
+}
+
+

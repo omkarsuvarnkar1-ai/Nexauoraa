@@ -45,6 +45,108 @@ if (!fs.existsSync(DATA_DIR)) {
   fs.mkdirSync(DATA_DIR, { recursive: true });
 }
 
+/**
+ * Validates Indian Mobile Numbers according to TRAI allocations:
+ * - 10-digit mobile numbers starting with 6, 7, 8, or 9
+ * - Optional +91 or 91 country code, or leading 0 trunk prefix
+ * - Allows common separators (spaces, dashes, parentheses)
+ * - Rejects invalid prefixes, wrong lengths, and non-numeric characters
+ */
+export function validateIndianMobile(raw) {
+  if (!raw || typeof raw !== 'string') return false;
+  const val = raw.trim();
+  if (!val) return false;
+
+  // Reject invalid characters: only digits, +, -, space, (, ) allowed
+  if (/[^\d\s\-\+\(\)]/.test(val)) return false;
+
+  // Single + allowed only at the start
+  if (val.includes('+')) {
+    if (val.indexOf('+') !== 0) return false;
+    if ((val.match(/\+/g) || []).length > 1) return false;
+  }
+
+  // Strip separators (spaces, dashes, parentheses)
+  const cleaned = val.replace(/[\s\-\(\)]/g, '');
+
+  // If raw started with '+', it must be Indian code +91 followed by 10 digits starting with 6-9
+  if (val.startsWith('+')) {
+    if (!cleaned.startsWith('+91')) return false;
+    const national = cleaned.slice(3);
+    return /^[6-9]\d{9}$/.test(national);
+  }
+
+  const digits = cleaned.replace(/\D/g, '');
+
+  // 1. Exactly 10 digits starting with 6, 7, 8, 9
+  if (digits.length === 10) {
+    return /^[6-9]\d{9}$/.test(digits);
+  }
+
+  // 2. 11 digits starting with 0 followed by 6-9
+  if (digits.length === 11 && digits.startsWith('0')) {
+    return /^0[6-9]\d{9}$/.test(digits);
+  }
+
+  // 3. 12 digits starting with 91 followed by 6-9
+  if (digits.length === 12 && digits.startsWith('91')) {
+    return /^91[6-9]\d{9}$/.test(digits);
+  }
+
+  return false;
+}
+
+/**
+ * Validates Email Addresses:
+ * - Requires username, @, domain name, and domain extension
+ * - Rejects spaces, consecutive dots, and invalid characters
+ * - Supports corporate and consumer domains (.com, .in, .org, .co.uk, etc.)
+ * - TLD must be at least 2 characters and letters only
+ */
+export function validateEmail(raw) {
+  if (!raw || typeof raw !== 'string') return false;
+  // Whitespace normalization: reject if contains any whitespace
+  if (/\s/.test(raw)) return false;
+
+  const email = raw.trim();
+  if (!email) return false;
+
+  // Reject consecutive dots anywhere
+  if (email.includes('..')) return false;
+
+  // Exactly one @ symbol
+  const atParts = email.split('@');
+  if (atParts.length !== 2) return false;
+
+  const [username, domain] = atParts;
+  if (!username || !domain) return false;
+
+  // Username: cannot start or end with dot, allowed: letters, digits, and ._%+-
+  if (username.startsWith('.') || username.endsWith('.')) return false;
+  if (!/^[a-zA-Z0-9_%+-]+(?:\.[a-zA-Z0-9_%+-]+)*$/.test(username)) return false;
+
+  // Domain: cannot start or end with dot or hyphen
+  if (domain.startsWith('.') || domain.endsWith('.') || domain.startsWith('-') || domain.endsWith('-')) return false;
+
+  // Domain must contain at least one dot separating labels
+  const domainParts = domain.split('.');
+  if (domainParts.length < 2) return false;
+
+  // Each domain label must be valid alphanumeric or hyphen
+  for (let i = 0; i < domainParts.length; i++) {
+    const label = domainParts[i];
+    if (!label) return false;
+    if (label.startsWith('-') || label.endsWith('-')) return false;
+    if (!/^[a-zA-Z0-9-]+$/.test(label)) return false;
+  }
+
+  // TLD (last part) must be at least 2 characters and letters only
+  const tld = domainParts[domainParts.length - 1];
+  if (!/^[a-zA-Z]{2,}$/.test(tld)) return false;
+
+  return true;
+}
+
 export const MIME_TYPES = {
   '.html': 'text/html; charset=utf-8',
   '.css': 'text/css; charset=utf-8',
@@ -164,6 +266,29 @@ export function handleRequest(req, res) {
     req.on('end', () => {
       try {
         const payload = JSON.parse(body || '{}');
+
+        // Server-Side Mobile Validation
+        if (!validateIndianMobile(payload.phone)) {
+          res.writeHead(400, { 'Content-Type': 'application/json' });
+          res.end(JSON.stringify({
+            success: false,
+            error: 'Please enter a valid 10-digit mobile number.',
+            field: 'phone'
+          }));
+          return;
+        }
+
+        // Server-Side Email Validation (if provided)
+        if (payload.email && !validateEmail(payload.email)) {
+          res.writeHead(400, { 'Content-Type': 'application/json' });
+          res.end(JSON.stringify({
+            success: false,
+            error: 'Please enter a valid email address (e.g. name@example.com).',
+            field: 'email'
+          }));
+          return;
+        }
+
         const id = 'ENQ-' + Date.now().toString(36).toUpperCase();
         const record = {
           id,
@@ -193,6 +318,29 @@ export function handleRequest(req, res) {
     req.on('end', () => {
       try {
         const payload = JSON.parse(body || '{}');
+
+        // Server-Side Mobile Validation
+        if (!validateIndianMobile(payload.enquiryPhone)) {
+          res.writeHead(400, { 'Content-Type': 'application/json' });
+          res.end(JSON.stringify({
+            success: false,
+            error: 'Please enter a valid 10-digit mobile number.',
+            field: 'enquiryPhone'
+          }));
+          return;
+        }
+
+        // Server-Side Email Validation
+        if (!validateEmail(payload.enquiryEmail)) {
+          res.writeHead(400, { 'Content-Type': 'application/json' });
+          res.end(JSON.stringify({
+            success: false,
+            error: 'Please enter a valid email address (e.g. name@example.com).',
+            field: 'enquiryEmail'
+          }));
+          return;
+        }
+
         const id = 'TRN-' + Date.now().toString(36).toUpperCase();
         const record = {
           id,
