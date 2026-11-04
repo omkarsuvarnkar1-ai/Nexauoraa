@@ -989,7 +989,7 @@
 <div class="grid grid-cols-1 lg:grid-cols-12 gap-space-xl items-center">
 <!-- Leader Profile Info -->
 <div class="lg:col-span-4 flex flex-col items-center text-center">
-<div class="relative w-48 sm:w-52 aspect-[3/4] rounded-xl overflow-hidden bg-surface-container-low shadow-md mb-space-md ring-4 ring-secondary/20 border border-outline-variant/30 flex items-center justify-center group"><img alt="Govind Suvarnkar - Principal Consultant &amp; Lead Auditor, Nexaouraa Consultancy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" style="object-position: 50% 12%;" src="assets/images/brand/nexaouraa-brand-poster.png"></div>
+<div class="relative w-48 sm:w-52 aspect-[3/4] rounded-xl overflow-hidden bg-surface-container-low shadow-md mb-space-md ring-4 ring-secondary/20 border border-outline-variant/30 flex items-center justify-center group"><img alt="Govind Suvarnkar - Principal Consultant &amp; Lead Auditor, Nexaouraa Consultancy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" style="object-position: 50% 12%;" src="assets/images/brand/govind-suvarnkar.jpg"></div>
 <h3 class="font-headline-md text-headline-md text-primary font-bold">Govind Suvarnkar</h3>
 <span class="font-label-technical text-label-technical text-secondary uppercase font-bold tracking-wider mt-1">Lead Consultant &amp; Trainer</span>
 <span class="font-body-sm text-body-sm text-on-surface-variant mt-1">Principal Director, Nexaouraa Consultancy</span>
@@ -1086,24 +1086,24 @@
 <div class="bg-surface-container-lowest text-on-surface rounded-xl p-space-lg shadow-2xl border border-outline-variant/30">
 <h3 class="font-headline-sm text-headline-sm text-primary font-bold mb-1">Request Audit Advisory</h3>
 <p class="font-body-sm text-body-sm text-on-surface-variant mb-space-md">Govind Suvarnkar responds within 24 business hours.</p>
-<form class="space-y-space-sm" onsubmit="event.preventDefault(); alert('Consultation request recorded. Nexaouraa Consultancy will contact your plant within 24 hours.');">
+<form id="home-intake-form" class="space-y-space-sm" onsubmit="handleInquiryFormSubmit(event)">
 <div>
 <label class="block font-label-technical text-label-technical text-on-surface-variant uppercase mb-1">Plant / Organization Name</label>
-<input class="w-full h-11 px-3 rounded bg-surface-container-low border border-outline-variant/30 text-body-sm font-body-sm text-primary focus:bg-surface-container focus:outline-none" placeholder="e.g. Precision Components Ltd." required="" type="text">
+<input class="w-full h-11 px-3 rounded bg-surface-container-low border border-outline-variant/30 text-body-sm font-body-sm text-primary focus:bg-surface-container focus:outline-none" name="companyName" placeholder="e.g. Precision Components Ltd." required="" type="text">
 </div>
 <div class="grid grid-cols-1 sm:grid-cols-2 gap-space-sm">
 <div>
 <label class="block font-label-technical text-label-technical text-on-surface-variant uppercase mb-1">Contact Person</label>
-<input class="w-full h-11 px-3 rounded bg-surface-container-low border border-outline-variant/30 text-body-sm font-body-sm text-primary focus:bg-surface-container focus:outline-none" placeholder="Name &amp; Designation" required="" type="text">
+<input class="w-full h-11 px-3 rounded bg-surface-container-low border border-outline-variant/30 text-body-sm font-body-sm text-primary focus:bg-surface-container focus:outline-none" name="fullName" placeholder="Name &amp; Designation" required="" type="text">
 </div>
 <div>
 <label class="block font-label-technical text-label-technical text-on-surface-variant uppercase mb-1">Mobile / WhatsApp</label>
-<input class="w-full h-11 px-3 rounded bg-surface-container-low border border-outline-variant/30 text-body-sm font-body-sm text-primary focus:bg-surface-container focus:outline-none" placeholder="+91 XXXXX XXXXX" required="" type="tel">
+<input class="w-full h-11 px-3 rounded bg-surface-container-low border border-outline-variant/30 text-body-sm font-body-sm text-primary focus:bg-surface-container focus:outline-none" name="phone" placeholder="+91 XXXXX XXXXX" required="" type="tel">
 </div>
 </div>
 <div>
 <label class="block font-label-technical text-label-technical text-on-surface-variant uppercase mb-1">Consulting Requirement</label>
-<select class="w-full h-11 px-3 rounded bg-surface-container-low border border-outline-variant/30 text-body-sm font-body-sm text-primary focus:bg-surface-container focus:outline-none">
+<select name="interest" class="w-full h-11 px-3 rounded bg-surface-container-low border border-outline-variant/30 text-body-sm font-body-sm text-primary focus:bg-surface-container focus:outline-none">
 <option>IATF 16949 Turnkey Advisory / Pre-Audit</option>
 <option>APQP &amp; PPAP Customer Submission Support</option>
 <option>Core Tools Workshop (FMEA/SPC/MSA)</option>

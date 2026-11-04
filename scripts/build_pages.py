@@ -370,7 +370,7 @@ def map_index_images(html):
     # Govind Suvarnkar Profile Card
     html = re.sub(
         r'<img\b[^>]*data-alt="Portrait of Govind Suvarnkar senior manufacturing quality lead consultant in industrial boardroom wearing business attire with engineering background"[^>]*>',
-        '<img alt="Govind Suvarnkar - Principal Consultant &amp; Lead Auditor, Nexaouraa Consultancy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" style="object-position: 50% 12%;" src="assets/images/brand/nexaouraa-brand-poster.png">',
+        '<img alt="Govind Suvarnkar - Principal Consultant &amp; Lead Auditor, Nexaouraa Consultancy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" style="object-position: 50% 12%;" src="assets/images/brand/govind-suvarnkar.jpg">',
         html
     )
     # Fallback any remaining Google CDN img in main
@@ -566,6 +566,28 @@ def build_index():
     main_content = main_content.replace('href="#diagnostic-intake"', 'href="contact.html#diagnostic-intake"')
     main_content = main_content.replace('href="#contact"', 'href="contact.html"')
 
+    # Wire quick consultation intake form
+    main_content = main_content.replace(
+        '<form class="space-y-space-sm" onsubmit="event.preventDefault(); alert(\'Consultation request recorded. Nexaouraa Consultancy will contact your plant within 24 hours.\');">',
+        '<form id="home-intake-form" class="space-y-space-sm" onsubmit="handleInquiryFormSubmit(event)">'
+    )
+    main_content = main_content.replace(
+        'placeholder="e.g. Precision Components Ltd." required="" type="text"',
+        'name="companyName" placeholder="e.g. Precision Components Ltd." required="" type="text"'
+    )
+    main_content = main_content.replace(
+        'placeholder="Name &amp; Designation" required="" type="text"',
+        'name="fullName" placeholder="Name &amp; Designation" required="" type="text"'
+    )
+    main_content = main_content.replace(
+        'placeholder="+91 XXXXX XXXXX" required="" type="tel"',
+        'name="phone" placeholder="+91 XXXXX XXXXX" required="" type="tel"'
+    )
+    main_content = main_content.replace(
+        '<select class="w-full h-11 px-3 rounded bg-surface-container-low border border-outline-variant/30 text-body-sm font-body-sm text-primary focus:bg-surface-container focus:outline-none">',
+        '<select name="interest" class="w-full h-11 px-3 rounded bg-surface-container-low border border-outline-variant/30 text-body-sm font-body-sm text-primary focus:bg-surface-container focus:outline-none">'
+    )
+
     main_content = map_index_images(main_content)
 
     doc = build_html_document(
@@ -599,6 +621,13 @@ def build_about():
     main_content = main_content.replace('href="#vision-mission"', 'href="vision-mission.html"')
     main_content = main_content.replace('href="#contact"', 'href="contact.html"')
 
+    # Wire official PDF download link
+    main_content = re.sub(
+        r'<a\b[^>]*href="#"[^>]*>([\s\S]*?Download Company Profile \(PDF\)[\s\S]*?)</a>',
+        r'<a class="w-full sm:w-auto inline-flex items-center justify-center gap-space-xs px-space-lg py-3.5 rounded-lg bg-surface-container-lowest text-primary hover:bg-surface-container transition-colors shadow-md font-label-lg text-label-lg font-bold" href="assets/docs/Nexaouraa_Consultancy_Profile.pdf" download="Nexaouraa_Consultancy_Company_Profile.pdf" target="_blank" rel="noopener noreferrer">\1</a>',
+        main_content
+    )
+
     main_content = map_about_images(main_content)
 
     doc = build_html_document(
@@ -629,6 +658,27 @@ def build_vision():
     main_content = main_content.replace('href="#training"', 'href="training.html"')
     main_content = main_content.replace('href="#diagnostic-intake"', 'href="contact.html#diagnostic-intake"')
     main_content = main_content.replace('href="#about"', 'href="about.html"')
+
+    # Breadcrumbs & PDF download
+    main_content = main_content.replace('<a class="hover:text-primary transition-colors" href="#">Home</a>', '<a class="hover:text-primary transition-colors" href="index.html">Home</a>')
+    main_content = main_content.replace('<a class="hover:text-primary transition-colors" href="#">About Us</a>', '<a class="hover:text-primary transition-colors" href="about.html">About Us</a>')
+    main_content = re.sub(
+        r'<a\b[^>]*href="#"[^>]*>([\s\S]*?Download Company Profile \(PDF\)[\s\S]*?)</a>',
+        r'<a class="px-5 py-3 rounded bg-secondary text-on-secondary font-title-md text-title-md hover:bg-on-secondary-fixed-variant transition-all shadow-md inline-flex items-center gap-2" href="assets/docs/Nexaouraa_Consultancy_Profile.pdf" download="Nexaouraa_Consultancy_Company_Profile.pdf" target="_blank" rel="noopener noreferrer">\1</a>',
+        main_content
+    )
+
+    # Wire vision diagnostic form
+    main_content = main_content.replace(
+        '<form class="grid grid-cols-1 md:grid-cols-2 gap-space-md" onsubmit="event.preventDefault(); alert(\'Inquiry submitted. Our Lead Auditor Desk will connect within 24 business hours.\');">',
+        '<form id="vision-intake-form" class="grid grid-cols-1 md:grid-cols-2 gap-space-md" onsubmit="handleInquiryFormSubmit(event)">'
+    )
+    main_content = main_content.replace('placeholder="e.g. Rajesh Kumar (Plant Head)" required="" type="text"', 'name="fullName" placeholder="e.g. Rajesh Kumar (Plant Head)" required="" type="text"')
+    main_content = main_content.replace('placeholder="e.g. Precision Auto Components Pvt Ltd" required="" type="text"', 'name="companyName" placeholder="e.g. Precision Auto Components Pvt Ltd" required="" type="text"')
+    main_content = main_content.replace('placeholder="e.g. quality.head@company.com" required="" type="email"', 'name="email" placeholder="e.g. quality.head@company.com" required="" type="email"')
+    main_content = main_content.replace('placeholder="e.g. +91 98XXXXXXXX" required="" type="tel"', 'name="phone" placeholder="e.g. +91 98XXXXXXXX" required="" type="tel"')
+    main_content = main_content.replace('<select class="h-11 px-3.5 rounded bg-surface-container-low text-primary font-body-sm text-body-sm focus:outline-none focus:bg-surface-container-lowest">', '<select name="interest" class="h-11 px-3.5 rounded bg-surface-container-low text-primary font-body-sm text-body-sm focus:outline-none focus:bg-surface-container-lowest">')
+    main_content = main_content.replace('<textarea class="p-3.5 rounded bg-surface-container-low text-primary font-body-sm text-body-sm focus:outline-none focus:bg-surface-container-lowest" placeholder="Briefly specify your audit deadline, PPM reduction target, or shop-floor challenge..." rows="3"></textarea>', '<textarea name="message" class="p-3.5 rounded bg-surface-container-low text-primary font-body-sm text-body-sm focus:outline-none focus:bg-surface-container-lowest" placeholder="Briefly specify your audit deadline, PPM reduction target, or shop-floor challenge..." rows="3"></textarea>')
 
     main_content = map_vision_images(main_content)
 
@@ -690,6 +740,9 @@ def build_training():
     main_content = main_content.replace('href="#diagnostic-intake"', 'href="contact.html#diagnostic-intake"')
     main_content = main_content.replace('href="#about"', 'href="about.html"')
 
+    # Wire phone field attribute for robust form collection
+    main_content = main_content.replace('id="enquiryContact"', 'id="enquiryContact" name="enquiryPhone"')
+
     # Remove inline handler script to use the centralized forms.js API handler
     main_content = re.sub(r'<script>\s*function handleTrainingFormSubmit[\s\S]*?</script>', '', main_content)
 
@@ -729,6 +782,9 @@ def build_contact():
     sec2_start = main_content.find('<section class="w-full bg-surface-bright py-12 lg:py-20 px-6 lg:px-12">')
     if sec2_start != -1:
         main_content = main_content[:sec2_start]
+
+    # Target diagnostic-intake section for direct inbound header links
+    main_content = main_content.replace('<section class="w-full bg-surface py-12 lg:py-16 px-6 lg:px-12">', '<section id="diagnostic-intake" class="w-full bg-surface py-12 lg:py-16 px-6 lg:px-12">')
 
     # Wire form submission
     main_content = re.sub(r'<form\b[^>]*id="inquiry-form"[^>]*>', '<form class="space-y-5" id="inquiry-form" onsubmit="handleInquiryFormSubmit(event)">', main_content)

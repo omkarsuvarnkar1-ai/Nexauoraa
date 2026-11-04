@@ -91,7 +91,8 @@ function handleTrainingFormSubmit(event) {
   const payload = {
     enquiryName: form?.querySelector('#enquiryName')?.value || '',
     enquiryOrg: form?.querySelector('#enquiryOrg')?.value || '',
-    enquiryPhone: form?.querySelector('#enquiryPhone')?.value || '',
+    enquiryDesignation: form?.querySelector('#enquiryDesignation')?.value || '',
+    enquiryPhone: form?.querySelector('#enquiryContact')?.value || form?.querySelector('#enquiryPhone')?.value || '',
     enquiryEmail: form?.querySelector('#enquiryEmail')?.value || '',
     enquirySegment: form?.querySelector('#enquirySegment')?.value || '',
     enquiryProgramme: form?.querySelector('#enquiryProgramme')?.value || '',

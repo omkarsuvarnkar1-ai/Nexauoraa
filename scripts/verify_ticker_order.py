@@ -32,3 +32,4 @@ if all_passed:
     print('\nALL 6 PAGES STRICTLY CONFORM TO REQUIRED ORDER: Logo + Navigation -> Moving Headline Ticker -> Page Content')
 else:
     sys.exit(1)
+
