@@ -22,12 +22,10 @@
 </head>
 <body class="bg-background font-body-md text-body-md text-on-surface antialiased">
 
-  <!-- HOMEPAGE-ONLY MOVING HEADLINE TICKER (Strictly at VERY TOP of index.html, ABOVE navigation) -->
-
-
-  <!-- UNIFIED NAVIGATION HEADER -->
-<header class="sticky top-0 left-0 right-0 w-full z-40 shadow-[0_2px_12px_rgba(15,37,55,0.08)] bg-surface-container-lowest border-b border-slate-200/80">
-  <div class="h-20 bg-surface-container-lowest">
+  <!-- UNIFIED NAVIGATION HEADER WITH TICKER DIRECTLY BELOW NAVIGATION -->
+<header class="sticky top-0 left-0 right-0 w-full z-40 shadow-[0_2px_12px_rgba(15,37,55,0.08)] bg-surface-container-lowest">
+  <!-- 1. Company Logo & Navigation Menu Bar -->
+  <div class="h-20 bg-surface-container-lowest border-b border-slate-200/80">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 h-full flex items-center justify-between gap-space-md">
       <!-- Complete Official Branding Logo (Emblem + NEXAOURAA serif + green/gold + CONSULTANCY + gold lines) -->
       <a class="flex items-center group py-2" href="index.html" aria-label="Nexaouraa Consultancy Homepage">
@@ -84,7 +82,7 @@
   </div>
 
   <!-- Mobile Drawer Menu -->
-  <div id="mobile-menu-drawer" class="hidden xl:hidden bg-white border-t border-slate-200 px-6 py-4 shadow-xl">
+  <div id="mobile-menu-drawer" class="hidden xl:hidden bg-white border-b border-slate-200 px-6 py-4 shadow-xl">
     <div class="flex flex-col gap-3 font-medium text-slate-800">
       <a class="py-2 border-b border-slate-100 hover:text-primary" href="index.html">Home</a>
       <a class="py-2 border-b border-slate-100 hover:text-primary" href="about.html">About Us &amp; Leadership</a>
@@ -98,9 +96,87 @@
       </a>
     </div>
   </div>
+
+  <!-- 2. Moving Headline Ticker (Directly Below Global Navigation on EVERY Page) -->
+  <aside aria-label="Executive Credentials Ticker" class="w-full bg-[#06101B] border-b border-[#14283d] text-on-primary py-2.5 select-none overflow-hidden relative">
+    <style>
+      @keyframes top-ticker-scroll {
+        0% { transform: translate3d(0, 0, 0); }
+        100% { transform: translate3d(-50%, 0, 0); }
+      }
+      .ticker-track {
+        display: flex;
+        width: max-content;
+        animation: top-ticker-scroll 32s linear infinite;
+        will-change: transform;
+      }
+      .ticker-parent:hover .ticker-track {
+        animation-play-state: paused;
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .ticker-track {
+          animation: none !important;
+          flex-wrap: wrap;
+          justify-content: center;
+          width: 100%;
+        }
+      }
+    </style>
+    <div class="ticker-parent relative overflow-hidden flex items-center h-8">
+      <!-- Left Subtle Glow Fade -->
+      <div class="absolute left-0 top-0 bottom-0 w-16 sm:w-28 bg-gradient-to-r from-[#06101B] via-[#06101B]/95 to-transparent z-10 pointer-events-none"></div>
+      <!-- Right Subtle Glow Fade -->
+      <div class="absolute right-0 top-0 bottom-0 w-16 sm:w-28 bg-gradient-to-l from-[#06101B] via-[#06101B]/95 to-transparent z-10 pointer-events-none"></div>
+
+      <div class="ticker-track flex items-center whitespace-nowrap text-label-technical font-label-technical tracking-wider text-surface-bright/95">
+        <!-- Sequence 1 -->
+        <div class="flex items-center gap-4 px-4 hover:text-tertiary-fixed transition-colors">
+          <span class="hover:text-tertiary-fixed font-bold">GOVIND SUVARNKAR (19+ YRS LEAD AUDITOR)</span>
+          <span class="text-tertiary-fixed-dim select-none text-xs drop-shadow-[0_0_4px_rgba(239,192,75,0.4)]">&#9670;</span>
+          <span class="hover:text-tertiary-fixed">CORPORATE CLIENTS: MAHINDRA &bull; BHARAT FORGE &bull; TENNECO &bull; JOHN DEERE &bull; CIE AUTOMOTIVE</span>
+          <span class="text-tertiary-fixed-dim select-none text-xs drop-shadow-[0_0_4px_rgba(239,192,75,0.4)]">&#9670;</span>
+          <span class="hover:text-tertiary-fixed font-bold">TURNKEY IATF 16949:2016 &amp; QMS/IMS CERTIFICATION</span>
+          <span class="text-tertiary-fixed-dim select-none text-xs drop-shadow-[0_0_4px_rgba(239,192,75,0.4)]">&#9670;</span>
+          <span class="hover:text-tertiary-fixed">AIAG-VDA CORE TOOLS: APQP &bull; PPAP &bull; FMEA &bull; SPC &bull; MSA</span>
+          <span class="text-tertiary-fixed-dim select-none text-xs drop-shadow-[0_0_4px_rgba(239,192,75,0.4)]">&#9670;</span>
+          <span class="hover:text-tertiary-fixed font-bold">VERIFIED YIELDS: ~50 PPM &amp; 99% FIRST-TIME-THROUGH</span>
+          <span class="text-tertiary-fixed-dim select-none text-xs drop-shadow-[0_0_4px_rgba(239,192,75,0.4)]">&#9670;</span>
+          <span class="hover:text-tertiary-fixed">50% COPQ REDUCTION &bull; 30% CMM CYCLE TIME REDUCTION</span>
+          <span class="text-tertiary-fixed-dim select-none text-xs drop-shadow-[0_0_4px_rgba(239,192,75,0.4)]">&#9670;</span>
+          <span class="hover:text-tertiary-fixed font-bold">40+ CORPORATE TRAININGS (25+ ON ELECTRIC VEHICLES)</span>
+          <span class="text-tertiary-fixed-dim select-none text-xs drop-shadow-[0_0_4px_rgba(239,192,75,0.4)]">&#9670;</span>
+          <span class="hover:text-tertiary-fixed">LEAN SIX SIGMA BLACK BELT (ASCB UK) &bull; GLOBAL 8D (OMNEX)</span>
+          <span class="text-tertiary-fixed-dim select-none text-xs drop-shadow-[0_0_4px_rgba(239,192,75,0.4)]">&#9670;</span>
+          <span class="hover:text-tertiary-fixed font-bold">AUDITOR DIRECT DESK: +91 8975573469</span>
+          <span class="text-tertiary-fixed-dim select-none text-xs drop-shadow-[0_0_4px_rgba(239,192,75,0.4)]">&#9670;</span>
+        </div>
+        <!-- Sequence 2 (Identical Duplicate for Seamless Infinite Loop) -->
+        <div aria-hidden="true" class="flex items-center gap-4 px-4 hover:text-tertiary-fixed transition-colors">
+          <span class="hover:text-tertiary-fixed font-bold">GOVIND SUVARNKAR (19+ YRS LEAD AUDITOR)</span>
+          <span class="text-tertiary-fixed-dim select-none text-xs drop-shadow-[0_0_4px_rgba(239,192,75,0.4)]">&#9670;</span>
+          <span class="hover:text-tertiary-fixed">CORPORATE CLIENTS: MAHINDRA &bull; BHARAT FORGE &bull; TENNECO &bull; JOHN DEERE &bull; CIE AUTOMOTIVE</span>
+          <span class="text-tertiary-fixed-dim select-none text-xs drop-shadow-[0_0_4px_rgba(239,192,75,0.4)]">&#9670;</span>
+          <span class="hover:text-tertiary-fixed font-bold">TURNKEY IATF 16949:2016 &amp; QMS/IMS CERTIFICATION</span>
+          <span class="text-tertiary-fixed-dim select-none text-xs drop-shadow-[0_0_4px_rgba(239,192,75,0.4)]">&#9670;</span>
+          <span class="hover:text-tertiary-fixed">AIAG-VDA CORE TOOLS: APQP &bull; PPAP &bull; FMEA &bull; SPC &bull; MSA</span>
+          <span class="text-tertiary-fixed-dim select-none text-xs drop-shadow-[0_0_4px_rgba(239,192,75,0.4)]">&#9670;</span>
+          <span class="hover:text-tertiary-fixed font-bold">VERIFIED YIELDS: ~50 PPM &amp; 99% FIRST-TIME-THROUGH</span>
+          <span class="text-tertiary-fixed-dim select-none text-xs drop-shadow-[0_0_4px_rgba(239,192,75,0.4)]">&#9670;</span>
+          <span class="hover:text-tertiary-fixed">50% COPQ REDUCTION &bull; 30% CMM CYCLE TIME REDUCTION</span>
+          <span class="text-tertiary-fixed-dim select-none text-xs drop-shadow-[0_0_4px_rgba(239,192,75,0.4)]">&#9670;</span>
+          <span class="hover:text-tertiary-fixed font-bold">40+ CORPORATE TRAININGS (25+ ON ELECTRIC VEHICLES)</span>
+          <span class="text-tertiary-fixed-dim select-none text-xs drop-shadow-[0_0_4px_rgba(239,192,75,0.4)]">&#9670;</span>
+          <span class="hover:text-tertiary-fixed">LEAN SIX SIGMA BLACK BELT (ASCB UK) &bull; GLOBAL 8D (OMNEX)</span>
+          <span class="text-tertiary-fixed-dim select-none text-xs drop-shadow-[0_0_4px_rgba(239,192,75,0.4)]">&#9670;</span>
+          <span class="hover:text-tertiary-fixed font-bold">AUDITOR DIRECT DESK: +91 8975573469</span>
+          <span class="text-tertiary-fixed-dim select-none text-xs drop-shadow-[0_0_4px_rgba(239,192,75,0.4)]">&#9670;</span>
+        </div>
+      </div>
+    </div>
+  </aside>
 </header>
 
-  <!-- MAIN CONTENT -->
+  <!-- MAIN CONTENT / HERO SECTION -->
   <main id="main-content">
 <div class="flex flex-col w-full">
 <!-- BREADCRUMB & PAGE INTRO BANNER -->

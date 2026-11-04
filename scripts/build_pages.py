@@ -1,6 +1,6 @@
 """
 Nexaouraa Consultancy - Master Build & Page Compilation Script
-Implements full Google Stitch design, exact branding, homepage-only ticker,
+Implements full Google Stitch design, exact branding, unified ticker below nav on all pages,
 authentic company profile credentials, and zero-error routing.
 """
 import os
@@ -10,11 +10,14 @@ ROOT = r"C:\Users\Omkar\Downloads\stitch_nexaouraa_manufacturing_consultancy_pla
 STITCH_DIR = os.path.join(ROOT, "archive", "raw_stitch_export")
 
 # -----------------------------------------------------------------------------
-# GLOBAL NEXAOURAA CONSULTANCY BRANDING HEADER (PHASE 4)
-# Note: Header has NO ticker. Ticker is homepage-only, placed ABOVE this header.
+# GLOBAL NEXAOURAA CONSULTANCY BRANDING HEADER & TICKER
+# Visual & structural order on EVERY page:
+# 1. Company logo and navigation menu
+# 2. Moving headline ticker (directly below navigation)
 # -----------------------------------------------------------------------------
-UNIFIED_HEADER = """<header class="sticky top-0 left-0 right-0 w-full z-40 shadow-[0_2px_12px_rgba(15,37,55,0.08)] bg-surface-container-lowest border-b border-slate-200/80">
-  <div class="h-20 bg-surface-container-lowest">
+UNIFIED_HEADER = """<header class="sticky top-0 left-0 right-0 w-full z-40 shadow-[0_2px_12px_rgba(15,37,55,0.08)] bg-surface-container-lowest">
+  <!-- 1. Company Logo & Navigation Menu Bar -->
+  <div class="h-20 bg-surface-container-lowest border-b border-slate-200/80">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 h-full flex items-center justify-between gap-space-md">
       <!-- Complete Official Branding Logo (Emblem + NEXAOURAA serif + green/gold + CONSULTANCY + gold lines) -->
       <a class="flex items-center group py-2" href="index.html" aria-label="Nexaouraa Consultancy Homepage">
@@ -71,7 +74,7 @@ UNIFIED_HEADER = """<header class="sticky top-0 left-0 right-0 w-full z-40 shado
   </div>
 
   <!-- Mobile Drawer Menu -->
-  <div id="mobile-menu-drawer" class="hidden xl:hidden bg-white border-t border-slate-200 px-6 py-4 shadow-xl">
+  <div id="mobile-menu-drawer" class="hidden xl:hidden bg-white border-b border-slate-200 px-6 py-4 shadow-xl">
     <div class="flex flex-col gap-3 font-medium text-slate-800">
       <a class="py-2 border-b border-slate-100 hover:text-primary" href="index.html">Home</a>
       <a class="py-2 border-b border-slate-100 hover:text-primary" href="about.html">About Us &amp; Leadership</a>
@@ -85,93 +88,85 @@ UNIFIED_HEADER = """<header class="sticky top-0 left-0 right-0 w-full z-40 shado
       </a>
     </div>
   </div>
-</header>"""
 
-# -----------------------------------------------------------------------------
-# HOMEPAGE-ONLY CONTINUOUS MOVING HEADLINE TICKER (CORRECTION TASK)
-# Matches Google Stitch design exactly:
-# - Strictly at the VERY TOP of index.html, ABOVE the navigation bar.
-# - Visible when the homepage initially loads.
-# - NOT displayed on any other page.
-# - Infinite seamless loop with Sequence 1 & Sequence 2, hover pause & reduced motion.
-# -----------------------------------------------------------------------------
-HOMEPAGE_TICKER = """<!-- HOMEPAGE-ONLY MOVING HEADLINE TICKER (Strictly at VERY TOP of index.html, ABOVE navigation) -->
-<aside aria-label="Executive Credentials Ticker" class="w-full bg-[#06101B] border-b border-[#14283d] text-on-primary py-2.5 select-none overflow-hidden relative z-50">
-  <style>
-    @keyframes top-ticker-scroll {
-      0% { transform: translate3d(0, 0, 0); }
-      100% { transform: translate3d(-50%, 0, 0); }
-    }
-    .ticker-track {
-      display: flex;
-      width: max-content;
-      animation: top-ticker-scroll 32s linear infinite;
-      will-change: transform;
-    }
-    .ticker-parent:hover .ticker-track {
-      animation-play-state: paused;
-    }
-    @media (prefers-reduced-motion: reduce) {
-      .ticker-track {
-        animation: none !important;
-        flex-wrap: wrap;
-        justify-content: center;
-        width: 100%;
+  <!-- 2. Moving Headline Ticker (Directly Below Global Navigation on EVERY Page) -->
+  <aside aria-label="Executive Credentials Ticker" class="w-full bg-[#06101B] border-b border-[#14283d] text-on-primary py-2.5 select-none overflow-hidden relative">
+    <style>
+      @keyframes top-ticker-scroll {
+        0% { transform: translate3d(0, 0, 0); }
+        100% { transform: translate3d(-50%, 0, 0); }
       }
-    }
-  </style>
-  <div class="ticker-parent relative overflow-hidden flex items-center h-8">
-    <!-- Left Subtle Glow Fade -->
-    <div class="absolute left-0 top-0 bottom-0 w-16 sm:w-28 bg-gradient-to-r from-[#06101B] via-[#06101B]/95 to-transparent z-10 pointer-events-none"></div>
-    <!-- Right Subtle Glow Fade -->
-    <div class="absolute right-0 top-0 bottom-0 w-16 sm:w-28 bg-gradient-to-l from-[#06101B] via-[#06101B]/95 to-transparent z-10 pointer-events-none"></div>
+      .ticker-track {
+        display: flex;
+        width: max-content;
+        animation: top-ticker-scroll 32s linear infinite;
+        will-change: transform;
+      }
+      .ticker-parent:hover .ticker-track {
+        animation-play-state: paused;
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .ticker-track {
+          animation: none !important;
+          flex-wrap: wrap;
+          justify-content: center;
+          width: 100%;
+        }
+      }
+    </style>
+    <div class="ticker-parent relative overflow-hidden flex items-center h-8">
+      <!-- Left Subtle Glow Fade -->
+      <div class="absolute left-0 top-0 bottom-0 w-16 sm:w-28 bg-gradient-to-r from-[#06101B] via-[#06101B]/95 to-transparent z-10 pointer-events-none"></div>
+      <!-- Right Subtle Glow Fade -->
+      <div class="absolute right-0 top-0 bottom-0 w-16 sm:w-28 bg-gradient-to-l from-[#06101B] via-[#06101B]/95 to-transparent z-10 pointer-events-none"></div>
 
-    <div class="ticker-track flex items-center whitespace-nowrap text-label-technical font-label-technical tracking-wider text-surface-bright/95">
-      <!-- Sequence 1 -->
-      <div class="flex items-center gap-4 px-4 hover:text-tertiary-fixed transition-colors">
-        <span class="hover:text-tertiary-fixed font-bold">GOVIND SUVARNKAR (19+ YRS LEAD AUDITOR)</span>
-        <span class="text-tertiary-fixed-dim select-none text-xs drop-shadow-[0_0_4px_rgba(239,192,75,0.4)]">&#9670;</span>
-        <span class="hover:text-tertiary-fixed">CORPORATE CLIENTS: MAHINDRA &bull; BHARAT FORGE &bull; TENNECO &bull; JOHN DEERE &bull; CIE AUTOMOTIVE</span>
-        <span class="text-tertiary-fixed-dim select-none text-xs drop-shadow-[0_0_4px_rgba(239,192,75,0.4)]">&#9670;</span>
-        <span class="hover:text-tertiary-fixed font-bold">TURNKEY IATF 16949:2016 &amp; QMS/IMS CERTIFICATION</span>
-        <span class="text-tertiary-fixed-dim select-none text-xs drop-shadow-[0_0_4px_rgba(239,192,75,0.4)]">&#9670;</span>
-        <span class="hover:text-tertiary-fixed">AIAG-VDA CORE TOOLS: APQP &bull; PPAP &bull; FMEA &bull; SPC &bull; MSA</span>
-        <span class="text-tertiary-fixed-dim select-none text-xs drop-shadow-[0_0_4px_rgba(239,192,75,0.4)]">&#9670;</span>
-        <span class="hover:text-tertiary-fixed font-bold">VERIFIED YIELDS: ~50 PPM &amp; 99% FIRST-TIME-THROUGH</span>
-        <span class="text-tertiary-fixed-dim select-none text-xs drop-shadow-[0_0_4px_rgba(239,192,75,0.4)]">&#9670;</span>
-        <span class="hover:text-tertiary-fixed">50% COPQ REDUCTION &bull; 30% CMM CYCLE TIME REDUCTION</span>
-        <span class="text-tertiary-fixed-dim select-none text-xs drop-shadow-[0_0_4px_rgba(239,192,75,0.4)]">&#9670;</span>
-        <span class="hover:text-tertiary-fixed font-bold">40+ CORPORATE TRAININGS (25+ ON ELECTRIC VEHICLES)</span>
-        <span class="text-tertiary-fixed-dim select-none text-xs drop-shadow-[0_0_4px_rgba(239,192,75,0.4)]">&#9670;</span>
-        <span class="hover:text-tertiary-fixed">LEAN SIX SIGMA BLACK BELT (ASCB UK) &bull; GLOBAL 8D (OMNEX)</span>
-        <span class="text-tertiary-fixed-dim select-none text-xs drop-shadow-[0_0_4px_rgba(239,192,75,0.4)]">&#9670;</span>
-        <span class="hover:text-tertiary-fixed font-bold">AUDITOR DIRECT DESK: +91 8975573469</span>
-        <span class="text-tertiary-fixed-dim select-none text-xs drop-shadow-[0_0_4px_rgba(239,192,75,0.4)]">&#9670;</span>
-      </div>
-      <!-- Sequence 2 (Identical Duplicate for Seamless Infinite Loop) -->
-      <div aria-hidden="true" class="flex items-center gap-4 px-4 hover:text-tertiary-fixed transition-colors">
-        <span class="hover:text-tertiary-fixed font-bold">GOVIND SUVARNKAR (19+ YRS LEAD AUDITOR)</span>
-        <span class="text-tertiary-fixed-dim select-none text-xs drop-shadow-[0_0_4px_rgba(239,192,75,0.4)]">&#9670;</span>
-        <span class="hover:text-tertiary-fixed">CORPORATE CLIENTS: MAHINDRA &bull; BHARAT FORGE &bull; TENNECO &bull; JOHN DEERE &bull; CIE AUTOMOTIVE</span>
-        <span class="text-tertiary-fixed-dim select-none text-xs drop-shadow-[0_0_4px_rgba(239,192,75,0.4)]">&#9670;</span>
-        <span class="hover:text-tertiary-fixed font-bold">TURNKEY IATF 16949:2016 &amp; QMS/IMS CERTIFICATION</span>
-        <span class="text-tertiary-fixed-dim select-none text-xs drop-shadow-[0_0_4px_rgba(239,192,75,0.4)]">&#9670;</span>
-        <span class="hover:text-tertiary-fixed">AIAG-VDA CORE TOOLS: APQP &bull; PPAP &bull; FMEA &bull; SPC &bull; MSA</span>
-        <span class="text-tertiary-fixed-dim select-none text-xs drop-shadow-[0_0_4px_rgba(239,192,75,0.4)]">&#9670;</span>
-        <span class="hover:text-tertiary-fixed font-bold">VERIFIED YIELDS: ~50 PPM &amp; 99% FIRST-TIME-THROUGH</span>
-        <span class="text-tertiary-fixed-dim select-none text-xs drop-shadow-[0_0_4px_rgba(239,192,75,0.4)]">&#9670;</span>
-        <span class="hover:text-tertiary-fixed">50% COPQ REDUCTION &bull; 30% CMM CYCLE TIME REDUCTION</span>
-        <span class="text-tertiary-fixed-dim select-none text-xs drop-shadow-[0_0_4px_rgba(239,192,75,0.4)]">&#9670;</span>
-        <span class="hover:text-tertiary-fixed font-bold">40+ CORPORATE TRAININGS (25+ ON ELECTRIC VEHICLES)</span>
-        <span class="text-tertiary-fixed-dim select-none text-xs drop-shadow-[0_0_4px_rgba(239,192,75,0.4)]">&#9670;</span>
-        <span class="hover:text-tertiary-fixed">LEAN SIX SIGMA BLACK BELT (ASCB UK) &bull; GLOBAL 8D (OMNEX)</span>
-        <span class="text-tertiary-fixed-dim select-none text-xs drop-shadow-[0_0_4px_rgba(239,192,75,0.4)]">&#9670;</span>
-        <span class="hover:text-tertiary-fixed font-bold">AUDITOR DIRECT DESK: +91 8975573469</span>
-        <span class="text-tertiary-fixed-dim select-none text-xs drop-shadow-[0_0_4px_rgba(239,192,75,0.4)]">&#9670;</span>
+      <div class="ticker-track flex items-center whitespace-nowrap text-label-technical font-label-technical tracking-wider text-surface-bright/95">
+        <!-- Sequence 1 -->
+        <div class="flex items-center gap-4 px-4 hover:text-tertiary-fixed transition-colors">
+          <span class="hover:text-tertiary-fixed font-bold">GOVIND SUVARNKAR (19+ YRS LEAD AUDITOR)</span>
+          <span class="text-tertiary-fixed-dim select-none text-xs drop-shadow-[0_0_4px_rgba(239,192,75,0.4)]">&#9670;</span>
+          <span class="hover:text-tertiary-fixed">CORPORATE CLIENTS: MAHINDRA &bull; BHARAT FORGE &bull; TENNECO &bull; JOHN DEERE &bull; CIE AUTOMOTIVE</span>
+          <span class="text-tertiary-fixed-dim select-none text-xs drop-shadow-[0_0_4px_rgba(239,192,75,0.4)]">&#9670;</span>
+          <span class="hover:text-tertiary-fixed font-bold">TURNKEY IATF 16949:2016 &amp; QMS/IMS CERTIFICATION</span>
+          <span class="text-tertiary-fixed-dim select-none text-xs drop-shadow-[0_0_4px_rgba(239,192,75,0.4)]">&#9670;</span>
+          <span class="hover:text-tertiary-fixed">AIAG-VDA CORE TOOLS: APQP &bull; PPAP &bull; FMEA &bull; SPC &bull; MSA</span>
+          <span class="text-tertiary-fixed-dim select-none text-xs drop-shadow-[0_0_4px_rgba(239,192,75,0.4)]">&#9670;</span>
+          <span class="hover:text-tertiary-fixed font-bold">VERIFIED YIELDS: ~50 PPM &amp; 99% FIRST-TIME-THROUGH</span>
+          <span class="text-tertiary-fixed-dim select-none text-xs drop-shadow-[0_0_4px_rgba(239,192,75,0.4)]">&#9670;</span>
+          <span class="hover:text-tertiary-fixed">50% COPQ REDUCTION &bull; 30% CMM CYCLE TIME REDUCTION</span>
+          <span class="text-tertiary-fixed-dim select-none text-xs drop-shadow-[0_0_4px_rgba(239,192,75,0.4)]">&#9670;</span>
+          <span class="hover:text-tertiary-fixed font-bold">40+ CORPORATE TRAININGS (25+ ON ELECTRIC VEHICLES)</span>
+          <span class="text-tertiary-fixed-dim select-none text-xs drop-shadow-[0_0_4px_rgba(239,192,75,0.4)]">&#9670;</span>
+          <span class="hover:text-tertiary-fixed">LEAN SIX SIGMA BLACK BELT (ASCB UK) &bull; GLOBAL 8D (OMNEX)</span>
+          <span class="text-tertiary-fixed-dim select-none text-xs drop-shadow-[0_0_4px_rgba(239,192,75,0.4)]">&#9670;</span>
+          <span class="hover:text-tertiary-fixed font-bold">AUDITOR DIRECT DESK: +91 8975573469</span>
+          <span class="text-tertiary-fixed-dim select-none text-xs drop-shadow-[0_0_4px_rgba(239,192,75,0.4)]">&#9670;</span>
+        </div>
+        <!-- Sequence 2 (Identical Duplicate for Seamless Infinite Loop) -->
+        <div aria-hidden="true" class="flex items-center gap-4 px-4 hover:text-tertiary-fixed transition-colors">
+          <span class="hover:text-tertiary-fixed font-bold">GOVIND SUVARNKAR (19+ YRS LEAD AUDITOR)</span>
+          <span class="text-tertiary-fixed-dim select-none text-xs drop-shadow-[0_0_4px_rgba(239,192,75,0.4)]">&#9670;</span>
+          <span class="hover:text-tertiary-fixed">CORPORATE CLIENTS: MAHINDRA &bull; BHARAT FORGE &bull; TENNECO &bull; JOHN DEERE &bull; CIE AUTOMOTIVE</span>
+          <span class="text-tertiary-fixed-dim select-none text-xs drop-shadow-[0_0_4px_rgba(239,192,75,0.4)]">&#9670;</span>
+          <span class="hover:text-tertiary-fixed font-bold">TURNKEY IATF 16949:2016 &amp; QMS/IMS CERTIFICATION</span>
+          <span class="text-tertiary-fixed-dim select-none text-xs drop-shadow-[0_0_4px_rgba(239,192,75,0.4)]">&#9670;</span>
+          <span class="hover:text-tertiary-fixed">AIAG-VDA CORE TOOLS: APQP &bull; PPAP &bull; FMEA &bull; SPC &bull; MSA</span>
+          <span class="text-tertiary-fixed-dim select-none text-xs drop-shadow-[0_0_4px_rgba(239,192,75,0.4)]">&#9670;</span>
+          <span class="hover:text-tertiary-fixed font-bold">VERIFIED YIELDS: ~50 PPM &amp; 99% FIRST-TIME-THROUGH</span>
+          <span class="text-tertiary-fixed-dim select-none text-xs drop-shadow-[0_0_4px_rgba(239,192,75,0.4)]">&#9670;</span>
+          <span class="hover:text-tertiary-fixed">50% COPQ REDUCTION &bull; 30% CMM CYCLE TIME REDUCTION</span>
+          <span class="text-tertiary-fixed-dim select-none text-xs drop-shadow-[0_0_4px_rgba(239,192,75,0.4)]">&#9670;</span>
+          <span class="hover:text-tertiary-fixed font-bold">40+ CORPORATE TRAININGS (25+ ON ELECTRIC VEHICLES)</span>
+          <span class="text-tertiary-fixed-dim select-none text-xs drop-shadow-[0_0_4px_rgba(239,192,75,0.4)]">&#9670;</span>
+          <span class="hover:text-tertiary-fixed">LEAN SIX SIGMA BLACK BELT (ASCB UK) &bull; GLOBAL 8D (OMNEX)</span>
+          <span class="text-tertiary-fixed-dim select-none text-xs drop-shadow-[0_0_4px_rgba(239,192,75,0.4)]">&#9670;</span>
+          <span class="hover:text-tertiary-fixed font-bold">AUDITOR DIRECT DESK: +91 8975573469</span>
+          <span class="text-tertiary-fixed-dim select-none text-xs drop-shadow-[0_0_4px_rgba(239,192,75,0.4)]">&#9670;</span>
+        </div>
       </div>
     </div>
-  </div>
-</aside>"""
+  </aside>
+</header>"""
 
 # -----------------------------------------------------------------------------
 # FLOATING WEBSITE CONTROLS (PHASE 8, 9, 14)
@@ -283,9 +278,11 @@ UNIFIED_FOOTER = """<footer class="w-full bg-[#000f1d] text-on-primary pt-space-
 </footer>"""
 
 # Common HTML Template Wrapper
+# Structural order on EVERY page:
+# 1. Company logo and navigation menu (in UNIFIED_HEADER)
+# 2. Moving headline ticker (in UNIFIED_HEADER, directly below navigation)
+# 3. Page content / hero section (in <main id="main-content">)
 def build_html_document(title, main_content, current_page, is_home=False, extra_scripts=""):
-    # Ticker strictly on homepage, directly ABOVE the navigation header
-    ticker_block = HOMEPAGE_TICKER if is_home else ""
     return f"""<!DOCTYPE html>
 <html class="scroll-smooth" lang="en">
 <head>
@@ -310,13 +307,10 @@ def build_html_document(title, main_content, current_page, is_home=False, extra_
 </head>
 <body class="bg-background font-body-md text-body-md text-on-surface antialiased">
 
-  <!-- HOMEPAGE-ONLY MOVING HEADLINE TICKER (Strictly at VERY TOP of index.html, ABOVE navigation) -->
-{ticker_block}
-
-  <!-- UNIFIED NAVIGATION HEADER -->
+  <!-- UNIFIED NAVIGATION HEADER WITH TICKER DIRECTLY BELOW NAVIGATION -->
 {UNIFIED_HEADER}
 
-  <!-- MAIN CONTENT -->
+  <!-- MAIN CONTENT / HERO SECTION -->
   <main id="main-content">
 {main_content}
   </main>
@@ -383,7 +377,7 @@ def build_index():
 
     with open(os.path.join(ROOT, "index.html"), "w", encoding="utf-8") as f:
         f.write(doc)
-    print("[OK] Created index.html (with exact Stitch homepage-only ticker at very top above nav)")
+    print("[OK] Created index.html")
 
 # -----------------------------------------------------------------------------
 # 2. BUILD ABOUT.HTML (About Us & Leadership)
@@ -415,7 +409,7 @@ def build_about():
 
     with open(os.path.join(ROOT, "about.html"), "w", encoding="utf-8") as f:
         f.write(doc)
-    print("[OK] Created about.html (without ticker)")
+    print("[OK] Created about.html")
 
 # -----------------------------------------------------------------------------
 # 3. BUILD VISION-MISSION.HTML (Vision, Mission & Strategic Goals)
@@ -446,7 +440,7 @@ def build_vision():
 
     with open(os.path.join(ROOT, "vision-mission.html"), "w", encoding="utf-8") as f:
         f.write(doc)
-    print("[OK] Created vision-mission.html (without ticker)")
+    print("[OK] Created vision-mission.html")
 
 # -----------------------------------------------------------------------------
 # 4. BUILD SERVICES.HTML (Services & Industry Coverage)
@@ -476,7 +470,7 @@ def build_services():
 
     with open(os.path.join(ROOT, "services.html"), "w", encoding="utf-8") as f:
         f.write(doc)
-    print("[OK] Created services.html (without ticker)")
+    print("[OK] Created services.html")
 
 # -----------------------------------------------------------------------------
 # 5. BUILD TRAINING.HTML (Training & Development)
@@ -515,7 +509,7 @@ def build_training():
 
     with open(os.path.join(ROOT, "training.html"), "w", encoding="utf-8") as f:
         f.write(doc)
-    print("[OK] Created training.html (without ticker)")
+    print("[OK] Created training.html")
 
 # -----------------------------------------------------------------------------
 # 6. BUILD CONTACT.HTML (Contact Us & Diagnostic Intake)
@@ -549,7 +543,7 @@ def build_contact():
 
     with open(os.path.join(ROOT, "contact.html"), "w", encoding="utf-8") as f:
         f.write(doc)
-    print("[OK] Created contact.html (without ticker)")
+    print("[OK] Created contact.html")
 
 if __name__ == "__main__":
     build_index()
@@ -558,4 +552,4 @@ if __name__ == "__main__":
     build_services()
     build_training()
     build_contact()
-    print("\nAll 6 pages built successfully!")
+    print("\nAll 6 pages built successfully with ticker below navigation menu!")
