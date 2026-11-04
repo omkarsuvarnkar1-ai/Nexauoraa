@@ -375,7 +375,7 @@ def map_index_images(html):
     # Govind Suvarnkar Profile Card
     html = re.sub(
         r'<img\b[^>]*data-alt="Portrait of Govind Suvarnkar senior manufacturing quality lead consultant in industrial boardroom wearing business attire with engineering background"[^>]*>',
-        '<img alt="Govind Suvarnkar - Principal Consultant &amp; Lead Auditor, Nexaouraa Consultancy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" style="object-position: 50% 12%;" src="assets/images/brand/govind-suvarnkar.jpg">',
+        '<img alt="Govind Suvarnkar - Founder Director, Nexaouraa Consultancy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" style="object-position: 50% 12%;" src="assets/images/brand/govind-suvarnkar.jpg">',
         html
     )
     # Fallback any remaining Google CDN img in main
@@ -620,6 +620,64 @@ def build_index():
         '<span class="block text-[#ad840c] flex items-center gap-2"><span class="text-outline-variant font-light select-none text-2xl">/</span>Quality Transformation</span>',
         '<span class="heading-line heading-line-flex text-[#ad840c]"><span class="heading-slash text-outline-variant font-light select-none text-2xl mr-1.5 sm:mr-2">/</span>Quality Transformation</span>'
     )
+
+    # Replace Founder Director Profile Section with exact requested content
+    founder_pat = r'<span class="font-label-technical text-label-technical text-secondary uppercase font-bold tracking-wider mt-1">Lead Consultant &amp; Trainer</span>[\s\S]*?Read Detailed Bio <span class="material-symbols-outlined text-sm">arrow_forward</span>\s*</a>\s*</div>\s*</div>'
+    new_founder_section = """<span class="font-label-technical text-label-technical text-secondary uppercase font-bold tracking-wider mt-1">Founder Director</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">Nexaouraa Consultancy</span>
+<div class="flex items-center gap-space-xs mt-space-md">
+<a class="px-space-md py-1.5 rounded bg-secondary text-on-secondary font-label-technical text-label-technical flex items-center gap-1 hover:bg-on-secondary-fixed-variant transition-colors shadow-sm" href="https://wa.me/918975573469?text=Hello!%20%F0%9F%91%8B%20I%20need%20help%20with%20your%20manufacturing%20and%20quality%20consultancy%20services.%0A%0ACould%20you%20please%20guide%20me%20regarding%20the%20available%20solutions%20and%20how%20Nexaouraa%20Consultancy%20can%20assist%20my%20business%3F%0A%0AThank%20you!" target="_blank">
+<span class="material-symbols-outlined text-sm">chat</span> Direct Desk
+            </a>
+<a class="px-space-md py-1.5 rounded bg-surface-container text-primary font-label-technical text-label-technical flex items-center gap-1 hover:bg-surface-variant transition-colors" href="tel:+918975573469">
+<span class="material-symbols-outlined text-sm">call</span> Call
+            </a>
+</div>
+</div>
+<!-- Credentials & Leadership Track Record -->
+<div class="lg:col-span-8 flex flex-col gap-space-md">
+<div class="inline-flex items-center gap-2 self-start px-3 py-1 rounded bg-surface-container text-on-surface text-label-technical font-label-technical border border-outline-variant/30 font-bold uppercase tracking-wider">
+<span class="material-symbols-outlined text-sm text-secondary">verified</span>
+            Founder Director | Nexaouraa Consultancy
+          </div>
+<h2 class="font-headline-lg text-headline-lg text-primary font-bold leading-tight">
+            Business &amp; Operational Excellence | Manufacturing Transformation | Leadership &amp; Industrial Training
+          </h2>
+<div class="space-y-3 font-body-md text-body-md text-on-surface-variant leading-relaxed">
+<p>
+            Govind Suvarnkar is an accomplished manufacturing and operational excellence professional with 20+ years of hands-on industry experience across the automotive and manufacturing sectors. His professional journey includes extensive exposure to global customer expectations, automotive OEMs, Tier-1 and Tier-2 suppliers, and manufacturing operations.
+          </p>
+<p>
+            He brings a strong combination of industry experience, strategic understanding and shop-floor execution, helping organisations transform operational challenges into sustainable business improvements.
+          </p>
+<p>
+            His expertise spans Operational Excellence, Lean Manufacturing, Six Sigma, Kaizen, TPM, productivity enhancement, process optimisation, quality improvement and manufacturing system development. He focuses on eliminating operational losses, strengthening processes, building ownership across teams and driving measurable improvements in quality, cost, delivery and productivity.
+          </p>
+<p>
+            As an industry practitioner and professional trainer, he leads corporate and industrial training initiatives covering Operational Excellence, IATF 16949, ISO Management Systems, APQP, PPAP, FMEA, MSA, SPC, Problem Solving and Lean Manufacturing. He also promotes industry-oriented technical and professional skill development for engineering colleges and emerging professionals.
+          </p>
+<p>
+            Through Nexaouraa Consultancy, his mission is to bridge the gap between management expectations and shop-floor execution, enabling organisations to move beyond certification and achieve real, measurable and sustainable operational performance.
+          </p>
+</div>
+<div class="p-space-md rounded-xl bg-primary-container text-on-primary flex items-center justify-between flex-wrap gap-space-sm shadow-sm border border-secondary/20">
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-amber-400 text-2xl">verified</span>
+<div>
+<div class="font-title-md text-title-md text-surface-bright font-bold tracking-wide">
+                Building Quality. Improving Performance. Driving Business Excellence.
+              </div>
+<div class="font-body-sm text-body-sm text-primary-fixed-dim">
+                Founder Director • Govind Suvarnkar | Nexaouraa Consultancy
+              </div>
+</div>
+</div>
+<a class="text-amber-300 hover:text-white font-label-md text-label-md hover:underline flex items-center gap-1 font-semibold transition-colors" data-path="about-us" href="about.html">
+              Read Detailed Bio <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</a>
+</div>
+</div>"""
+    main_content = re.sub(founder_pat, new_founder_section, main_content)
 
     main_content = map_index_images(main_content)
 
