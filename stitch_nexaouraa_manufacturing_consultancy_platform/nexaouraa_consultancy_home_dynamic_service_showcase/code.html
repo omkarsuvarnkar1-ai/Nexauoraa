@@ -1,0 +1,1528 @@
+<!DOCTYPE html><html class="scroll-smooth" lang="en" style=""><head><meta charset="utf-8"><meta content="width=device-width, initial-scale=1.0" name="viewport"><meta content="web_standard" name="shell-type"><link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}
+@keyframes top-ticker-scroll {
+  0% { transform: translate3d(0, 0, 0); }
+  100% { transform: translate3d(-50%, 0, 0); }
+}
+.ticker-track {
+  display: flex;
+  width: max-content;
+  animation: top-ticker-scroll 36s linear infinite;
+  will-change: transform;
+}
+.ticker-parent:hover .ticker-track {
+  animation-play-state: paused;
+}
+@media (prefers-reduced-motion: reduce) {
+  .ticker-track {
+    animation: none;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+  }
+}
+.hero-slide {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 700ms cubic-bezier(0.4, 0, 0.2, 1), transform 700ms cubic-bezier(0.4, 0, 0.2, 1);
+  transform: scale(0.985);
+  pointer-events: none;
+}
+.hero-slide.active-slide {
+  opacity: 1;
+  visibility: visible;
+  transform: scale(1);
+  pointer-events: auto;
+  z-index: 20;
+}
+</style><script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script><script id="tailwind-config">tailwind.config={"darkMode":"class","theme":{"extend":{"colors":{"on-secondary-fixed":"#00210d","on-error-container":"#93000a","on-tertiary-fixed":"#251a00","tertiary-fixed-dim":"#efc04b","surface-variant":"#d8e3fb","on-tertiary-fixed-variant":"#5a4300","on-primary-fixed-variant":"#34495c","surface-container-lowest":"#ffffff","primary-fixed":"#cfe5fd","on-error":"#ffffff","on-background":"#111c2d","primary-container":"#0f2537","primary":"#000f1d","on-tertiary":"#ffffff","tertiary-fixed":"#ffdf9a","on-surface-variant":"#43474c","surface-bright":"#f9f9ff","primary-fixed-dim":"#b3c9e0","on-secondary-fixed-variant":"#005229","background":"#f9f9ff","outline":"#74777d","tertiary-container":"#2f2100","surface-container":"#e7eeff","surface":"#f9f9ff","on-primary-container":"#788da3","surface-container-highest":"#d8e3fb","secondary-container":"#9ef2b3","error":"#ba1a1a","surface-tint":"#4c6075","tertiary":"#140c00","on-secondary":"#ffffff","secondary":"#126c3a","on-surface":"#111c2d","error-container":"#ffdad6","outline-variant":"#c3c7cd","surface-dim":"#cfdaf2","secondary-fixed":"#a1f5b5","secondary-fixed-dim":"#85d89b","inverse-on-surface":"#ecf1ff","inverse-surface":"#263143","on-secondary-container":"#19713e","on-primary-fixed":"#061d2f","surface-container-low":"#f0f3ff","inverse-primary":"#b3c9e0","surface-container-high":"#dee8ff","on-tertiary-container":"#ad840c","on-primary":"#ffffff"},"borderRadius":{"DEFAULT":"0.125rem","lg":"0.25rem","xl":"0.5rem","full":"0.75rem"},"spacing":{"gutter-mobile":"1rem","space-xl":"2.5rem","margin-mobile":"1.25rem","space-xs":"0.25rem","gutter":"1.5rem","margin":"3rem","space-md":"1rem","space-lg":"1.5rem","space-sm":"0.5rem"},"fontFamily":{"headline-xl-mobile":["Montserrat"],"body-sm":["Inter"],"display-lg":["Montserrat"],"body-lg":["Inter"],"title-md":["Montserrat"],"label-lg":["Inter"],"headline-lg":["Montserrat"],"label-md":["Inter"],"label-technical":["Inter"],"display-lg-mobile":["Montserrat"],"headline-md":["Montserrat"],"headline-xl":["Montserrat"],"headline-sm":["Montserrat"],"body-md":["Inter"]},"fontSize":{"headline-xl-mobile":["26px",{"lineHeight":"34px","letterSpacing":"-0.01em","fontWeight":"700"}],"body-sm":["13px",{"lineHeight":"20px","fontWeight":"400"}],"display-lg":["48px",{"lineHeight":"56px","letterSpacing":"-0.02em","fontWeight":"800"}],"body-lg":["18px",{"lineHeight":"28px","fontWeight":"400"}],"title-md":["16px",{"lineHeight":"24px","fontWeight":"600"}],"label-lg":["14px",{"lineHeight":"20px","letterSpacing":"0.01em","fontWeight":"600"}],"headline-lg":["28px",{"lineHeight":"36px","letterSpacing":"-0.01em","fontWeight":"700"}],"label-md":["12px",{"lineHeight":"16px","letterSpacing":"0.04em","fontWeight":"600"}],"label-technical":["11px",{"lineHeight":"14px","letterSpacing":"0.08em","fontWeight":"700"}],"display-lg-mobile":["32px",{"lineHeight":"40px","letterSpacing":"-0.01em","fontWeight":"800"}],"headline-md":["22px",{"lineHeight":"30px","letterSpacing":"-0.005em","fontWeight":"600"}],"headline-xl":["36px",{"lineHeight":"44px","letterSpacing":"-0.015em","fontWeight":"700"}],"headline-sm":["18px",{"lineHeight":"26px","fontWeight":"600"}],"body-md":["15px",{"lineHeight":"24px","fontWeight":"400"}]}}}};</script><style>@keyframes heroHeadingFade { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } } @keyframes sectionHeadingFade { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } } h2 { animation: sectionHeadingFade 0.8s cubic-bezier(0.16, 1, 0.3, 1) both; }</style></head><body class="bg-background font-body-md text-body-md text-on-surface antialiased">
+<!-- UPGRADE 1: MOVING HEADLINE TICKER STRICTLY ABOVE NAVIGATION BAR -->
+<!-- UPGRADE 2: NAVIGATION BAR DIRECTLY BELOW TICKER -->
+<header class="sticky top-0 left-0 right-0 w-full z-40 shadow-[0_2px_12px_rgba(15,37,55,0.08)] bg-surface-container-lowest">
+<!-- Top Technical Contacts Bar -->
+<!-- Main Nav Bar -->
+<div class="h-20 bg-surface-container-lowest">
+<div class="max-w-7xl mx-auto px-6 lg:px-12 h-full flex items-center justify-between gap-space-md">
+<!-- Official Nexaouraa Logo & Name -->
+<a class="flex items-center gap-3 group" href="#">
+<img alt="Nexaouraa Consultancy Official Logo" class="w-12 h-12 object-contain rounded-full shadow-sm ring-1 ring-outline-variant/30 group-hover:scale-105 transition-transform" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBa9QOJkT6gpmUYP2IyeH-GqeHSHagTTq2jcQmoOu5dsDK83j3PWm_cAYrBDTbExZ5-3yohxbGJngu6qJ5zqQbvZyUPio7BcqsCXKW2wbzue7d8H9lMrKgbNIpyMZxTYj9Zj4_pt_YJZAsGTjV5g1dIxH1HuX2mtuhR-DbpavOqhQ8r1CSFuawfKlO3swOsLTLdqu-cmS58QDXhFBBtsXh7Mvvt6CYHhneTrZMlbuBtpTP8fSVjnu70">
+<div class="flex flex-col">
+<span class="font-title-md text-title-md text-primary tracking-tight font-extrabold group-hover:text-secondary transition-colors">NEXAOURAA CONSULTANCY</span>
+<span class="font-label-technical text-label-technical text-on-surface-variant tracking-wider uppercase">Integrated Quality Solutions</span>
+</div>
+</a>
+<!-- Navigation Links -->
+<nav class="hidden xl:flex items-center gap-space-lg" data-active-classes="text-primary font-title-md border-b-2 border-tertiary-container">
+<a aria-current="page" class="transition-colors py-space-xs text-primary font-title-md border-b-2 border-secondary" data-path="home" href="#">Home</a>
+<div class="relative group">
+  <button class="inline-flex items-center gap-1.5 font-medium text-slate-700 hover:text-primary transition-colors py-2 focus:outline-none" aria-haspopup="true">
+    <span class="">About Us</span>
+    <svg class="w-4 h-4 transition-transform duration-200 group-hover:rotate-180 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+  </button>
+  <div class="absolute left-0 mt-1 w-64 bg-white rounded-lg shadow-xl border border-slate-200/80 py-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+    <a href="#about" class="block px-4 py-2.5 hover:bg-slate-50 transition-colors">
+      <div class="text-sm font-semibold text-slate-900">About Us &amp; Leadership</div>
+      <div class="text-xs text-slate-500">Executive profile &amp; credentials</div>
+    </a>
+    <a href="#vision-mission" class="block px-4 py-2.5 hover:bg-slate-50 transition-colors border-t border-slate-100">
+      <div class="text-sm font-semibold text-slate-900 flex items-center justify-between">
+        <span class="">Vision, Mission &amp; Goals</span>
+        <span class="text-[10px] bg-primary/10 text-primary font-bold px-1.5 py-0.5 rounded">Core</span>
+      </div>
+      <div class="text-xs text-slate-500">Strategic goals &amp; 2027-29 roadmap</div>
+    </a>
+  </div>
+</div>
+<a class="font-label-lg text-label-lg text-on-surface-variant hover:text-primary transition-colors py-space-xs" data-path="services" href="#featured-services">Services</a>
+<a class="font-label-lg text-label-lg text-on-surface-variant hover:text-primary transition-colors py-space-xs" data-path="training-and-development" href="#training-spotlight">Training &amp; Development</a>
+<a class="font-label-lg text-label-lg text-on-surface-variant hover:text-primary transition-colors py-space-xs" data-path="contact-us" href="#diagnostic-intake">Contact Us</a>
+</nav>
+<!-- Action Buttons -->
+<div class="flex items-center gap-space-sm">
+<a class="hidden sm:flex items-center gap-space-xs px-space-md py-space-sm rounded-lg border border-outline-variant font-label-md text-label-md text-on-surface hover:bg-surface-container-low hover:text-primary transition-all" data-path="download-company-profile" href="#diagnostic-intake">
+<span class="material-symbols-outlined text-base">picture_as_pdf</span>Download Profile (PDF)
+        </a>
+<a class="flex items-center gap-space-xs px-space-md py-space-sm rounded-lg bg-secondary text-on-secondary font-label-md text-label-md hover:bg-on-secondary-fixed-variant transition-all shadow-[0_2px_6px_rgba(18,108,58,0.2)]" href="https://wa.me/918975573469" target="_blank">
+<span class="material-symbols-outlined text-base">chat</span>WhatsApp Desk
+        </a>
+<a class="hidden md:flex items-center px-space-md py-space-sm rounded-lg bg-tertiary-fixed text-on-tertiary-fixed font-title-md text-label-md hover:bg-tertiary-fixed-dim hover:text-on-tertiary-fixed transition-all" data-path="request-consultation" href="#diagnostic-intake">
+          Audit Advisory
+        </a>
+</div>
+</div>
+</div><div class="bg-primary-container text-on-primary border-t border-primary text-label-technical font-label-technical"></div>
+</header><aside aria-label="Executive Credentials Ticker" class="w-full bg-[#06101B] border-b border-[#14283d] text-on-primary py-2 select-none overflow-hidden relative z-40">
+<div class="ticker-parent relative overflow-hidden flex items-center">
+<!-- Left Subtle Glow Fade -->
+<div class="absolute left-0 top-0 bottom-0 w-16 sm:w-28 bg-gradient-to-r from-[#06101B] via-[#06101B]/90 to-transparent z-10 pointer-events-none"></div>
+<!-- Right Subtle Glow Fade -->
+<div class="absolute right-0 top-0 bottom-0 w-16 sm:w-28 bg-gradient-to-l from-[#06101B] via-[#06101B]/90 to-transparent z-10 pointer-events-none"></div>
+<div class="ticker-track flex items-center whitespace-nowrap text-label-technical font-label-technical tracking-wider text-surface-bright/95">
+<!-- Sequence 1 -->
+<div class="flex items-center gap-4 px-4 hover:text-tertiary-fixed transition-colors">
+<span class="hover:text-tertiary-fixed">MANUFACTURING</span>
+<span class="text-tertiary-fixed-dim select-none text-xs drop-shadow-[0_0_4px_rgba(239,192,75,0.4)]">◆</span>
+<span class="hover:text-tertiary-fixed">LEADERSHIP</span>
+<span class="text-tertiary-fixed-dim select-none text-xs drop-shadow-[0_0_4px_rgba(239,192,75,0.4)]">◆</span>
+<span class="hover:text-tertiary-fixed">SIX SIGMA BLACK BELT</span>
+<span class="text-tertiary-fixed-dim select-none text-xs drop-shadow-[0_0_4px_rgba(239,192,75,0.4)]">◆</span>
+<span class="hover:text-tertiary-fixed">IATF &amp; IMS AUDITOR</span>
+<span class="text-tertiary-fixed-dim select-none text-xs drop-shadow-[0_0_4px_rgba(239,192,75,0.4)]">◆</span>
+<span class="hover:text-tertiary-fixed">GLOBAL OEM LEADERSHIP</span>
+<span class="text-tertiary-fixed-dim select-none text-xs drop-shadow-[0_0_4px_rgba(239,192,75,0.4)]">◆</span>
+<span class="hover:text-tertiary-fixed">QUALITY TRANSFORMATION</span>
+<span class="text-tertiary-fixed-dim select-none text-xs drop-shadow-[0_0_4px_rgba(239,192,75,0.4)]">◆</span>
+<span class="hover:text-tertiary-fixed">OPERATIONAL EXCELLENCE</span>
+<span class="text-tertiary-fixed-dim select-none text-xs drop-shadow-[0_0_4px_rgba(239,192,75,0.4)]">◆</span>
+</div>
+<!-- Sequence 2 (Duplicate for infinite loop) -->
+<div aria-hidden="true" class="flex items-center gap-4 px-4 hover:text-tertiary-fixed transition-colors">
+<span class="hover:text-tertiary-fixed">MANUFACTURING</span>
+<span class="text-tertiary-fixed-dim select-none text-xs drop-shadow-[0_0_4px_rgba(239,192,75,0.4)]">◆</span>
+<span class="hover:text-tertiary-fixed">LEADERSHIP</span>
+<span class="text-tertiary-fixed-dim select-none text-xs drop-shadow-[0_0_4px_rgba(239,192,75,0.4)]">◆</span>
+<span class="hover:text-tertiary-fixed">SIX SIGMA BLACK BELT</span>
+<span class="text-tertiary-fixed-dim select-none text-xs drop-shadow-[0_0_4px_rgba(239,192,75,0.4)]">◆</span>
+<span class="hover:text-tertiary-fixed">IATF &amp; IMS AUDITOR</span>
+<span class="text-tertiary-fixed-dim select-none text-xs drop-shadow-[0_0_4px_rgba(239,192,75,0.4)]">◆</span>
+<span class="hover:text-tertiary-fixed">GLOBAL OEM LEADERSHIP</span>
+<span class="text-tertiary-fixed-dim select-none text-xs drop-shadow-[0_0_4px_rgba(239,192,75,0.4)]">◆</span>
+<span class="hover:text-tertiary-fixed">QUALITY TRANSFORMATION</span>
+<span class="text-tertiary-fixed-dim select-none text-xs drop-shadow-[0_0_4px_rgba(239,192,75,0.4)]">◆</span>
+<span class="hover:text-tertiary-fixed">OPERATIONAL EXCELLENCE</span>
+<span class="text-tertiary-fixed-dim select-none text-xs drop-shadow-[0_0_4px_rgba(239,192,75,0.4)]">◆</span>
+</div>
+</div>
+</div>
+</aside>
+<main class="w-full bg-surface">
+<div class="flex flex-col w-full">
+<!-- Precision Technical Ribbon -->
+<!-- UPGRADE 3: HERO SECTION WITH BLUEPRINT GRID & HIGH PRECISION DYNAMIC ROTATING CAROUSEL -->
+<section class="relative w-full bg-surface-container-lowest overflow-hidden py-16 lg:py-24">
+<!-- Subtle technical grid background -->
+<div class="absolute inset-0 opacity-[0.035] pointer-events-none" style="background-image: radial-gradient(#000f1d 1px, transparent 1px); background-size: 24px 24px;"></div>
+<div class="max-w-7xl mx-auto px-6 lg:px-12 relative z-10">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-space-xl items-center">
+<!-- Left Hero Copy -->
+<div class="lg:col-span-7 flex flex-col gap-space-md">
+<div class="inline-flex items-center gap-space-xs self-start px-space-md py-1 rounded bg-surface-container text-on-surface text-label-technical font-label-technical border border-outline-variant/40">
+<span class="material-symbols-outlined text-sm text-secondary">verified</span>
+          NEXAOURAA INTEGRATED QUALITY SOLUTIONS
+        </div>
+<h1 class="text-display-lg text-primary tracking-tight font-extrabold leading-tight space-y-1 mb-2" style="animation-duration: 0.8s; animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1); animation-iteration-count: 1; animation-direction: normal; animation-fill-mode: forwards; animation-play-state: running; animation-name: heroHeadingFade; animation-timeline: auto; animation-range: normal; opacity: 1;">
+<span class="block text-primary font-extrabold">Business Excellence</span>
+<span class="block text-secondary flex items-center gap-2"><span class="text-outline-variant font-light select-none text-2xl">/</span>Operational Excellence</span>
+<span class="block text-[#ad840c] flex items-center gap-2"><span class="text-outline-variant font-light select-none text-2xl">/</span>Quality Transformation</span>
+</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl leading-relaxed">Nexaouraa delivers integrated solutions across four business verticals: <span class="font-semibold text-primary">Quality Excellence</span>, <span class="font-semibold text-primary">Operational Excellence</span>, <span class="font-semibold text-primary">Training &amp; Development</span>, and <span class="font-semibold text-primary">Business Improvement</span>.<br class="hidden sm:inline"><span class="block mt-2 font-medium text-secondary text-base">Building Quality. Improving Performance. Developing People. Driving Business Excellence.</span></p>
+<!-- Core Call to Actions: 4 Distinct Executive Touchpoints -->
+<div class="flex flex-wrap items-center gap-space-sm pt-space-sm">
+<a class="px-space-lg py-3 rounded-lg bg-primary-container text-on-primary font-title-md text-title-md hover:bg-primary transition-all shadow-md flex items-center gap-space-xs" data-path="services" href="#featured-services">
+<span class="">Explore Our Services</span>
+<span class="material-symbols-outlined text-base">arrow_forward</span>
+</a>
+<a class="px-space-lg py-3 rounded-lg bg-tertiary-fixed text-on-tertiary-fixed font-title-md text-title-md hover:bg-tertiary-fixed-dim transition-all shadow-md flex items-center gap-space-xs" data-path="request-consultation" href="#diagnostic-intake">
+<span class="material-symbols-outlined text-base">calendar_month</span>
+<span class="">Request a Consultation</span>
+</a>
+<a class="px-space-lg py-3 rounded-lg bg-secondary text-on-secondary font-title-md text-title-md hover:bg-on-secondary-fixed-variant transition-all shadow-md flex items-center gap-space-xs" href="https://wa.me/918975573469" target="_blank">
+<span class="material-symbols-outlined text-base">chat</span>
+<span class="">WhatsApp Us</span>
+</a>
+<a class="px-space-md py-3 rounded-lg bg-surface-container-high text-on-surface font-title-md text-title-md hover:bg-surface-variant transition-all flex items-center gap-space-xs" data-path="download-company-profile" href="#diagnostic-intake">
+<span class="material-symbols-outlined text-base">download_for_offline</span>
+<span class="">Download Company Profile</span>
+</a>
+</div>
+<!-- Micro Badge Details -->
+<div class="flex flex-wrap items-center gap-space-md pt-space-xs text-label-technical font-label-technical text-on-surface-variant">
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-sm text-secondary">check_circle</span> Turnkey IATF 16949 Audits</span>
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-sm text-secondary">check_circle</span> Core Tools (FMEA, SPC, MSA, APQP, PPAP)</span>
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-sm text-secondary">check_circle</span> VDA 6.3 &amp; Tier-1 Supplier Handholding</span>
+</div>
+</div>
+<!-- Right Hero Visual Panel: Dynamic Plant Quality Showcase Slider -->
+<div class="lg:col-span-5 relative" id="hero-slider-container">
+<div class="bg-surface-container-low rounded-xl p-space-md sm:p-space-lg shadow-xl relative overflow-hidden border border-outline-variant/30 group">
+<!-- Top Controls Bar with Slide Navigation Pills & Play Status -->
+<div class="flex items-center justify-between gap-2 mb-3 px-1">
+<div class="flex items-center gap-1.5" id="slider-pills">
+<button aria-label="Go to Slide 1" class="slider-pill text-xs font-semibold px-2 py-0.5 rounded transition-all bg-surface-container text-on-surface-variant hover:text-primary" onclick="goToHeroSlide(0)" type="button" style="animation-delay: 78ms;">
+  1. IATF QMS
+</button>
+<button aria-label="Go to Slide 2" class="slider-pill text-xs font-semibold px-2 py-0.5 rounded transition-all bg-surface-container text-on-surface-variant hover:text-primary" onclick="goToHeroSlide(1)" type="button" style="animation-delay: 78ms;">
+  2. Core Tools
+</button>
+<button aria-label="Go to Slide 3" class="slider-pill text-xs font-semibold px-2 py-0.5 rounded transition-all bg-primary-container text-tertiary-fixed ring-1 ring-tertiary-fixed/30 shadow-sm" onclick="goToHeroSlide(2)" type="button" style="animation-delay: 78ms;">
+  3. Supplier QA
+</button>
+<button aria-label="Go to Slide 4" class="slider-pill text-xs font-semibold px-2 py-0.5 rounded transition-all bg-surface-container text-on-surface-variant hover:text-primary" onclick="goToHeroSlide(3)" type="button" style="animation-delay: 78ms;">
+  4. COPQ / Six Sigma
+</button>
+</div>
+<div class="flex items-center gap-1">
+<button aria-label="Previous Slide" class="w-7 h-7 rounded bg-surface-container hover:bg-surface-container-high text-primary flex items-center justify-center transition-colors" onclick="prevHeroSlide()" type="button">
+<span class="material-symbols-outlined text-sm">chevron_left</span>
+</button>
+<button aria-label="Next Slide" class="w-7 h-7 rounded bg-surface-container hover:bg-surface-container-high text-primary flex items-center justify-center transition-colors" onclick="nextHeroSlide()" type="button">
+<span class="material-symbols-outlined text-sm">chevron_right</span>
+</button>
+</div>
+</div>
+<!-- Slides Viewport (Cross-Fade Stack) -->
+<div class="relative w-full aspect-[4/5] sm:aspect-[3/4] rounded-lg overflow-hidden bg-primary-container shadow-inner">
+<!-- SLIDE 1: IATF 16949:2016 & QMS Implementation -->
+<div class="hero-slide flex flex-col justify-between p-space-md sm:p-space-lg" data-slide-index="0">
+<img alt="Automotive quality control room with automated Coordinate Measuring Machine CMM inspection in action on powertrain parts" class="absolute inset-0 w-full h-full object-cover opacity-35 mix-blend-luminosity" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDs6CA2V2UinNYKFtkav37oEk8TKXMmVcZ2ntoRj4qZnPJ7nibWYs2D8dKO6KjdTzbrUHo2pRFjql-a4xVZjp9JkFttQdb-YNRZ6RWlxjaNldjMyQaEU4cXhHFb6-ZiOSG5OrIrfLKdNS6fh4Nvihdh-LLV9vkP_XzQwDMq7H7wVOLtxqdsgMmHx9_AAK_cUR6K8KuiWCj9S5MxoRCHA4gn-cOvH1srUdcnUhJb-aE">
+<div class="relative z-10 flex justify-between items-start">
+<span class="px-3 py-1 rounded bg-tertiary-fixed text-on-tertiary-fixed font-label-technical text-label-technical shadow-sm font-bold flex items-center gap-1">
+<span class="w-2 h-2 rounded-full bg-secondary animate-pulse"></span>
+  LEAD AUDITOR ON SITE
+</span>
+<span class="w-10 h-10 rounded-full bg-secondary text-on-secondary flex items-center justify-center font-bold shadow-md">
+<span class="material-symbols-outlined text-xl">precision_manufacturing</span>
+</span>
+</div>
+<!-- Metrology / Audit Readout Simulation -->
+<div class="relative z-10 bg-primary/95 backdrop-blur-md rounded p-space-md text-on-primary border border-outline-variant/20 shadow-lg mt-auto">
+<div class="flex justify-between items-center pb-2 border-b border-primary-container">
+<span class="font-label-technical text-label-technical text-primary-fixed-dim uppercase tracking-wider">IATF 16949 Audit Rigor</span>
+<span class="font-label-technical text-label-technical text-secondary-fixed flex items-center gap-1 font-bold">
+<span class="material-symbols-outlined text-sm">verified</span>Zero Major NC
+</span>
+</div>
+<div class="space-y-2 mt-2">
+<div>
+<div class="flex justify-between text-body-sm font-body-sm mb-1">
+<span class="text-surface-variant">APQP Phase Completion</span>
+<span class="text-tertiary-fixed font-semibold">100% Locked</span>
+</div>
+<div class="w-full bg-primary-container h-1.5 rounded-full overflow-hidden">
+<div class="bg-tertiary-fixed h-full w-full rounded-full"></div>
+</div>
+</div>
+<div>
+<div class="flex justify-between text-body-sm font-body-sm mb-1">
+<span class="text-surface-variant">Customer PPM Reduction Rate</span>
+<span class="text-secondary-fixed font-semibold">-84% Defect Yield</span>
+</div>
+<div class="w-full bg-primary-container h-1.5 rounded-full overflow-hidden">
+<div class="bg-secondary h-full w-[84%] rounded-full"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- SLIDE 2: AIAG-VDA Core Tools & PPAP / APQP Handholding -->
+<div class="hero-slide flex flex-col justify-between p-space-md sm:p-space-lg" data-slide-index="1">
+<img alt="Precision CNC machining metrology laboratory with dial indicators and digital vernier calipers verifying tight tolerances" class="absolute inset-0 w-full h-full object-cover opacity-35 mix-blend-luminosity" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB8KEcBcSQvwfprTos5_GHdEdTKIvuBUKWIpUW1YWq3GsXl901_r5ydndKNNTr_OMf-zOyaE4XhDBKz695-w-O7RM5Pa79IERta_YugN9Df1Lm4w8SDJdfYKzIZIodG2xBGVXFbI0eOS2ftNPYBtKpxhPbbJWQbl1MaK8sGKU53MYD5gmVu96N5Hl6CNUbVQtPs8x-mYhTuG9gsHertwEVq4HdYkkLwvZfpInecKYQ">
+<div class="relative z-10 flex justify-between items-start">
+<span class="px-3 py-1 rounded bg-[#0F2537] text-tertiary-fixed border border-tertiary-fixed/30 font-label-technical text-label-technical shadow-sm font-bold flex items-center gap-1">
+<span class="material-symbols-outlined text-sm text-tertiary-fixed">flowsheet</span>
+  AIAG-VDA 7-STEP HARMONIZED
+</span>
+<span class="w-10 h-10 rounded-full bg-primary-container text-tertiary-fixed flex items-center justify-center font-bold shadow-md ring-1 ring-tertiary-fixed/40">
+<span class="material-symbols-outlined text-xl">analytics</span>
+</span>
+</div>
+<!-- Metrology / Core Tools Readout -->
+<div class="relative z-10 bg-primary/95 backdrop-blur-md rounded p-space-md text-on-primary border border-outline-variant/20 shadow-lg mt-auto">
+<div class="flex justify-between items-center pb-2 border-b border-primary-container">
+<span class="font-label-technical text-label-technical text-primary-fixed-dim uppercase tracking-wider">Statistical Capability Benchmark</span>
+<span class="font-label-technical text-label-technical text-tertiary-fixed flex items-center gap-1 font-bold">
+<span class="material-symbols-outlined text-sm">query_stats</span>Cpk &gt; 1.67 Target
+</span>
+</div>
+<div class="space-y-2 mt-2">
+<div>
+<div class="flex justify-between text-body-sm font-body-sm mb-1">
+<span class="text-surface-variant">PPAP Level 3/4 Approval Rate</span>
+<span class="text-tertiary-fixed font-semibold">100% First-Time-Right</span>
+</div>
+<div class="w-full bg-primary-container h-1.5 rounded-full overflow-hidden">
+<div class="bg-tertiary-fixed h-full w-full rounded-full"></div>
+</div>
+</div>
+<div>
+<div class="flex justify-between text-body-sm font-body-sm mb-1">
+<span class="text-surface-variant">Gage R&amp;R Repeatability &amp; Bias</span>
+<span class="text-secondary-fixed font-semibold">&lt; 8.2% Total Variance</span>
+</div>
+<div class="w-full bg-primary-container h-1.5 rounded-full overflow-hidden">
+<div class="bg-secondary h-full w-[92%] rounded-full"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- SLIDE 3: Supplier Quality Development & VDA 6.3 Audits -->
+<div class="hero-slide flex flex-col justify-between p-space-md sm:p-space-lg active-slide" data-slide-index="2">
+<img alt="Automotive assembly line plant review with engineers auditing sub-tier components and supplier logistics" class="absolute inset-0 w-full h-full object-cover opacity-35 mix-blend-luminosity" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDs6CA2V2UinNYKFtkav37oEk8TKXMmVcZ2ntoRj4qZnPJ7nibWYs2D8dKO6KjdTzbrUHo2pRFjql-a4xVZjp9JkFttQdb-YNRZ6RWlxjaNldjMyQaEU4cXhHFb6-ZiOSG5OrIrfLKdNS6fh4Nvihdh-LLV9vkP_XzQwDMq7H7wVOLtxqdsgMmHx9_AAK_cUR6K8KuiWCj9S5MxoRCHA4gn-cOvH1srUdcnUhJb-aE">
+<div class="relative z-10 flex justify-between items-start">
+<span class="px-3 py-1 rounded bg-secondary text-on-secondary font-label-technical text-label-technical shadow-sm font-bold flex items-center gap-1">
+<span class="material-symbols-outlined text-sm">hub</span>
+  VDA 6.3 SECOND-PARTY AUDITOR
+</span>
+<span class="w-10 h-10 rounded-full bg-secondary-container text-on-secondary-container flex items-center justify-center font-bold shadow-md">
+<span class="material-symbols-outlined text-xl">fact_check</span>
+</span>
+</div>
+<!-- Supplier Quality Metric Readout -->
+<div class="relative z-10 bg-primary/95 backdrop-blur-md rounded p-space-md text-on-primary border border-outline-variant/20 shadow-lg mt-auto">
+<div class="flex justify-between items-center pb-2 border-b border-primary-container">
+<span class="font-label-technical text-label-technical text-primary-fixed-dim uppercase tracking-wider">Tier-2 Vendor Quality Governance</span>
+<span class="font-label-technical text-label-technical text-secondary-fixed flex items-center gap-1 font-bold">
+<span class="material-symbols-outlined text-sm">military_tech</span>Grade 'A' Supplier
+</span>
+</div>
+<div class="space-y-2 mt-2">
+<div>
+<div class="flex justify-between text-body-sm font-body-sm mb-1">
+<span class="text-surface-variant">Incoming Defect PPM Reduction</span>
+<span class="text-secondary-fixed font-semibold">-65% Within 90 Days</span>
+</div>
+<div class="w-full bg-primary-container h-1.5 rounded-full overflow-hidden">
+<div class="bg-secondary h-full w-[65%] rounded-full"></div>
+</div>
+</div>
+<div>
+<div class="flex justify-between text-body-sm font-body-sm mb-1">
+<span class="text-surface-variant">Containment &amp; 8D Closure Time</span>
+<span class="text-tertiary-fixed font-semibold">&lt; 48 Hours Protocol</span>
+</div>
+<div class="w-full bg-primary-container h-1.5 rounded-full overflow-hidden">
+<div class="bg-tertiary-fixed h-full w-[88%] rounded-full"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- SLIDE 4: COPQ Reduction & Six Sigma Breakthrough -->
+<div class="hero-slide flex flex-col justify-between p-space-md sm:p-space-lg" data-slide-index="3">
+<img alt="Industrial shop floor problem solving team analyzing root cause fishbone diagrams and Pokayoke mistake proofing devices" class="absolute inset-0 w-full h-full object-cover opacity-35 mix-blend-luminosity" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB8KEcBcSQvwfprTos5_GHdEdTKIvuBUKWIpUW1YWq3GsXl901_r5ydndKNNTr_OMf-zOyaE4XhDBKz695-w-O7RM5Pa79IERta_YugN9Df1Lm4w8SDJdfYKzIZIodG2xBGVXFbI0eOS2ftNPYBtKpxhPbbJWQbl1MaK8sGKU53MYD5gmVu96N5Hl6CNUbVQtPs8x-mYhTuG9gsHertwEVq4HdYkkLwvZfpInecKYQ">
+<div class="relative z-10 flex justify-between items-start">
+<span class="px-3 py-1 rounded bg-[#B48206] text-on-primary font-label-technical text-label-technical shadow-sm font-bold flex items-center gap-1">
+<span class="material-symbols-outlined text-sm">savings</span>
+  SIX SIGMA BLACK BELT DMAIC
+</span>
+<span class="w-10 h-10 rounded-full bg-primary-container text-tertiary-fixed flex items-center justify-center font-bold shadow-md ring-1 ring-tertiary-fixed/30">
+<span class="material-symbols-outlined text-xl">price_check</span>
+</span>
+</div>
+<!-- Financial & Scrap Impact Readout -->
+<div class="relative z-10 bg-primary/95 backdrop-blur-md rounded p-space-md text-on-primary border border-outline-variant/20 shadow-lg mt-auto">
+<div class="flex justify-between items-center pb-2 border-b border-primary-container">
+<span class="font-label-technical text-label-technical text-primary-fixed-dim uppercase tracking-wider">Bottom-Line Scrap Elimination</span>
+<span class="font-label-technical text-label-technical text-tertiary-fixed flex items-center gap-1 font-bold">
+<span class="material-symbols-outlined text-sm">currency_rupee</span>₹45M+ Cumulative Savings
+</span>
+</div>
+<div class="space-y-2 mt-2">
+<div>
+<div class="flex justify-between text-body-sm font-body-sm mb-1">
+<span class="text-surface-variant">Customer Line Stoppages (Spills)</span>
+<span class="text-secondary-fixed font-semibold">-92% Zero Repeat</span>
+</div>
+<div class="w-full bg-primary-container h-1.5 rounded-full overflow-hidden">
+<div class="bg-secondary h-full w-[92%] rounded-full"></div>
+</div>
+</div>
+<div>
+<div class="flex justify-between text-body-sm font-body-sm mb-1">
+<span class="text-surface-variant">Poka-Yoke Electronic Sensor Interlocks</span>
+<span class="text-surface-bright font-semibold">100% Fail-Safe Verified</span>
+</div>
+<div class="w-full bg-primary-container h-1.5 rounded-full overflow-hidden">
+<div class="bg-tertiary-fixed h-full w-full rounded-full"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Dynamic Status Bar Below Slider -->
+<div class="mt-space-md p-space-md rounded bg-surface-container flex items-center justify-between border border-outline-variant/20" id="slider-status-card">
+<div class="flex items-center gap-space-sm">
+<div class="w-8 h-8 rounded-full bg-secondary-container text-on-secondary-container flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-sm font-bold" id="status-icon">hub</span>
+</div>
+<div>
+<div class="font-title-md text-title-md text-primary font-bold" id="status-title">VDA 6.3 Certified Audits</div>
+<div class="font-body-sm text-body-sm text-on-surface-variant" id="status-desc">Tier-2 Upgrades &amp; 48-Hour Rapid Containment</div>
+</div>
+</div>
+<span class="font-label-technical text-label-technical uppercase font-bold tracking-wider text-secondary" id="status-badge" style="animation-delay: 297ms;">VERIFIED</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- UPGRADE 4: QUANTIFIED CREDIBILITY & METRICS BAR -->
+<section class="w-full bg-primary text-on-primary py-space-xl border-y border-primary-container">
+<div class="max-w-7xl mx-auto px-6 lg:px-12">
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-space-lg">
+<!-- Stat 1 -->
+<div class="p-space-md bg-primary-container rounded-lg flex flex-col justify-center border border-[#1a3852]">
+<div class="flex items-baseline gap-1">
+<span class="font-display-lg text-display-lg text-tertiary-fixed font-extrabold">15+</span>
+<span class="font-headline-sm text-headline-sm text-tertiary-fixed">Years</span>
+</div>
+<div class="font-title-md text-title-md text-on-primary mt-1 font-bold">Training &amp; Quality Consulting</div>
+<p class="font-body-sm text-body-sm text-primary-fixed-dim mt-1">Deep shop-floor exposure across high-precision Indian manufacturing corridors.</p>
+</div>
+<!-- Stat 2 -->
+<div class="p-space-md bg-primary-container rounded-lg flex flex-col justify-center border border-[#1a3852]">
+<div class="flex items-baseline gap-1">
+<span class="font-display-lg text-display-lg text-secondary-fixed font-extrabold">200+</span>
+<span class="font-headline-sm text-headline-sm text-secondary-fixed">Programs</span>
+</div>
+<div class="font-title-md text-title-md text-on-primary mt-1 font-bold">Training Delivered</div>
+<p class="font-body-sm text-body-sm text-primary-fixed-dim mt-1">Intensive workshops covering Core Tools, 8D Problem Solving, and IATF Auditing.</p>
+</div>
+<!-- Stat 3 -->
+<div class="p-space-md bg-primary-container rounded-lg flex flex-col justify-center border border-[#1a3852]">
+<div class="flex items-baseline gap-1">
+<span class="font-display-lg text-display-lg text-surface-variant font-extrabold">50+</span>
+<span class="font-headline-sm text-headline-sm text-surface-variant">Teams</span>
+</div>
+<div class="font-title-md text-title-md text-on-primary mt-1 font-bold">Professionals &amp; Teams Trained</div>
+<p class="font-body-sm text-body-sm text-primary-fixed-dim mt-1">Upskilling plant heads, quality managers, metrology inspectors, and plant engineers.</p>
+</div>
+<!-- Stat 4 -->
+<div class="p-space-md bg-primary-container rounded-lg flex flex-col justify-center border border-[#1a3852]">
+<div class="flex items-baseline gap-1">
+<span class="font-display-lg text-display-lg text-tertiary-fixed-dim font-extrabold">100%</span>
+<span class="font-headline-sm text-headline-sm text-tertiary-fixed-dim">Focus</span>
+</div>
+<div class="font-title-md text-title-md text-on-primary mt-1 font-bold">Automotive &amp; IATF Precision</div>
+<p class="font-body-sm text-body-sm text-primary-fixed-dim mt-1">Uncompromising compliance to AIAG-VDA and OEM supplier quality scorecards.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- UPGRADE 5: EXECUTIVE IMPACT & DIAGNOSTIC SCOPE -->
+<section class="w-full bg-surface-container-low py-20" id="diagnostic-scope">
+<div class="max-w-7xl mx-auto px-6 lg:px-12">
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-space-md mb-12">
+<div class="max-w-2xl">
+<span class="font-label-technical text-label-technical uppercase tracking-widest text-secondary font-bold">Diagnostic Scope</span>
+<h2 class="font-headline-xl text-headline-xl text-primary font-bold mt-1">Executive Impact</h2>
+<p class="font-body-md text-body-md text-on-surface-variant mt-2">
+          Generic consultants offer paperwork. We enter the shop floor, identify systematic failure modes, and eliminate recurring deviations that destroy margins and OEM trust.
+        </p>
+</div>
+<a class="self-start md:self-end px-space-md py-space-sm rounded bg-secondary text-on-secondary font-label-lg text-label-lg hover:bg-on-secondary-fixed-variant transition-all flex items-center gap-space-xs shadow-md" href="https://wa.me/918975573469" target="_blank">
+<span class="material-symbols-outlined text-base">emergency_home</span>
+<span class="">Initiate Emergency Defect Review</span>
+</a>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-space-lg">
+<!-- Challenge Card 1 -->
+<div class="bg-surface-container-lowest rounded-xl p-space-lg shadow-sm hover:shadow-md transition-shadow flex flex-col justify-between border border-outline-variant/30">
+<div>
+<div class="w-12 h-12 rounded-lg bg-error-container text-on-error-container flex items-center justify-center mb-space-md">
+<span class="material-symbols-outlined text-2xl">trending_down</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-primary font-semibold mb-2">High PPM Rates &amp; Customer Complaints</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">
+            Escalating OEM rejections, line stoppages, and customer return audits that put Tier-1 supplier contracts at immediate commercial risk.
+          </p>
+</div>
+<div class="mt-space-lg pt-space-sm bg-surface-container-low p-space-sm rounded text-label-technical font-label-technical text-on-surface flex items-center justify-between border border-outline-variant/20">
+<span class="text-on-surface-variant">Our Remedy</span>
+<span class="text-secondary font-bold">8D Drilldown &amp; Poka-Yoke Integration</span>
+</div>
+</div>
+<!-- Challenge Card 2 -->
+<div class="bg-surface-container-lowest rounded-xl p-space-lg shadow-sm hover:shadow-md transition-shadow flex flex-col justify-between border border-outline-variant/30">
+<div>
+<div class="w-12 h-12 rounded-lg bg-surface-container text-primary flex items-center justify-center mb-space-md">
+<span class="material-symbols-outlined text-2xl">assignment_late</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-primary font-semibold mb-2">Inaccurate or Ineffective APQP / PPAP</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">
+            Level 3/4 submission delays, improper Special Characteristics linkage, disconnected Control Plans, and rejected sample pilot runs.
+          </p>
+</div>
+<div class="mt-space-lg pt-space-sm bg-surface-container-low p-space-sm rounded text-label-technical font-label-technical text-on-surface flex items-center justify-between border border-outline-variant/20">
+<span class="text-on-surface-variant">Our Remedy</span>
+<span class="text-secondary font-bold">Complete 18-Element PPAP Handholding</span>
+</div>
+</div>
+<!-- Challenge Card 3 -->
+<div class="bg-surface-container-lowest rounded-xl p-space-lg shadow-sm hover:shadow-md transition-shadow flex flex-col justify-between border border-outline-variant/30">
+<div>
+<div class="w-12 h-12 rounded-lg bg-surface-container text-primary flex items-center justify-center mb-space-md">
+<span class="material-symbols-outlined text-2xl">gavel</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-primary font-semibold mb-2">Audit Non-Conformances (IATF / ISO)</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">
+            Repeated Major and Minor non-conformances from external certification bodies, VDA 6.3 customer audits, and internal systemic failures.
+          </p>
+</div>
+<div class="mt-space-lg pt-space-sm bg-surface-container-low p-space-sm rounded text-label-technical font-label-technical text-on-surface flex items-center justify-between border border-outline-variant/20">
+<span class="text-on-surface-variant">Our Remedy</span>
+<span class="text-secondary font-bold">Pre-Audit Gap Closure &amp; NC Eradication</span>
+</div>
+</div>
+<!-- Challenge Card 4 -->
+<div class="bg-surface-container-lowest rounded-xl p-space-lg shadow-sm hover:shadow-md transition-shadow flex flex-col justify-between border border-outline-variant/30">
+<div>
+<div class="w-12 h-12 rounded-lg bg-error-container text-on-error-container flex items-center justify-center mb-space-md">
+<span class="material-symbols-outlined text-2xl">delete_forever</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-primary font-semibold mb-2">High Cost of Poor Quality (COPQ) &amp; Scrap</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">
+            Uncontrolled internal rework, scrap metal generation, and heavy labor diverted to offline sorting instead of value-adding operations.
+          </p>
+</div>
+<div class="mt-space-lg pt-space-sm bg-surface-container-low p-space-sm rounded text-label-technical font-label-technical text-on-surface flex items-center justify-between border border-outline-variant/20">
+<span class="text-on-surface-variant">Our Remedy</span>
+<span class="text-secondary font-bold">DMAIC Scrap Mapping &amp; Yield Protection</span>
+</div>
+</div>
+<!-- Challenge Card 5 -->
+<div class="bg-surface-container-lowest rounded-xl p-space-lg shadow-sm hover:shadow-md transition-shadow flex flex-col justify-between border border-outline-variant/30">
+<div>
+<div class="w-12 h-12 rounded-lg bg-surface-container text-primary flex items-center justify-center mb-space-md">
+<span class="material-symbols-outlined text-2xl">speed</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-primary font-semibold mb-2">Low OEE &amp; Shop-Floor Bottlenecks</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">
+            Sub-optimal machine availability, frequent micro-stops, uncalibrated changeovers, and lack of visual management tracking true cycle times.
+          </p>
+</div>
+<div class="mt-space-lg pt-space-sm bg-surface-container-low p-space-sm rounded text-label-technical font-label-technical text-on-surface flex items-center justify-between border border-outline-variant/20">
+<span class="text-on-surface-variant">Our Remedy</span>
+<span class="text-secondary font-bold">Line Balancing &amp; Process Capability Cpk</span>
+</div>
+</div>
+<!-- Challenge Card 6 -->
+<div class="bg-surface-container-lowest rounded-xl p-space-lg shadow-sm hover:shadow-md transition-shadow flex flex-col justify-between border border-outline-variant/30">
+<div>
+<div class="w-12 h-12 rounded-lg bg-surface-container text-primary flex items-center justify-center mb-space-md">
+<span class="material-symbols-outlined text-2xl">forklift</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-primary font-semibold mb-2">Weak Supplier Quality Controls</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">
+            Sub-tier vendors supplying defective raw material, lack of receiving inspection plans, and absent vendor evaluation governance frameworks.
+          </p>
+</div>
+<div class="mt-space-lg pt-space-sm bg-surface-container-low p-space-sm rounded text-label-technical font-label-technical text-on-surface flex items-center justify-between border border-outline-variant/20">
+<span class="text-on-surface-variant">Our Remedy</span>
+<span class="text-secondary font-bold">2nd-Party Auditing &amp; Vendor Capability Upgrades</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- UPGRADE 6: CORE CAPABILITIES & APPROACH (3 PILLARS) -->
+<section class="w-full bg-surface py-20">
+<div class="max-w-7xl mx-auto px-6 lg:px-12">
+<div class="text-center max-w-3xl mx-auto mb-16">
+<span class="font-label-technical text-label-technical uppercase tracking-widest text-secondary font-bold">Engineering Doctrine</span>
+<h2 class="font-headline-xl text-headline-xl text-primary font-bold mt-1">Our Core Capabilities &amp; Approach</h2>
+<p class="font-body-md text-body-md text-on-surface-variant mt-2">
+        We operate on a three-tier operational methodology that converts ambiguous compliance standards into hardened, repeatable manufacturing routines.
+      </p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-space-lg">
+<!-- Pillar 1 -->
+<div class="bg-surface-container-lowest rounded-xl p-space-lg shadow-md flex flex-col justify-between relative border border-outline-variant/20">
+<div class="absolute top-0 left-0 right-0 h-1.5 bg-primary-container rounded-t-xl"></div>
+<div>
+<div class="flex items-center justify-between mb-space-md pt-2">
+<span class="w-10 h-10 rounded-full bg-surface-container flex items-center justify-center text-primary font-bold text-headline-sm">01</span>
+<span class="material-symbols-outlined text-secondary text-2xl">sync_alt</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-primary font-bold mb-space-sm">Structured PDCA &amp; 8D Root Cause</h3>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+            We eradicate superficial "operator error" blame. Our systematic 8D framework identifies systemic, managerial, and tooling root causes through Ishikawa diagrams, 5-Why analysis, and robust Is/Is-Not matrices.
+          </p>
+</div>
+<div class="mt-space-md pt-space-md bg-surface-container-low rounded p-space-sm border border-outline-variant/20">
+<span class="font-label-technical text-label-technical text-on-surface uppercase font-bold block mb-1">Tools Integrated</span>
+<div class="flex flex-wrap gap-1">
+<span class="px-2 py-0.5 rounded bg-surface text-primary font-label-technical text-label-technical">Fishbone</span>
+<span class="px-2 py-0.5 rounded bg-surface text-primary font-label-technical text-label-technical">5-Why</span>
+<span class="px-2 py-0.5 rounded bg-surface text-primary font-label-technical text-label-technical">D3 Containment</span>
+</div>
+</div>
+</div>
+<!-- Pillar 2 -->
+<div class="bg-surface-container-lowest rounded-xl p-space-lg shadow-md flex flex-col justify-between relative border border-outline-variant/20">
+<div class="absolute top-0 left-0 right-0 h-1.5 bg-tertiary-fixed rounded-t-xl"></div>
+<div>
+<div class="flex items-center justify-between mb-space-md pt-2">
+<span class="w-10 h-10 rounded-full bg-surface-container flex items-center justify-center text-primary font-bold text-headline-sm">02</span>
+<span class="material-symbols-outlined text-secondary text-2xl">straighten</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-primary font-bold mb-space-sm">On-Site Shop Floor &amp; Metrology Auditing</h3>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+            We audit where the metal is cut and the plastic is injected. Our evaluations span gage repeatability and reproducibility (Gage R&amp;R), calibration records, first-piece approval verification, and operator boundary samples.
+          </p>
+</div>
+<div class="mt-space-md pt-space-md bg-surface-container-low rounded p-space-sm border border-outline-variant/20">
+<span class="font-label-technical text-label-technical text-on-surface uppercase font-bold block mb-1">Focus Areas</span>
+<div class="flex flex-wrap gap-1">
+<span class="px-2 py-0.5 rounded bg-surface text-primary font-label-technical text-label-technical">MSA Bias</span>
+<span class="px-2 py-0.5 rounded bg-surface text-primary font-label-technical text-label-technical">Line Metrology</span>
+<span class="px-2 py-0.5 rounded bg-surface text-primary font-label-technical text-label-technical">Visual Standards</span>
+</div>
+</div>
+</div>
+<!-- Pillar 3 -->
+<div class="bg-surface-container-lowest rounded-xl p-space-lg shadow-md flex flex-col justify-between relative border border-outline-variant/20">
+<div class="absolute top-0 left-0 right-0 h-1.5 bg-secondary rounded-t-xl"></div>
+<div>
+<div class="flex items-center justify-between mb-space-md pt-2">
+<span class="w-10 h-10 rounded-full bg-surface-container flex items-center justify-center text-primary font-bold text-headline-sm">03</span>
+<span class="material-symbols-outlined text-secondary text-2xl">handshake</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-primary font-bold mb-space-sm">Hands-On Implementation, Not Theory</h3>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+            We don’t deliver binders of unreadable policies and walk away. Our lead auditors work alongside plant managers and floor supervisors until new Control Plans and FMEAs are actively executed in live production.
+          </p>
+</div>
+<div class="mt-space-md pt-space-md bg-surface-container-low rounded p-space-sm border border-outline-variant/20">
+<span class="font-label-technical text-label-technical text-on-surface uppercase font-bold block mb-1">Execution Mode</span>
+<div class="flex flex-wrap gap-1">
+<span class="px-2 py-0.5 rounded bg-surface text-primary font-label-technical text-label-technical">Live Gemba Walks</span>
+<span class="px-2 py-0.5 rounded bg-surface text-primary font-label-technical text-label-technical">Red Bin Analysis</span>
+<span class="px-2 py-0.5 rounded bg-surface text-primary font-label-technical text-label-technical">SOP Coaching</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- UPGRADE 7: FEATURED SERVICE HIGHLIGHTS (PILLARS) -->
+<section class="w-full bg-surface-container-lowest py-20 border-y border-outline-variant/20" id="featured-services">
+<div class="max-w-7xl mx-auto px-6 lg:px-12">
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-space-md mb-12">
+<div>
+<span class="font-label-technical text-label-technical uppercase tracking-widest text-secondary font-bold">Solutions Portfolio</span>
+<h2 class="font-headline-xl text-headline-xl text-primary font-bold mt-1">Featured Service Highlights</h2>
+</div>
+<a class="text-primary font-title-md text-title-md hover:text-secondary flex items-center gap-1 transition-colors" data-path="services" href="#diagnostic-intake">
+<span class="">View All Technical Services</span>
+<span class="material-symbols-outlined text-base">east</span>
+</a>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-space-lg">
+<!-- Service 1: IATF 16949 Turnkey -->
+<div class="bg-surface-container-low rounded-xl p-space-lg flex flex-col justify-between border border-outline-variant/30" id="service-iatf-16949">
+<div>
+<div class="flex items-center justify-between mb-space-sm">
+<span class="px-space-sm py-1 rounded bg-primary-container text-tertiary-fixed font-label-technical text-label-technical">FLAGSHIP ADVISORY</span>
+<span class="material-symbols-outlined text-secondary text-2xl">verified</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-primary font-bold mb-2">IATF 16949:2016 Turnkey Implementation</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed mb-space-md">
+            Full lifecycle advisory from baseline gap analysis to stage-1/stage-2 certification audit support. We draft context analysis, risk registers, and automotive-aligned quality manuals.
+          </p>
+<ul class="space-y-1.5 font-body-sm text-body-sm text-on-surface">
+<li class="flex items-center gap-2"><span class="material-symbols-outlined text-sm text-secondary">check</span> Gap Identification &amp; Matrix Formulation</li>
+<li class="flex items-center gap-2"><span class="material-symbols-outlined text-sm text-secondary">check</span> Customer-Specific Requirements (CSR) Mapping</li>
+<li class="flex items-center gap-2"><span class="material-symbols-outlined text-sm text-secondary">check</span> Internal Auditor Mock Certifications</li>
+</ul>
+</div>
+<div class="mt-space-lg">
+<a class="w-full py-2.5 rounded bg-primary-container text-on-primary font-label-md text-label-md text-center block hover:bg-primary transition-colors shadow-sm" data-path="services" href="#diagnostic-intake">
+            Explore Turnkey Scope
+          </a>
+</div>
+</div>
+<!-- Service 2: Supplier Quality Development -->
+<div class="bg-surface-container-low rounded-xl p-space-lg flex flex-col justify-between border border-outline-variant/30" id="service-supplier-quality">
+<div>
+<div class="flex items-center justify-between mb-space-sm">
+<span class="px-space-sm py-1 rounded bg-surface-container text-on-surface-variant font-label-technical text-label-technical">SUPPLY CHAIN</span>
+<span class="material-symbols-outlined text-secondary text-2xl">hub</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-primary font-bold mb-2">Supplier Quality Development &amp; VDA 6.3</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed mb-space-md">
+            Independent second-party audits of your supply base. We evaluate Tier-2 capabilities, enforce incoming quality standards, and qualify new suppliers for rapid ramp-up.
+          </p>
+<ul class="space-y-1.5 font-body-sm text-body-sm text-on-surface">
+<li class="flex items-center gap-2"><span class="material-symbols-outlined text-sm text-secondary">check</span> On-Site VDA 6.3 Process Audits</li>
+<li class="flex items-center gap-2"><span class="material-symbols-outlined text-sm text-secondary">check</span> Supplier Scorecard &amp; Escalation Frameworks</li>
+<li class="flex items-center gap-2"><span class="material-symbols-outlined text-sm text-secondary">check</span> Incoming PPM Reduction Programs</li>
+</ul>
+</div>
+<div class="mt-space-lg">
+<a class="w-full py-2.5 rounded bg-primary-container text-on-primary font-label-md text-label-md text-center block hover:bg-primary transition-colors shadow-sm" data-path="services" href="#diagnostic-intake">
+            Supplier Audit Details
+          </a>
+</div>
+</div>
+<!-- Service 3: APQP & PPAP Handholding -->
+<div class="bg-surface-container-low rounded-xl p-space-lg flex flex-col justify-between border border-outline-variant/30" id="service-apqp-ppap">
+<div>
+<div class="flex items-center justify-between mb-space-sm">
+<span class="px-space-sm py-1 rounded bg-surface-container text-on-surface-variant font-label-technical text-label-technical">PRODUCT LAUNCH</span>
+<span class="material-symbols-outlined text-secondary text-2xl">flowsheet</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-primary font-bold mb-2">APQP &amp; PPAP Handholding (AIAG-VDA)</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed mb-space-md">
+            End-to-end guidance through New Product Introduction (NPI). Ensuring seamless transition from prototype to pilot and Mass Production with zero launch spills.
+          </p>
+<ul class="space-y-1.5 font-body-sm text-body-sm text-on-surface">
+<li class="flex items-center gap-2"><span class="material-symbols-outlined text-sm text-secondary">check</span> AIAG &amp; VDA Harmonized FMEA</li>
+<li class="flex items-center gap-2"><span class="material-symbols-outlined text-sm text-secondary">check</span> Level 3/4 Customer Submission Dossiers</li>
+<li class="flex items-center gap-2"><span class="material-symbols-outlined text-sm text-secondary">check</span> PSW (Part Submission Warrant) Sign-Off</li>
+</ul>
+</div>
+<div class="mt-space-lg">
+<a class="w-full py-2.5 rounded bg-primary-container text-on-primary font-label-md text-label-md text-center block hover:bg-primary transition-colors shadow-sm" data-path="services" href="#diagnostic-intake">
+            Review APQP Protocol
+          </a>
+</div>
+</div>
+<!-- Service 4: COPQ Reduction & Six Sigma -->
+<div class="bg-surface-container-low rounded-xl p-space-lg flex flex-col justify-between border border-outline-variant/30" id="service-copq">
+<div>
+<div class="flex items-center justify-between mb-space-sm">
+<span class="px-space-sm py-1 rounded bg-surface-container text-on-surface-variant font-label-technical text-label-technical">FINANCIAL IMPACT</span>
+<span class="material-symbols-outlined text-secondary text-2xl">savings</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-primary font-bold mb-2">COPQ Reduction &amp; Yield Optimization</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed mb-space-md">
+            Translating shop-floor quality errors into ledger rupees. We quantify the true Cost of Poor Quality (scrap, rework, warranty) and implement Lean Kaizen controls.
+          </p>
+<ul class="space-y-1.5 font-body-sm text-body-sm text-on-surface">
+<li class="flex items-center gap-2"><span class="material-symbols-outlined text-sm text-secondary">check</span> Internal Scrap &amp; Rework Segregation</li>
+<li class="flex items-center gap-2"><span class="material-symbols-outlined text-sm text-secondary">check</span> Poka-Yoke Mistake Proofing Deployment</li>
+<li class="flex items-center gap-2"><span class="material-symbols-outlined text-sm text-secondary">check</span> Tangible Ledger COPQ Reduction</li>
+</ul>
+</div>
+<div class="mt-space-lg">
+<a class="w-full py-2.5 rounded bg-primary-container text-on-primary font-label-md text-label-md text-center block hover:bg-primary transition-colors shadow-sm" data-path="services" href="#diagnostic-intake">
+            Explore COPQ Modules
+          </a>
+</div>
+</div>
+<!-- Service 5: Process Capability & SPC/MSA -->
+<div class="bg-surface-container-low rounded-xl p-space-lg flex flex-col justify-between border border-outline-variant/30" id="service-process-capability">
+<div>
+<div class="flex items-center justify-between mb-space-sm">
+<span class="px-space-sm py-1 rounded bg-surface-container text-on-surface-variant font-label-technical text-label-technical">STATISTICAL RIGOR</span>
+<span class="material-symbols-outlined text-secondary text-2xl">analytics</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-primary font-bold mb-2">Process Capability &amp; Statistical Controls</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed mb-space-md">
+            Moving beyond historical inspection into real-time predictive statistical prevention. We set up X-bar &amp; R charts, calculate Cp/Cpk benchmarks (&gt; 1.67), and validate measurement systems.
+          </p>
+<ul class="space-y-1.5 font-body-sm text-body-sm text-on-surface">
+<li class="flex items-center gap-2"><span class="material-symbols-outlined text-sm text-secondary">check</span> Real-Time SPC Charting On Floor</li>
+<li class="flex items-center gap-2"><span class="material-symbols-outlined text-sm text-secondary">check</span> Gage R&amp;R for Variable &amp; Attribute Gauges</li>
+<li class="flex items-center gap-2"><span class="material-symbols-outlined text-sm text-secondary">check</span> Machine Acceptance Cmk &amp; Cpk Studies</li>
+</ul>
+</div>
+<div class="mt-space-lg">
+<a class="w-full py-2.5 rounded bg-primary-container text-on-primary font-label-md text-label-md text-center block hover:bg-primary transition-colors shadow-sm" data-path="services" href="#diagnostic-intake">
+            Read SPC/MSA Scope
+          </a>
+</div>
+</div>
+<!-- Service 6: Integrated Management Systems (IMS) -->
+<div class="bg-surface-container-low rounded-xl p-space-lg flex flex-col justify-between border border-outline-variant/30" id="service-iso-ims">
+<div>
+<div class="flex items-center justify-between mb-space-sm">
+<span class="px-space-sm py-1 rounded bg-surface-container text-on-surface-variant font-label-technical text-label-technical">INTEGRATED AUDIT</span>
+<span class="material-symbols-outlined text-secondary text-2xl">security</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-primary font-bold mb-2">ISO 9001 / ISO 14001 / ISO 45001 IMS</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed mb-space-md">
+            Streamlining Quality, Environmental, and Occupational Health &amp; Safety into a single unified management structure without overlapping documentation.
+          </p>
+<ul class="space-y-1.5 font-body-sm text-body-sm text-on-surface">
+<li class="flex items-center gap-2"><span class="material-symbols-outlined text-sm text-secondary">check</span> Unified EHS &amp; Quality Audit Charters</li>
+<li class="flex items-center gap-2"><span class="material-symbols-outlined text-sm text-secondary">check</span> Hazard Identification &amp; Environmental Aspects</li>
+<li class="flex items-center gap-2"><span class="material-symbols-outlined text-sm text-secondary">check</span> Management Review Board Protocols</li>
+</ul>
+</div>
+<div class="mt-space-lg">
+<a class="w-full py-2.5 rounded bg-primary-container text-on-primary font-label-md text-label-md text-center block hover:bg-primary transition-colors shadow-sm" data-path="services" href="#diagnostic-intake">
+            Explore IMS Integration
+          </a>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- UPGRADE 8: TRAINING & DEVELOPMENT SPOTLIGHT (SHOP-FLOOR SIMULATIONS) -->
+<section class="w-full bg-surface py-20 border-b border-outline-variant/20" id="training-and-development"><div class="max-w-7xl mx-auto px-6 lg:px-12"><div class="text-center max-w-3xl mx-auto mb-16"><span class="font-label-technical text-label-technical uppercase tracking-widest text-secondary font-bold">Business Vertical</span><h2 class="font-headline-xl text-headline-xl text-primary font-bold mt-1 uppercase tracking-tight">TRAINING &amp; DEVELOPMENT</h2><p class="font-title-md text-title-md text-secondary font-semibold mt-2">Developing Skills. Strengthening Competencies. Building Future-Ready Professionals.</p><p class="font-body-md text-body-md text-on-surface-variant mt-3 leading-relaxed">Nexaouraa provides industry-focused, corporate and academic training programmes designed to enhance technical knowledge, professional competencies and practical workplace skills. Our training methodology combines hands-on industry experience, practical case studies, interactive learning and real-world applications to bridge the gap between academic knowledge and industry requirements.</p></div><div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-space-lg"><div class="bg-surface-container-lowest rounded-xl p-space-lg flex flex-col justify-between border border-outline-variant/30 shadow-sm hover:shadow-md transition-shadow"><div class="flex flex-col"><div class="flex items-center justify-between mb-space-sm"><span class="px-space-sm py-1 rounded bg-primary-container text-tertiary-fixed font-label-technical text-label-technical uppercase font-bold">Manufacturing</span><span class="material-symbols-outlined text-secondary text-2xl">precision_manufacturing</span></div><h3 class="font-headline-sm text-headline-sm text-primary font-bold mb-2">Industrial Training</h3><p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed mb-space-md">Tailored for automotive, manufacturing, and engineering plants to build rigorous floor execution and audit compliance.</p><ul class="space-y-1.5 font-body-sm text-body-sm text-on-surface mb-space-md"><li class="flex items-center gap-2"><span class="material-symbols-outlined text-sm text-secondary">check</span> QMS &amp; IATF 16949 Implementation</li><li class="flex items-center gap-2"><span class="material-symbols-outlined text-sm text-secondary">check</span> Core Tools (APQP, PPAP, FMEA, SPC, MSA)</li><li class="flex items-center gap-2"><span class="material-symbols-outlined text-sm text-secondary">check</span> Certified Internal Auditor Programs</li><li class="flex items-center gap-2"><span class="material-symbols-outlined text-sm text-secondary">check</span> Lean, Six Sigma, 5S, Kaizen &amp; TPM</li><li class="flex items-center gap-2"><span class="material-symbols-outlined text-sm text-secondary">check</span> Root Cause Analysis (RCA, 8D, CAPA)</li></ul></div><div class="pt-space-sm border-t border-outline-variant/20"><span class="font-label-technical text-label-technical text-secondary uppercase font-bold">Shop-Floor Rigor</span></div></div><div class="bg-surface-container-lowest rounded-xl p-space-lg flex flex-col justify-between border border-outline-variant/30 shadow-sm hover:shadow-md transition-shadow"><div class="flex flex-col"><div class="flex items-center justify-between mb-space-sm"><span class="px-space-sm py-1 rounded bg-surface-container text-on-surface-variant font-label-technical text-label-technical uppercase font-bold">Executive</span><span class="material-symbols-outlined text-secondary text-2xl">groups</span></div><h3 class="font-headline-sm text-headline-sm text-primary font-bold mb-2">Corporate Training</h3><p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed mb-space-md">Empowering cross-functional teams, mid-tier managers, and plant leadership with critical workplace leadership competencies.</p><ul class="space-y-1.5 font-body-sm text-body-sm text-on-surface mb-space-md"><li class="flex items-center gap-2"><span class="material-symbols-outlined text-sm text-secondary">check</span> Operational Leadership &amp; Supervisory Skills</li><li class="flex items-center gap-2"><span class="material-symbols-outlined text-sm text-secondary">check</span> Managerial Effectiveness &amp; Ownership</li><li class="flex items-center gap-2"><span class="material-symbols-outlined text-sm text-secondary">check</span> Professional Business Communication</li><li class="flex items-center gap-2"><span class="material-symbols-outlined text-sm text-secondary">check</span> Cross-Functional Team Building</li><li class="flex items-center gap-2"><span class="material-symbols-outlined text-sm text-secondary">check</span> Problem Solving &amp; Performance Management</li></ul></div><div class="pt-space-sm border-t border-outline-variant/20"><span class="font-label-technical text-label-technical text-secondary uppercase font-bold">People Leadership</span></div></div><div class="bg-surface-container-lowest rounded-xl p-space-lg flex flex-col justify-between border border-outline-variant/30 shadow-sm hover:shadow-md transition-shadow"><div class="flex flex-col"><div class="flex items-center justify-between mb-space-sm"><span class="px-space-sm py-1 rounded bg-surface-container text-on-surface-variant font-label-technical text-label-technical uppercase font-bold">Academic</span><span class="material-symbols-outlined text-secondary text-2xl">school</span></div><h3 class="font-headline-sm text-headline-sm text-primary font-bold mb-2">College &amp; University Training</h3><p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed mb-space-md">Bridging academia and industrial reality for engineering, technical, and management university institutions.</p><ul class="space-y-1.5 font-body-sm text-body-sm text-on-surface mb-space-md"><li class="flex items-center gap-2"><span class="material-symbols-outlined text-sm text-secondary">check</span> Engineering &amp; Management Curriculums</li><li class="flex items-center gap-2"><span class="material-symbols-outlined text-sm text-secondary">check</span> Practical QMS &amp; Core Tools Seminars</li><li class="flex items-center gap-2"><span class="material-symbols-outlined text-sm text-secondary">check</span> Industry Employability &amp; Readiness</li><li class="flex items-center gap-2"><span class="material-symbols-outlined text-sm text-secondary">check</span> Industry-Academia Interaction Labs</li><li class="flex items-center gap-2"><span class="material-symbols-outlined text-sm text-secondary">check</span> Mock Plant Audits &amp; Industrial Case Studies</li></ul></div><div class="pt-space-sm border-t border-outline-variant/20"><span class="font-label-technical text-label-technical text-secondary uppercase font-bold">Future Engineers</span></div></div><div class="bg-surface-container-lowest rounded-xl p-space-lg flex flex-col justify-between border border-outline-variant/30 shadow-sm hover:shadow-md transition-shadow"><div class="flex flex-col"><div class="flex items-center justify-between mb-space-sm"><span class="px-space-sm py-1 rounded bg-surface-container text-on-surface-variant font-label-technical text-label-technical uppercase font-bold">Polytechnic</span><span class="material-symbols-outlined text-secondary text-2xl">build</span></div><h3 class="font-headline-sm text-headline-sm text-primary font-bold mb-2">ITI &amp; Polytechnic Training</h3><p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed mb-space-md">Targeted foundational vocational preparation for shop-floor technicians, operators, and diploma holders.</p><ul class="space-y-1.5 font-body-sm text-body-sm text-on-surface mb-space-md"><li class="flex items-center gap-2"><span class="material-symbols-outlined text-sm text-secondary">check</span> Hands-On Technical Education</li><li class="flex items-center gap-2"><span class="material-symbols-outlined text-sm text-secondary">check</span> Modern Manufacturing Fundamentals</li><li class="flex items-center gap-2"><span class="material-symbols-outlined text-sm text-secondary">check</span> Inspection &amp; Metrology Instrument Handling</li><li class="flex items-center gap-2"><span class="material-symbols-outlined text-sm text-secondary">check</span> CNC / VMC Operational Awareness</li><li class="flex items-center gap-2"><span class="material-symbols-outlined text-sm text-secondary">check</span> 5S Workplace Organization &amp; Industrial Safety</li></ul></div><div class="pt-space-sm border-t border-outline-variant/20"><span class="font-label-technical text-label-technical text-secondary uppercase font-bold">Technician Skillset</span></div></div></div><div class="mt-12 text-center flex flex-col sm:flex-row items-center justify-center gap-space-md"><a class="px-space-lg py-3 rounded-lg bg-primary-container text-on-primary font-title-md text-title-md hover:bg-primary transition-all shadow-md flex items-center justify-center gap-space-xs font-bold uppercase tracking-wider" data-path="training-and-development" href="#training-spotlight"><span class="">EXPLORE TRAINING PROGRAMMES</span><span class="material-symbols-outlined text-base">arrow_forward</span></a><a class="px-space-lg py-3 rounded-lg bg-secondary text-on-secondary font-title-md text-title-md hover:bg-on-secondary-fixed-variant transition-all shadow-md flex items-center justify-center gap-space-xs font-bold" href="https://wa.me/918975573469?text=Interested%20in%20Training%20and%20Development%20Programmes" target="_blank"><span class="material-symbols-outlined text-base">chat</span><span class="">Enquire for Custom Batch</span></a></div></div></section><section class="w-full bg-surface-container py-20" id="training-spotlight">
+<div class="max-w-7xl mx-auto px-6 lg:px-12">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-space-xl items-center">
+<div class="lg:col-span-6 flex flex-col gap-space-md">
+<span class="font-label-technical text-label-technical uppercase tracking-widest text-secondary font-bold">Workforce Capability Upgrades</span>
+<h2 class="font-headline-xl text-headline-xl text-primary font-bold leading-tight">
+          Training &amp; Development Spotlight: <br>
+          Practical Shop-Floor Simulations
+        </h2>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+          Theoretical classroom training often dissipates within days. Nexaouraa's pedagogy revolves around live shop-floor workshops, real component measuring, actual drawing analysis, and mock internal audits that build reflex-level competencies.
+        </p>
+<div class="space-y-space-sm pt-space-xs">
+<div class="flex items-start gap-space-sm p-space-sm rounded bg-surface-container-lowest border border-outline-variant/30">
+<div class="w-8 h-8 rounded bg-primary-container text-tertiary-fixed flex items-center justify-center shrink-0 mt-0.5">
+<span class="material-symbols-outlined text-base">school</span>
+</div>
+<div>
+<h4 class="font-title-md text-title-md text-primary font-bold">Certified Internal Auditor Qualifications</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Qualified internal auditor certifications for IATF 16949, ISO 9001, and VDA 6.3 with live audit role-play evaluations.</p>
+</div>
+</div>
+<div class="flex items-start gap-space-sm p-space-sm rounded bg-surface-container-lowest border border-outline-variant/30">
+<div class="w-8 h-8 rounded bg-secondary text-on-secondary flex items-center justify-center shrink-0 mt-0.5">
+<span class="material-symbols-outlined text-base">build_circle</span>
+</div>
+<div>
+<h4 class="font-title-md text-title-md text-primary font-bold">AIAG-VDA 5 Core Tools Mastery</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Intensive hands-on coaching across APQP 3rd Ed, Control Plan 1st Ed, FMEA 7-Step, SPC, and MSA 4th Ed with live shop data.</p>
+</div>
+</div>
+<div class="flex items-start gap-space-sm p-space-sm rounded bg-surface-container-lowest border border-outline-variant/30">
+<div class="w-8 h-8 rounded bg-surface-container-highest text-primary flex items-center justify-center shrink-0 mt-0.5">
+<span class="material-symbols-outlined text-base">groups</span>
+</div>
+<div>
+<h4 class="font-title-md text-title-md text-primary font-bold">Practical Problem-Solving (8D / 7 QC Tools)</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Equipping line supervisors and engineers to formulate customer-acceptable 8D reports that survive strict OEM scrutiny.</p>
+</div>
+</div>
+</div>
+<div class="pt-space-sm flex flex-wrap items-center gap-space-sm">
+<a class="px-space-md py-2.5 rounded bg-primary-container text-on-primary font-title-md text-title-md hover:bg-primary transition-all flex items-center gap-space-xs shadow-md" data-path="training-and-development" href="#diagnostic-intake">
+<span class="">View Training Calendar</span>
+<span class="material-symbols-outlined text-base">arrow_forward</span>
+</a>
+<a class="px-space-md py-2.5 rounded bg-surface-container-highest text-primary font-title-md text-title-md hover:bg-surface-variant transition-all flex items-center gap-space-xs" href="https://wa.me/918975573469?text=Interested%20in%20Corporate%20Quality%20Training%20Program" target="_blank">
+<span class="material-symbols-outlined text-base">group_add</span>
+<span class="">Book Plant Batch (10-25 Pax)</span>
+</a>
+</div>
+</div>
+<div class="lg:col-span-6">
+<div class="bg-surface-container-lowest rounded-xl p-space-lg shadow-lg relative border border-outline-variant/20">
+<div class="relative aspect-video rounded-lg overflow-hidden bg-primary mb-space-md">
+<img class="w-full h-full object-cover opacity-85" data-alt="Technical engineer training workshop inside a manufacturing plant boardroom examining precision machined metallic gears and AIAG-VDA FMEA engineering charts" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB8KEcBcSQvwfprTos5_GHdEdTKIvuBUKWIpUW1YWq3GsXl901_r5ydndKNNTr_OMf-zOyaE4XhDBKz695-w-O7RM5Pa79IERta_YugN9Df1Lm4w8SDJdfYKzIZIodG2xBGVXFbI0eOS2ftNPYBtKpxhPbbJWQbl1MaK8sGKU53MYD5gmVu96N5Hl6CNUbVQtPs8x-mYhTuG9gsHertwEVq4HdYkkLwvZfpInecKYQ">
+<div class="absolute bottom-2 left-2 px-2.5 py-1 rounded bg-primary-container/90 backdrop-blur-sm text-tertiary-fixed font-label-technical text-label-technical">
+              LIVE CORPORATE WORKSHOP
+            </div>
+</div>
+<!-- Training Curriculum Metrics -->
+<div class="grid grid-cols-2 gap-space-md">
+<div class="p-space-sm bg-surface-container-low rounded border border-outline-variant/20">
+<div class="font-title-md text-title-md text-primary font-bold">200+ Delivered</div>
+<div class="font-label-technical text-label-technical text-on-surface-variant">Workshops in Tier-1 Hubs</div>
+</div>
+<div class="p-space-sm bg-surface-container-low rounded border border-outline-variant/20">
+<div class="font-title-md text-title-md text-secondary font-bold">Practical Grading</div>
+<div class="font-label-technical text-label-technical text-on-surface-variant">Real Shop Floor Case Tests</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- UPGRADE 9: INDUSTRIES WE SERVE -->
+<section class="w-full bg-surface-container-lowest py-20" id="industries">
+<div class="max-w-7xl mx-auto px-6 lg:px-12">
+<div class="text-center max-w-2xl mx-auto mb-16">
+<span class="font-label-technical text-label-technical uppercase tracking-widest text-secondary font-bold">Sectors &amp; Environments</span>
+<h2 class="font-headline-xl text-headline-xl text-primary font-bold mt-1">Industries We Serve</h2>
+<p class="font-body-md text-body-md text-on-surface-variant mt-2">
+        Tailored quality frameworks addressing the specific machine tolerances, thermal variations, and inspection demands of diverse manufacturing segments.
+      </p>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-space-md">
+<!-- Industry 1 -->
+<div class="bg-surface-container-low rounded-xl p-space-md flex flex-col justify-between hover:bg-surface-container transition-colors border border-outline-variant/20">
+<div>
+<div class="w-10 h-10 rounded bg-primary-container text-tertiary-fixed flex items-center justify-center mb-space-sm">
+<span class="material-symbols-outlined text-xl">directions_car</span>
+</div>
+<h3 class="font-title-md text-title-md text-primary font-bold mb-1">Automotive Tier-1 &amp; Tier-2</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Powertrain components, chassis systems, steering, brakes, and electrical harness assemblies.</p>
+</div>
+<span class="mt-space-md font-label-technical text-label-technical text-secondary uppercase font-bold">IATF 16949 / VDA</span>
+</div>
+<!-- Industry 2 -->
+<div class="bg-surface-container-low rounded-xl p-space-md flex flex-col justify-between hover:bg-surface-container transition-colors border border-outline-variant/20">
+<div>
+<div class="w-10 h-10 rounded bg-primary-container text-tertiary-fixed flex items-center justify-center mb-space-sm">
+<span class="material-symbols-outlined text-xl">precision_manufacturing</span>
+</div>
+<h3 class="font-title-md text-title-md text-primary font-bold mb-1">Precision Machining</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">CNC, VMC, turning centers, tight-tolerance shafts, high-pressure hydraulic manifolds.</p>
+</div>
+<span class="mt-space-md font-label-technical text-label-technical text-secondary uppercase font-bold">Cp/Cpk &gt; 1.67 Focus</span>
+</div>
+<!-- Industry 3 -->
+<div class="bg-surface-container-low rounded-xl p-space-md flex flex-col justify-between hover:bg-surface-container transition-colors border border-outline-variant/20">
+<div>
+<div class="w-10 h-10 rounded bg-primary-container text-tertiary-fixed flex items-center justify-center mb-space-sm">
+<span class="material-symbols-outlined text-xl">architecture</span>
+</div>
+<h3 class="font-title-md text-title-md text-primary font-bold mb-1">Sheet Metal &amp; Fabrication</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Press shops, robotic MIG/TIG welding cells, laser cutting, and stamped structural parts.</p>
+</div>
+<span class="mt-space-md font-label-technical text-label-technical text-secondary uppercase font-bold">Weld Quality &amp; CMM</span>
+</div>
+<!-- Industry 4 -->
+<div class="bg-surface-container-low rounded-xl p-space-md flex flex-col justify-between hover:bg-surface-container transition-colors border border-outline-variant/20">
+<div>
+<div class="w-10 h-10 rounded bg-primary-container text-tertiary-fixed flex items-center justify-center mb-space-sm">
+<span class="material-symbols-outlined text-xl">layers</span>
+</div>
+<h3 class="font-title-md text-title-md text-primary font-bold mb-1">Plastics &amp; Polymers</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Injection molding, blow molding, aesthetic trim panels, mold qualification, and shrinkage control.</p>
+</div>
+<span class="mt-space-md font-label-technical text-label-technical text-secondary uppercase font-bold">Mold Validation</span>
+</div>
+<!-- Industry 5 -->
+<div class="bg-surface-container-low rounded-xl p-space-md flex flex-col justify-between hover:bg-surface-container transition-colors border border-outline-variant/20">
+<div>
+<div class="w-10 h-10 rounded bg-primary-container text-tertiary-fixed flex items-center justify-center mb-space-sm">
+<span class="material-symbols-outlined text-xl">engineering</span>
+</div>
+<h3 class="font-title-md text-title-md text-primary font-bold mb-1">Heavy Engineering</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Castings, forgings, heavy fabrication equipment, earthmoving components, and yellow goods.</p>
+</div>
+<span class="mt-space-md font-label-technical text-label-technical text-secondary uppercase font-bold">NDT &amp; Traceability</span>
+</div>
+</div>
+</div>
+</section>
+<!-- UPGRADE 10: LEADERSHIP TEASER -->
+<section class="w-full bg-surface py-20" id="leadership">
+<div class="max-w-7xl mx-auto px-6 lg:px-12">
+<div class="bg-surface-container-lowest rounded-xl p-space-lg lg:p-space-xl shadow-lg border border-outline-variant/30">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-space-xl items-center">
+<!-- Leader Profile Info -->
+<div class="lg:col-span-4 flex flex-col items-center text-center">
+<div class="relative w-48 sm:w-52 aspect-[3/4] rounded-xl overflow-hidden bg-surface-container-low shadow-md mb-space-md ring-4 ring-secondary/20 border border-outline-variant/30 flex items-center justify-center group"><img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" style="object-position: 50% 12%;" data-alt="Portrait of Govind Suvarnkar senior manufacturing quality lead consultant in industrial boardroom wearing business attire with engineering background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCauVQfv5kpsUloUuoLHDwuVMVpXXvYN2MR7rCU5RGwQ6fuxWyH9BO1AF298FQuu5CeHWUVyiJs_sqdPDkvH2VnJf_rJ7NoPJn2pbClHOGxhNBdMcyB6YutzS0ni7xRsjDY1zmgC4SapRM71W0QuTZ6HeyV58bYytcskb3sPUb1msKNKF9L8-9ARwsguoZ2HADQopyb51pw1IX9Alq6uSTB3A6QMZqKRI8p2i2goJvcDSRGMDJECED1cVMLmZpZluTN"></div>
+<h3 class="font-headline-md text-headline-md text-primary font-bold">Govind Suvarnkar</h3>
+<span class="font-label-technical text-label-technical text-secondary uppercase font-bold tracking-wider mt-1">Lead Consultant &amp; Trainer</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant mt-1">Principal Director, Nexaouraa Consultancy</span>
+<div class="flex items-center gap-space-xs mt-space-md">
+<a class="px-space-md py-1.5 rounded bg-secondary text-on-secondary font-label-technical text-label-technical flex items-center gap-1 hover:bg-on-secondary-fixed-variant transition-colors shadow-sm" href="https://wa.me/918975573469" target="_blank">
+<span class="material-symbols-outlined text-sm">chat</span> Direct Desk
+            </a>
+<a class="px-space-md py-1.5 rounded bg-surface-container text-primary font-label-technical text-label-technical flex items-center gap-1 hover:bg-surface-variant transition-colors" href="tel:+918975573469">
+<span class="material-symbols-outlined text-sm">call</span> Call
+            </a>
+</div>
+</div>
+<!-- Credentials & Leadership Track Record -->
+<div class="lg:col-span-8 flex flex-col gap-space-md">
+<div class="inline-flex items-center gap-2 self-start px-3 py-1 rounded bg-surface-container text-on-surface text-label-technical font-label-technical border border-outline-variant/30">
+<span class="material-symbols-outlined text-sm text-secondary">verified</span>
+            HANDS-ON INDUSTRIAL PEDIGREE
+          </div>
+<h2 class="font-headline-lg text-headline-lg text-primary font-bold">
+            Engineering Rigor Spearheaded by an Experienced Manufacturing Practitioner
+          </h2>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+            With more than 15 years of boots-on-the-ground experience across automotive supply chains, Govind Suvarnkar brings unvarnished operational realism to every consulting mandate. Having directly led plant quality teams, defended Tier-1 audits before strict global OEMs, and conducted hundreds of vendor assessments, his advisory bridges the gap between paper compliance and bottom-line productivity.
+          </p>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-space-sm pt-space-xs">
+<div class="p-space-sm rounded bg-surface-container-low flex items-start gap-space-sm border border-outline-variant/20">
+<span class="material-symbols-outlined text-secondary text-xl">fact_check</span>
+<div>
+<div class="font-title-md text-title-md text-primary font-semibold">Auditor Credentialing</div>
+<div class="font-body-sm text-body-sm text-on-surface-variant">Qualified Lead Auditor in IATF 16949 and ISO 9001 Management Systems.</div>
+</div>
+</div>
+<div class="p-space-sm rounded bg-surface-container-low flex items-start gap-space-sm border border-outline-variant/20">
+<span class="material-symbols-outlined text-secondary text-xl">precision_manufacturing</span>
+<div>
+<div class="font-title-md text-title-md text-primary font-semibold">Tier-1 &amp; OEM Expertise</div>
+<div class="font-body-sm text-body-sm text-on-surface-variant">Proven track record resolving critical quality escalations for major auto programs.</div>
+</div>
+</div>
+</div>
+<div class="p-space-md rounded bg-primary-container text-on-primary flex items-center justify-between flex-wrap gap-space-sm">
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-tertiary-fixed text-2xl">verified_user</span>
+<div>
+<div class="font-title-md text-title-md text-surface-bright font-bold">Direct Auditor Accessibility</div>
+<div class="font-body-sm text-body-sm text-primary-fixed-dim">Every plant engagement is directly scoped and reviewed by Govind Suvarnkar.</div>
+</div>
+</div>
+<a class="text-tertiary-fixed font-label-md text-label-md hover:underline flex items-center gap-1 font-semibold" data-path="about-us" href="#diagnostic-intake">
+              Read Detailed Bio <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</a>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- UPGRADE 11: AUDIT ADVISORY & CONSULTATION INTAKE FORM -->
+<section class="w-full bg-primary-container text-on-primary py-20 relative overflow-hidden" id="diagnostic-intake">
+<!-- Subtle overlay effect -->
+<div class="absolute inset-0 opacity-10 bg-gradient-to-r from-secondary via-transparent to-tertiary-fixed pointer-events-none"></div>
+<div class="max-w-7xl mx-auto px-6 lg:px-12 relative z-10">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-space-xl items-center">
+<!-- Left Banner Copy -->
+<div class="lg:col-span-7 flex flex-col gap-space-md">
+<span class="font-label-technical text-label-technical uppercase tracking-widest text-tertiary-fixed font-bold">Plant Diagnostic Engagement</span>
+<h2 class="font-headline-xl text-headline-xl text-surface-bright font-bold leading-tight">
+          Ready to Strengthen Your Plant's Quality &amp; Pass Your Next Audit with Zero Major NCs?
+        </h2>
+<p class="font-body-lg text-body-lg text-primary-fixed-dim leading-relaxed">Nexaouraa delivers integrated solutions across four business verticals: <span class="font-semibold text-primary">Quality Excellence</span>, <span class="font-semibold text-primary">Operational Excellence</span>, <span class="font-semibold text-primary">Training &amp; Development</span>, and <span class="font-semibold text-primary">Business Improvement</span>.<br class="hidden sm:inline"><span class="block mt-2 font-medium text-secondary text-base">Building Quality. Improving Performance. Developing People. Driving Business Excellence.</span></p>
+<div class="flex flex-col sm:flex-row gap-space-md pt-space-sm">
+<div class="flex items-center gap-space-sm p-space-sm rounded bg-primary border border-[#1a3852]">
+<span class="material-symbols-outlined text-secondary-fixed text-2xl">call</span>
+<div>
+<div class="font-label-technical text-label-technical text-primary-fixed-dim">DIRECT CALL DESK</div>
+<a class="font-title-md text-title-md text-surface-bright font-bold hover:text-secondary-fixed transition-colors" href="tel:+918975573469">
+                +91 8975573469
+              </a>
+</div>
+</div>
+<div class="flex items-center gap-space-sm p-space-sm rounded bg-primary border border-[#1a3852]">
+<span class="material-symbols-outlined text-secondary-fixed text-2xl">mail</span>
+<div>
+<div class="font-label-technical text-label-technical text-primary-fixed-dim">EXECUTIVE INQUIRY EMAIL</div>
+<a class="font-title-md text-title-md text-surface-bright font-bold hover:text-secondary-fixed transition-colors" href="mailto:sales@nexaouraaconsultancy.in">
+                sales@nexaouraaconsultancy.in
+              </a>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Quick Contact Form Card -->
+<div class="lg:col-span-5">
+<div class="bg-surface-container-lowest text-on-surface rounded-xl p-space-lg shadow-2xl border border-outline-variant/30">
+<h3 class="font-headline-sm text-headline-sm text-primary font-bold mb-1">Request Audit Advisory</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-space-md">Govind Suvarnkar responds within 24 business hours.</p>
+<form class="space-y-space-sm" onsubmit="event.preventDefault(); alert('Consultation request recorded. Nexaouraa Consultancy will contact your plant within 24 hours.');">
+<div>
+<label class="block font-label-technical text-label-technical text-on-surface-variant uppercase mb-1">Plant / Organization Name</label>
+<input class="w-full h-11 px-3 rounded bg-surface-container-low border border-outline-variant/30 text-body-sm font-body-sm text-primary focus:bg-surface-container focus:outline-none" placeholder="e.g. Precision Components Ltd." required="" type="text">
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-space-sm">
+<div>
+<label class="block font-label-technical text-label-technical text-on-surface-variant uppercase mb-1">Contact Person</label>
+<input class="w-full h-11 px-3 rounded bg-surface-container-low border border-outline-variant/30 text-body-sm font-body-sm text-primary focus:bg-surface-container focus:outline-none" placeholder="Name &amp; Designation" required="" type="text">
+</div>
+<div>
+<label class="block font-label-technical text-label-technical text-on-surface-variant uppercase mb-1">Mobile / WhatsApp</label>
+<input class="w-full h-11 px-3 rounded bg-surface-container-low border border-outline-variant/30 text-body-sm font-body-sm text-primary focus:bg-surface-container focus:outline-none" placeholder="+91 XXXXX XXXXX" required="" type="tel">
+</div>
+</div>
+<div>
+<label class="block font-label-technical text-label-technical text-on-surface-variant uppercase mb-1">Consulting Requirement</label>
+<select class="w-full h-11 px-3 rounded bg-surface-container-low border border-outline-variant/30 text-body-sm font-body-sm text-primary focus:bg-surface-container focus:outline-none">
+<option>IATF 16949 Turnkey Advisory / Pre-Audit</option>
+<option>APQP &amp; PPAP Customer Submission Support</option>
+<option>Core Tools Workshop (FMEA/SPC/MSA)</option>
+<option>COPQ &amp; Scrap Reduction Project</option>
+<option>Supplier Audit / VDA 6.3 Process Audit</option>
+<option>ISO 9001 / IMS Development</option>
+</select>
+</div>
+<div class="pt-space-xs flex flex-col gap-space-xs">
+<button class="w-full py-3 rounded bg-tertiary-fixed text-on-tertiary-fixed font-title-md text-title-md hover:bg-tertiary-fixed-dim transition-colors flex items-center justify-center gap-space-xs shadow-md font-bold" type="submit">
+<span class="material-symbols-outlined text-base">send</span>
+<span class="">Submit Plant Diagnostic Request</span>
+</button>
+<a class="w-full py-2.5 rounded bg-secondary text-on-secondary font-title-md text-title-md text-center hover:bg-on-secondary-fixed-variant transition-colors flex items-center justify-center gap-space-xs shadow-sm" href="https://wa.me/918975573469" target="_blank">
+<span class="material-symbols-outlined text-base">chat</span>
+<span class="">Connect Instantly on WhatsApp Desk</span>
+</a>
+</div>
+</form>
+</div>
+</div>
+</div>
+</div>
+</section>
+</div>
+</main>
+<!-- UPGRADE 12: COMPREHENSIVE EXECUTIVE FOOTER -->
+<footer class="w-full bg-[#000f1d] text-on-primary pt-space-xl pb-space-lg shadow-[0_-1px_12px_rgba(0,15,29,0.05)] border-t border-[#14283d]">
+<div class="max-w-7xl mx-auto px-6 lg:px-12">
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-space-xl pb-space-xl border-b border-[#14283d]">
+<!-- Brand & Mission Column -->
+<div class="flex flex-col gap-space-md">
+<div class="flex items-center gap-3">
+<img alt="Nexaouraa Consultancy Official Logo" class="w-10 h-10 object-contain rounded-full ring-1 ring-tertiary-fixed-dim/40" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBBgsi2kd1uUJaAY_4aJ4mZ_IXVVHjpHQDvPas__K9hC0jzVIvsnSAHFzRdufEGyFcCOxNX9VHEnydiIFVt1AWTMy2-SNIFd_HkO7Bfh11zhzOlz6koXt6OlmG71tEqGlaKzzc8FX-i4HLxEGKcqS3w0dkJMOA46EWlPJuIxKmQt71w6d7NMzjqb7mmttTPrwcsgHnnPHmU5bxsjXor8J96SjtaFcRhnCoDnNX1y6bWn-TVKPx550Oz">
+<span class="font-title-md text-title-md text-surface-bright tracking-tight font-extrabold">NEXAOURAA CONSULTANCY</span>
+</div>
+<p class="font-body-sm text-body-sm text-primary-fixed-dim leading-relaxed">
+          Lead Auditor Govind Suvarnkar spearheads Tier-1 &amp; Tier-2 automotive manufacturing quality transformations. Dedicated to zero defects through IATF 16949, Core Tools (APQP, PPAP, FMEA, SPC, MSA), and Integrated Management Systems.
+        </p>
+<div class="flex flex-wrap items-center gap-space-xs">
+<span class="px-space-sm py-space-xs rounded bg-primary-container text-secondary-fixed font-label-technical text-label-technical border border-[#1a3852]">IATF 16949</span>
+<span class="px-space-sm py-space-xs rounded bg-primary-container text-tertiary-fixed font-label-technical text-label-technical border border-[#1a3852]">ISO 9001 / IMS</span>
+<span class="px-space-sm py-space-xs rounded bg-primary-container text-surface-variant font-label-technical text-label-technical border border-[#1a3852]">VDA 6.3</span>
+</div>
+</div>
+<!-- Consulting Navigation -->
+<div class="flex flex-col gap-space-md">
+<span class="font-title-md text-title-md text-surface-bright border-l-2 border-tertiary-fixed-dim pl-space-sm font-bold">Consulting Navigation</span>
+<nav class="flex flex-col gap-space-sm font-body-sm text-body-sm text-primary-fixed-dim">
+<a class="hover:text-surface-bright transition-colors" data-path="home" href="#">Home Overview</a>
+<div class="relative group">
+  <button class="inline-flex items-center gap-1.5 font-medium text-slate-700 hover:text-primary transition-colors py-2 focus:outline-none" aria-haspopup="true">
+    <span class="">About Us</span>
+    <svg class="w-4 h-4 transition-transform duration-200 group-hover:rotate-180 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+  </button>
+  <div class="absolute left-0 mt-1 w-64 bg-white rounded-lg shadow-xl border border-slate-200/80 py-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+    <a href="#about" class="block px-4 py-2.5 hover:bg-slate-50 transition-colors">
+      <div class="text-sm font-semibold text-slate-900">About Us &amp; Leadership</div>
+      <div class="text-xs text-slate-500">Executive profile &amp; credentials</div>
+    </a>
+    <a href="#vision-mission" class="block px-4 py-2.5 hover:bg-slate-50 transition-colors border-t border-slate-100">
+      <div class="text-sm font-semibold text-slate-900 flex items-center justify-between">
+        <span class="">Vision, Mission &amp; Goals</span>
+        <span class="text-[10px] bg-primary/10 text-primary font-bold px-1.5 py-0.5 rounded">Core</span>
+      </div>
+      <div class="text-xs text-slate-500">Strategic goals &amp; 2027-29 roadmap</div>
+    </a>
+  </div>
+</div>
+<a class="hover:text-surface-bright transition-colors" data-path="services" href="#featured-services">Services &amp; Turnkey IATF</a>
+<a class="hover:text-surface-bright transition-colors" data-path="training-and-development" href="#training-spotlight">Quality Tools Training</a>
+<a class="hover:text-surface-bright transition-colors" data-path="industries-and-clients" href="#industries">Industries &amp; Case Audits</a>
+<a class="hover:text-surface-bright transition-colors" data-path="contact-us" href="#diagnostic-intake">Executive Inquiry Desk</a>
+<a class="hover:text-surface-bright transition-colors" data-path="request-consultation" href="#diagnostic-intake">Schedule Plant Audit</a>
+</nav>
+</div>
+<!-- Operational Hubs & Direct Contacts -->
+<div class="flex flex-col gap-space-md">
+<span class="font-title-md text-title-md text-surface-bright border-l-2 border-secondary pl-space-sm font-bold">Operational Hub &amp; Contact</span>
+<div class="flex flex-col gap-space-sm font-body-sm text-body-sm text-primary-fixed-dim">
+<div class="flex items-start gap-space-sm">
+<span class="material-symbols-outlined text-secondary-fixed text-lg mt-0.5">location_on</span>
+<span class="">Pune Corporate Corridor &amp; Industrial Hubs across Maharashtra</span>
+</div>
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-secondary-fixed text-lg">phone</span>
+<a class="hover:text-surface-bright transition-colors font-medium" href="tel:+918975573469">+91 8975573469</a>
+</div>
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-secondary-fixed text-lg">mail</span>
+<a class="hover:text-surface-bright transition-colors font-medium" href="mailto:sales@nexaouraaconsultancy.in">sales@nexaouraaconsultancy.in</a>
+</div>
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-secondary-fixed text-lg">public</span>
+<a class="hover:text-surface-bright transition-colors" href="#">www.nexaouraaconsultancy.in</a>
+</div>
+</div>
+</div>
+<!-- Auditor Direct Access Desk -->
+<div class="flex flex-col gap-space-md">
+<span class="font-title-md text-title-md text-surface-bright border-l-2 border-primary-fixed pl-space-sm font-bold">Auditor Direct Access</span>
+<p class="font-body-sm text-body-sm text-primary-fixed-dim">
+          Connect directly with the Principal Quality Consultant for immediate gap assessment, pre-audit readiness, or corporate training mandates.
+        </p>
+<a class="flex items-center justify-center gap-space-xs px-space-md py-space-sm rounded-lg bg-secondary text-on-secondary font-label-md text-label-md hover:bg-on-secondary-fixed-variant transition-all shadow-[0_2px_8px_rgba(18,108,58,0.25)] font-semibold" href="https://wa.me/918975573469" target="_blank">
+<span class="material-symbols-outlined text-base">chat</span>WhatsApp Govind Suvarnkar
+        </a>
+<span class="font-label-technical text-label-technical text-on-primary-container text-center">Strict Non-Disclosure &amp; Tier-1 Confidentiality Guaranteed</span>
+</div>
+</div>
+<!-- Copyright and Legal Compliance -->
+<div class="pt-space-lg flex flex-col md:flex-row items-center justify-between gap-space-md text-primary-fixed-dim font-label-technical text-label-technical">
+<div class="">© 2025 Nexaouraa Consultancy. All Rights Reserved. Lead Consultant: Govind Suvarnkar.</div>
+<div class="flex items-center gap-space-md">
+<a class="hover:text-surface-bright transition-colors" href="#">Privacy Policy</a>
+<span class="text-primary-container">|</span>
+<a class="hover:text-surface-bright transition-colors" href="#">Quality Assurance Terms</a>
+<span class="text-primary-container">|</span>
+<a class="hover:text-surface-bright transition-colors" href="#">IATF 16949 Standards Compliance</a>
+</div>
+</div>
+</div>
+</footer>
+<!-- Hero Carousel Auto-Rotation & Interaction Script -->
+<script>
+  (function() {
+    var slides = document.querySelectorAll('.hero-slide');
+    var pills = document.querySelectorAll('.slider-pill');
+    var container = document.getElementById('hero-slider-container');
+    var statusTitle = document.getElementById('status-title');
+    var statusDesc = document.getElementById('status-desc');
+    var statusBadge = document.getElementById('status-badge');
+    var statusIcon = document.getElementById('status-icon');
+    
+    if (!slides.length) return;
+
+    var statusData = [
+      {
+        title: "IATF 16949 Ready",
+        desc: "Guaranteed Turnkey Certification Support",
+        badge: "ACTIVE",
+        icon: "verified",
+        badgeColor: "text-secondary"
+      },
+      {
+        title: "AIAG-VDA Harmonized",
+        desc: "Cpk > 1.67 & 100% First-Time-Right OEM PPAP",
+        badge: "ROBUST",
+        icon: "flowsheet",
+        badgeColor: "text-[#ad840c]"
+      },
+      {
+        title: "VDA 6.3 Certified Audits",
+        desc: "Tier-2 Upgrades & 48-Hour Rapid Containment",
+        badge: "VERIFIED",
+        icon: "hub",
+        badgeColor: "text-secondary"
+      },
+      {
+        title: "Six Sigma DMAIC Yields",
+        desc: "₹45M+ Scrap Savings & Zero Repeat Line Stops",
+        badge: "MEASURABLE",
+        icon: "price_check",
+        badgeColor: "text-secondary"
+      }
+    ];
+
+    var currentSlide = 0;
+    var slideDuration = 5000;
+    var isPaused = false;
+    var timer = null;
+
+    function updateSlideUI(index) {
+      currentSlide = index;
+      slides.forEach(function(slide, idx) {
+        if (idx === index) {
+          slide.classList.add('active-slide');
+        } else {
+          slide.classList.remove('active-slide');
+        }
+      });
+
+      pills.forEach(function(pill, idx) {
+        if (idx === index) {
+          pill.className = "slider-pill text-xs font-semibold px-2 py-0.5 rounded transition-all bg-primary-container text-tertiary-fixed ring-1 ring-tertiary-fixed/30 shadow-sm";
+        } else {
+          pill.className = "slider-pill text-xs font-semibold px-2 py-0.5 rounded transition-all bg-surface-container text-on-surface-variant hover:text-primary";
+        }
+      });
+
+      if (statusData[index]) {
+        if (statusTitle) statusTitle.textContent = statusData[index].title;
+        if (statusDesc) statusDesc.textContent = statusData[index].desc;
+        if (statusBadge) {
+          statusBadge.textContent = statusData[index].badge;
+          statusBadge.className = "font-label-technical text-label-technical uppercase font-bold tracking-wider " + statusData[index].badgeColor;
+        }
+        if (statusIcon) statusIcon.textContent = statusData[index].icon;
+      }
+    }
+
+    function resetTimer() {
+      if (timer) clearInterval(timer);
+      timer = setInterval(function() {
+        if (!isPaused) {
+          var nextIndex = (currentSlide + 1) % slides.length;
+          updateSlideUI(nextIndex);
+        }
+      }, slideDuration);
+    }
+
+    window.goToHeroSlide = function(index) {
+      updateSlideUI(index);
+      resetTimer();
+    };
+
+    window.nextHeroSlide = function() {
+      var nextIndex = (currentSlide + 1) % slides.length;
+      updateSlideUI(nextIndex);
+      resetTimer();
+    };
+
+    window.prevHeroSlide = function() {
+      var prevIndex = (currentSlide - 1 + slides.length) % slides.length;
+      updateSlideUI(prevIndex);
+      resetTimer();
+    };
+
+    if (container) {
+      container.addEventListener('mouseenter', function() {
+        isPaused = true;
+      });
+      container.addEventListener('mouseleave', function() {
+        isPaused = false;
+      });
+      container.addEventListener('focusin', function() {
+        isPaused = true;
+      });
+      container.addEventListener('focusout', function() {
+        isPaused = false;
+      });
+    }
+
+    resetTimer();
+  })();
+</script>
+
+
+
+
+
+
+
+
+<!-- Nexaouraa AI Chatbot Floating Widget -->
+<div id="nexaouraa-chat-widget" class="fixed bottom-6 right-6 z-50 flex flex-col items-end select-none font-body-md">
+  <!-- Expandable Chat Panel -->
+  <div id="nexa-chat-panel" class="hidden flex-col w-[360px] sm:w-[390px] max-w-[calc(100vw-2rem)] h-[540px] max-h-[82vh] bg-surface-container-lowest rounded-xl shadow-2xl border border-outline-variant/40 overflow-hidden mb-3 transition-all duration-300 transform">
+    <!-- Chat Header -->
+    <div class="bg-primary text-on-primary p-3.5 flex items-center justify-between border-b border-primary-container shrink-0">
+      <div class="flex items-center gap-2.5">
+        <div class="relative w-9 h-9 rounded-full bg-primary-container border border-secondary flex items-center justify-center shrink-0">
+          <span class="material-symbols-outlined text-secondary text-xl">smart_toy</span>
+          <span class="absolute bottom-0 right-0 w-2.5 h-2.5 rounded-full bg-secondary ring-2 ring-primary"></span>
+        </div>
+        <div class="flex flex-col">
+          <div class="flex items-center gap-1.5">
+            <span class="font-title-md text-sm font-bold text-surface-bright">Nexaouraa AI Plant Advisor</span>
+            <span class="text-[10px] bg-secondary/20 text-secondary-fixed border border-secondary/40 font-bold px-1.5 py-0.2 rounded uppercase">AI</span>
+          </div>
+          <span class="text-[11px] text-primary-fixed-dim flex items-center gap-1">
+            <span class="w-1.5 h-1.5 rounded-full bg-secondary inline-block animate-pulse"></span>
+            Online | IATF 16949 &amp; VDA 6.3 Standards
+          </span>
+        </div>
+      </div>
+      <div class="flex items-center gap-1">
+        <button id="nexa-chat-minimize" type="button" class="w-7 h-7 rounded text-primary-fixed-dim hover:text-surface-bright hover:bg-primary-container flex items-center justify-center transition-colors" title="Minimize chat" aria-label="Minimize chat">
+          <span class="material-symbols-outlined text-base">remove</span>
+        </button>
+        <button id="nexa-chat-close" type="button" class="w-7 h-7 rounded text-primary-fixed-dim hover:text-surface-bright hover:bg-primary-container flex items-center justify-center transition-colors" title="Close chat" aria-label="Close chat">
+          <span class="material-symbols-outlined text-base">close</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Chat Conversation Body -->
+    <div id="nexa-chat-messages" class="flex-1 p-3.5 overflow-y-auto space-y-3 bg-surface text-body-sm">
+      <!-- AI Greeting Card -->
+      <div class="flex items-start gap-2 max-w-[92%]">
+        <div class="w-7 h-7 rounded-full bg-primary text-secondary flex items-center justify-center shrink-0 mt-0.5 shadow-sm border border-secondary/30">
+          <span class="material-symbols-outlined text-sm">smart_toy</span>
+        </div>
+        <div class="bg-surface-container-low p-3 rounded-xl rounded-tl-sm border border-outline-variant/30 text-on-surface shadow-sm space-y-2">
+          <p class="font-medium text-primary text-xs flex items-center gap-1">
+            <span class="material-symbols-outlined text-sm text-secondary">verified</span>
+            Namaste &amp; Welcome to Nexaouraa Quality Desk!
+          </p>
+          <p class="text-xs leading-relaxed text-on-surface-variant">
+            I am your automated manufacturing advisory assistant. How can we support your plant today?
+          </p>
+          <div class="p-2 rounded bg-surface-container-lowest border border-outline-variant/20 text-[11px] text-on-surface-variant space-y-1">
+            <div class="flex items-center gap-1 text-secondary font-semibold">
+              <span class="material-symbols-outlined text-xs">verified_user</span> Direct Auditor Backing
+            </div>
+            <p class="">Engagements are supervised by <strong class="text-primary">Lead Auditor Govind Suvarnkar</strong> (15+ Yrs Automotive Tier-1 Expertise).</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Interactive Quick Prompt Chips -->
+      <div class="space-y-1.5 pt-1 pl-9">
+        <span class="text-[10px] uppercase font-bold tracking-wider text-outline block">Common Plant Inquiries:</span>
+        <div class="flex flex-col gap-1.5">
+          <button type="button" onclick="handleNexaQuickPrompt('IATF 16949 Gap Audit &amp; Stage 1/2 Scope')" class="text-left text-xs bg-surface-container-lowest hover:bg-surface-container border border-outline-variant/30 text-primary hover:text-secondary px-2.5 py-1.5 rounded-lg transition-colors flex items-center justify-between group shadow-sm">
+            <span class="">📋 IATF 16949 Gap Audit Scope</span>
+            <span class="material-symbols-outlined text-xs text-outline group-hover:text-secondary">arrow_forward</span>
+          </button>
+          <button type="button" onclick="handleNexaQuickPrompt('Core Tools (APQP, PPAP, FMEA, SPC, MSA) Handholding')" class="text-left text-xs bg-surface-container-lowest hover:bg-surface-container border border-outline-variant/30 text-primary hover:text-secondary px-2.5 py-1.5 rounded-lg transition-colors flex items-center justify-between group shadow-sm">
+            <span class="">⚙️ Core Tools (FMEA/PPAP) Handholding</span>
+            <span class="material-symbols-outlined text-xs text-outline group-hover:text-secondary">arrow_forward</span>
+          </button>
+          <button type="button" onclick="handleNexaQuickPrompt('Schedule Govind Suvarnkar Plant Walk &amp; Audit')" class="text-left text-xs bg-surface-container-lowest hover:bg-surface-container border border-outline-variant/30 text-primary hover:text-secondary px-2.5 py-1.5 rounded-lg transition-colors flex items-center justify-between group shadow-sm">
+            <span class="">🏭 Schedule Plant Walk &amp; Audit</span>
+            <span class="material-symbols-outlined text-xs text-outline group-hover:text-secondary">arrow_forward</span>
+          </button>
+          <button type="button" onclick="handleNexaQuickPrompt('Request Corporate Training &amp; Quotation')" class="text-left text-xs bg-surface-container-lowest hover:bg-surface-container border border-outline-variant/30 text-primary hover:text-secondary px-2.5 py-1.5 rounded-lg transition-colors flex items-center justify-between group shadow-sm">
+            <span class="">💼 Request Proposal / Quotation</span>
+            <span class="material-symbols-outlined text-xs text-outline group-hover:text-secondary">arrow_forward</span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Chat Direct WhatsApp Banner -->
+    <div class="bg-surface-container-low px-3.5 py-2 border-t border-outline-variant/20 flex items-center justify-between shrink-0">
+      <span class="text-[11px] text-on-surface-variant flex items-center gap-1">
+        <span class="material-symbols-outlined text-xs text-secondary">support_agent</span> Need urgent response?
+      </span>
+      <a href="https://wa.me/918975573469?text=Hello%20Govind%20Sir%2C%20connecting%20from%20Nexaouraa%20AI%20Chat" target="_blank" class="text-[11px] font-bold text-secondary hover:text-on-secondary-fixed-variant flex items-center gap-0.5 transition-colors">
+        WhatsApp Desk (+91 8975573469) <span class="material-symbols-outlined text-xs">open_in_new</span>
+      </a>
+    </div>
+
+    <!-- Chat Input Form -->
+    <form id="nexa-chat-form" class="p-2.5 bg-surface-container-lowest border-t border-outline-variant/30 flex items-center gap-1.5 shrink-0" onsubmit="handleNexaChatSubmit(event)">
+      <input id="nexa-chat-input" type="text" placeholder="Type your plant question or requirement..." class="flex-1 h-9 px-3 text-xs bg-surface-container-low border border-outline-variant/30 rounded-lg text-primary placeholder:text-on-surface-variant/60 focus:outline-none focus:border-secondary focus:bg-surface-container-lowest transition-colors" autocomplete="off">
+      <button type="submit" class="w-9 h-9 rounded-lg bg-primary hover:bg-primary-container text-tertiary-fixed flex items-center justify-center transition-colors shadow-sm shrink-0" title="Send message" aria-label="Send message">
+        <span class="material-symbols-outlined text-base">send</span>
+      </button>
+    </form>
+  </div>
+
+  <!-- Floating Launcher Button with notification badge -->
+  <button id="nexa-chat-launcher" type="button" onclick="toggleNexaChat()" aria-expanded="false" aria-haspopup="dialog" class="group flex items-center gap-2.5 px-4 py-2.5 rounded-full bg-primary hover:bg-[#071927] text-on-primary shadow-2xl border border-secondary/40 transition-all duration-200 hover:scale-105 active:scale-95 focus:outline-none ring-4 ring-secondary/20">
+    <div class="relative flex items-center justify-center w-7 h-7 rounded-full bg-primary-container border border-secondary/50 text-secondary shrink-0">
+      <span id="nexa-launcher-icon" class="material-symbols-outlined text-lg transition-transform duration-200">smart_toy</span>
+      <span class="absolute -top-0.5 -right-0.5 w-2.5 h-2.5 rounded-full bg-secondary border border-primary animate-pulse"></span>
+    </div>
+    <div class="flex flex-col text-left">
+      <span class="text-xs font-bold text-surface-bright group-hover:text-secondary-fixed transition-colors flex items-center gap-1.5">
+        <span class="">Ask Nexaouraa AI</span>
+        <span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+      </span>
+      <span class="text-[10px] text-primary-fixed-dim leading-none uppercase tracking-wider font-semibold">Plant QMS Advisory</span>
+    </div>
+  </button>
+</div>
+
+<script>
+  function toggleNexaChat(forceState) {
+    var panel = document.getElementById('nexa-chat-panel');
+    var launcher = document.getElementById('nexa-chat-launcher');
+    var icon = document.getElementById('nexa-launcher-icon');
+    if (!panel) return;
+    
+    var isCurrentlyHidden = panel.classList.contains('hidden');
+    var shouldShow = forceState !== undefined ? forceState : isCurrentlyHidden;
+    
+    if (shouldShow) {
+      panel.classList.remove('hidden');
+      panel.classList.add('flex');
+      if (launcher) launcher.setAttribute('aria-expanded', 'true');
+      if (icon) icon.textContent = 'chat_bubble';
+      var input = document.getElementById('nexa-chat-input');
+      if (input) setTimeout(function() { input.focus(); }, 100);
+    } else {
+      panel.classList.add('hidden');
+      panel.classList.remove('flex');
+      if (launcher) launcher.setAttribute('aria-expanded', 'false');
+      if (icon) icon.textContent = 'smart_toy';
+    }
+  }
+
+  function appendNexaUserMessage(text) {
+    var messagesContainer = document.getElementById('nexa-chat-messages');
+    if (!messagesContainer) return;
+    var userDiv = document.createElement('div');
+    userDiv.className = 'flex justify-end';
+    userDiv.innerHTML = '<div class="bg-primary text-on-primary p-2.5 px-3 rounded-xl rounded-tr-sm max-w-[85%] text-xs shadow-sm">' + text + '</div>';
+    messagesContainer.appendChild(userDiv);
+    messagesContainer.scrollTop = messagesContainer.scrollHeight;
+  }
+
+  function appendNexaAiResponse(htmlContent) {
+    var messagesContainer = document.getElementById('nexa-chat-messages');
+    if (!messagesContainer) return;
+    var aiDiv = document.createElement('div');
+    aiDiv.className = 'flex items-start gap-2 max-w-[92%]';
+    aiDiv.innerHTML = '<div class="w-7 h-7 rounded-full bg-primary text-secondary flex items-center justify-center shrink-0 mt-0.5 shadow-sm border border-secondary/30"><span class="material-symbols-outlined text-sm">smart_toy</span></div>' +
+      '<div class="bg-surface-container-low p-3 rounded-xl rounded-tl-sm border border-outline-variant/30 text-on-surface shadow-sm space-y-2 text-xs">' + htmlContent + '</div>';
+    messagesContainer.appendChild(aiDiv);
+    messagesContainer.scrollTop = messagesContainer.scrollHeight;
+  }
+
+  function handleNexaQuickPrompt(promptText) {
+    appendNexaUserMessage(promptText);
+    setTimeout(function() {
+      var responseHtml = '<p class="font-medium text-primary">Thank you for inquiring about <strong>' + promptText + '</strong>.</p>' +
+        '<p class="text-on-surface-variant leading-relaxed">Lead Auditor Govind Suvarnkar personally reviews every plant scope to ensure zero Major NC readiness and immediate compliance alignment.</p>' +
+        '<div class="pt-1 flex flex-col gap-1.5">' +
+        '<a href="https://wa.me/918975573469?text=' + encodeURIComponent('Hello Govind Sir, I am inquiring regarding: ' + promptText) + '" target="_blank" class="inline-flex items-center justify-center gap-1.5 px-3 py-1.5 rounded-lg bg-secondary text-on-secondary font-bold text-xs shadow-sm hover:bg-on-secondary-fixed-variant transition-colors">' +
+        '<span class="material-symbols-outlined text-sm">chat</span> Connect with Govind Suvarnkar on WhatsApp</a>' +
+        '<a href="#diagnostic-intake" onclick="toggleNexaChat(false)" class="inline-flex items-center justify-center gap-1 px-3 py-1.5 rounded-lg bg-primary-container text-tertiary-fixed font-semibold text-xs border border-tertiary-fixed/30 hover:bg-primary transition-colors">' +
+        '<span class="material-symbols-outlined text-sm">assignment</span> Fill Intake Form on Page</a>' +
+        '</div>';
+      appendNexaAiResponse(responseHtml);
+    }, 450);
+  }
+
+  function handleNexaChatSubmit(e) {
+    e.preventDefault();
+    var input = document.getElementById('nexa-chat-input');
+    if (!input || !input.value.trim()) return;
+    var text = input.value.trim();
+    input.value = '';
+    appendNexaUserMessage(text);
+    setTimeout(function() {
+      var responseHtml = '<p class="font-medium text-primary">Thank you for reaching out regarding: <em>"' + text + '"</em>.</p>' +
+        '<p class="text-on-surface-variant leading-relaxed">Our advisory team led by Govind Suvarnkar specializes in shop-floor problem solving, IATF 16949 turnkey implementation, and APQP/PPAP handholding across automotive Tier-1/Tier-2 hubs.</p>' +
+        '<div class="pt-1">' +
+        '<a href="https://wa.me/918975573469?text=' + encodeURIComponent('Inquiry from Nexaouraa website: ' + text) + '" target="_blank" class="inline-flex items-center justify-center gap-1.5 px-3 py-1.5 rounded-lg bg-secondary text-on-secondary font-bold text-xs shadow-sm hover:bg-on-secondary-fixed-variant transition-colors w-full">' +
+        '<span class="material-symbols-outlined text-sm">chat</span> Chat Directly on WhatsApp (+91 8975573469)</a>' +
+        '</div>';
+      appendNexaAiResponse(responseHtml);
+    }, 500);
+  }
+
+  document.addEventListener('DOMContentLoaded', function() {
+    var closeBtn = document.getElementById('nexa-chat-close');
+    var minBtn = document.getElementById('nexa-chat-minimize');
+    if (closeBtn) closeBtn.addEventListener('click', function(e) { e.stopPropagation(); toggleNexaChat(false); });
+    if (minBtn) minBtn.addEventListener('click', function(e) { e.stopPropagation(); toggleNexaChat(false); });
+  });
+  // Also bind immediately if DOM is already parsed
+  (function() {
+    var closeBtn = document.getElementById('nexa-chat-close');
+    var minBtn = document.getElementById('nexa-chat-minimize');
+    if (closeBtn) closeBtn.addEventListener('click', function(e) { e.stopPropagation(); toggleNexaChat(false); });
+    if (minBtn) minBtn.addEventListener('click', function(e) { e.stopPropagation(); toggleNexaChat(false); });
+  })();
+</script>
+
+</body></html>
