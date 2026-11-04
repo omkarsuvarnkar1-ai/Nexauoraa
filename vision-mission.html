@@ -1,0 +1,974 @@
+<!DOCTYPE html>
+<html class="scroll-smooth" lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>Vision, Mission & Strategic Goals | Nexaouraa Consultancy</title>
+  <meta name="description" content="Nexaouraa Consultancy - Driving Precision, Delivering Excellence. Turnkey IATF 16949:2016, Core Tools (FMEA, SPC, MSA, APQP, PPAP), VDA 6.3 Audits and Shopfloor Manufacturing Advisory.">
+  <link rel="icon" type="image/png" href="assets/images/brand/nexaouraa-emblem.png">
+  
+  <!-- Google Fonts & Material Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CSS & Theme Config -->
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <script src="assets/js/tailwind-theme.js"></script>
+
+  <!-- Project Styles -->
+  <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body class="bg-background font-body-md text-body-md text-on-surface antialiased">
+
+  <!-- UNIFIED NAVIGATION HEADER -->
+<header class="sticky top-0 left-0 right-0 w-full z-40 shadow-[0_2px_12px_rgba(15,37,55,0.08)] bg-surface-container-lowest">
+  <div class="h-20 bg-surface-container-lowest">
+    <div class="max-w-7xl mx-auto px-6 lg:px-12 h-full flex items-center justify-between gap-space-md">
+      <!-- Official Nexaouraa Logo & Name -->
+      <a class="flex items-center gap-3 group" href="index.html">
+        <img alt="Nexaouraa Consultancy Official Logo" class="w-12 h-12 object-contain rounded-full shadow-sm ring-1 ring-outline-variant/30 group-hover:scale-105 transition-transform bg-white" src="assets/images/brand/nexaouraa-emblem.png">
+        <div class="flex flex-col">
+          <span class="font-title-md text-title-md text-primary tracking-tight font-extrabold group-hover:text-secondary transition-colors">NEXAOURAA CONSULTANCY</span>
+          <span class="font-label-technical text-label-technical text-on-surface-variant tracking-wider uppercase">Integrated Quality Solutions</span>
+        </div>
+      </a>
+      
+      <!-- Desktop Navigation Links -->
+      <nav class="hidden xl:flex items-center gap-space-lg">
+        <a class="transition-colors py-space-xs text-on-surface-variant hover:text-primary font-medium" href="index.html">Home</a>
+        <div class="relative group">
+          <button class="inline-flex items-center gap-1.5 font-medium text-slate-700 hover:text-primary transition-colors py-2 focus:outline-none" aria-haspopup="true">
+            <span>About Us</span>
+            <svg class="w-4 h-4 transition-transform duration-200 group-hover:rotate-180 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+          </button>
+          <div class="absolute left-0 mt-1 w-64 bg-white rounded-lg shadow-xl border border-slate-200/80 py-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+            <a href="about.html" class="block px-4 py-2.5 hover:bg-slate-50 transition-colors">
+              <div class="text-sm font-semibold text-slate-900">About Us &amp; Leadership</div>
+              <div class="text-xs text-slate-500">Executive profile &amp; credentials</div>
+            </a>
+            <a href="vision-mission.html" class="block px-4 py-2.5 hover:bg-slate-50 transition-colors border-t border-slate-100">
+              <div class="text-sm font-semibold text-slate-900 flex items-center justify-between">
+                <span>Vision, Mission &amp; Goals</span>
+                <span class="text-[10px] bg-primary/10 text-primary font-bold px-1.5 py-0.5 rounded">Core</span>
+              </div>
+              <div class="text-xs text-slate-500">Strategic goals &amp; 2027-29 roadmap</div>
+            </a>
+          </div>
+        </div>
+        <a class="font-medium text-on-surface-variant hover:text-primary transition-colors py-space-xs" href="services.html">Services</a>
+        <a class="font-medium text-on-surface-variant hover:text-primary transition-colors py-space-xs" href="training.html">Training &amp; Development</a>
+        <a class="font-medium text-on-surface-variant hover:text-primary transition-colors py-space-xs" href="contact.html">Contact Us</a>
+      </nav>
+
+      <!-- Action Buttons -->
+      <div class="flex items-center gap-space-sm">
+        <a class="hidden sm:flex items-center gap-space-xs px-space-md py-space-sm rounded-lg border border-outline-variant font-label-md text-label-md text-on-surface hover:bg-surface-container-low hover:text-primary transition-all" href="contact.html#diagnostic-intake">
+          <span class="material-symbols-outlined text-base">picture_as_pdf</span>Download Profile (PDF)
+        </a>
+        <a class="flex items-center gap-space-xs px-space-md py-space-sm rounded-lg bg-secondary text-on-secondary font-label-md text-label-md hover:bg-on-secondary-fixed-variant transition-all shadow-[0_2px_6px_rgba(18,108,58,0.2)]" href="https://wa.me/918975573469" target="_blank" rel="noopener noreferrer">
+          <span class="material-symbols-outlined text-base">chat</span>WhatsApp Desk
+        </a>
+        <a class="hidden md:flex items-center px-space-md py-space-sm rounded-lg bg-tertiary-fixed text-on-tertiary-fixed font-title-md text-label-md hover:bg-tertiary-fixed-dim hover:text-on-tertiary-fixed transition-all" href="contact.html#diagnostic-intake">
+          Audit Advisory
+        </a>
+        <!-- Mobile Menu Button -->
+        <button id="mobile-menu-btn" aria-label="Toggle navigation" class="xl:hidden p-2 rounded-lg text-slate-700 hover:bg-slate-100 transition-colors">
+          <span class="material-symbols-outlined text-2xl">menu</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mobile Drawer Menu -->
+  <div id="mobile-menu-drawer" class="hidden xl:hidden bg-white border-t border-slate-200 px-6 py-4 shadow-xl">
+    <div class="flex flex-col gap-3 font-medium text-slate-800">
+      <a class="py-2 border-b border-slate-100 hover:text-primary" href="index.html">Home</a>
+      <a class="py-2 border-b border-slate-100 hover:text-primary" href="about.html">About Us &amp; Leadership</a>
+      <a class="py-2 border-b border-slate-100 hover:text-primary" href="vision-mission.html">Vision, Mission &amp; Goals</a>
+      <a class="py-2 border-b border-slate-100 hover:text-primary" href="services.html">Services &amp; Industry Coverage</a>
+      <a class="py-2 border-b border-slate-100 hover:text-primary" href="training.html">Training &amp; Development</a>
+      <a class="py-2 hover:text-primary" href="contact.html">Contact Us</a>
+    </div>
+  </div>
+</header>
+
+  <!-- UNIFIED TICKER (On all pages) -->
+<aside aria-label="Executive Credentials Ticker" class="w-full bg-[#06101B] border-b border-[#14283d] text-on-primary py-2 select-none overflow-hidden relative z-40">
+  <div class="ticker-parent relative overflow-hidden flex items-center">
+    <div class="absolute left-0 top-0 bottom-0 w-16 sm:w-28 bg-gradient-to-r from-[#06101B] via-[#06101B]/90 to-transparent z-10 pointer-events-none"></div>
+    <div class="absolute right-0 top-0 bottom-0 w-16 sm:w-28 bg-gradient-to-l from-[#06101B] via-[#06101B]/90 to-transparent z-10 pointer-events-none"></div>
+
+    <div class="ticker-track flex items-center gap-6 text-xs font-mono whitespace-nowrap">
+      <span class="flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-emerald-400"></span><strong class="text-white">IATF 16949:2016</strong> Turnkey Implementation &amp; Stage 1/2 Audits</span>
+      <span class="text-slate-600">•</span>
+      <span class="flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-[#efc04b]"></span><strong class="text-white">Core Tools Coaching:</strong> APQP • PPAP • AIAG-VDA FMEA • SPC • MSA</span>
+      <span class="text-slate-600">•</span>
+      <span class="flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-emerald-400"></span><strong class="text-white">VDA 6.3 Process Auditing</strong> &amp; Tier-2 Supplier Quality Upgrades</span>
+      <span class="text-slate-600">•</span>
+      <span class="flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-[#efc04b]"></span><strong class="text-white">Lead Consultant:</strong> Govind Suvarnkar (+91 8975573469)</span>
+      <span class="text-slate-600">•</span>
+      <span class="flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-emerald-400"></span><strong class="text-white">Zero Repeat Rejection:</strong> 8D Problem Solving &amp; Pokayoke Mistake Proofing</span>
+      <span class="text-slate-600">•</span>
+      <span class="flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-emerald-400"></span><strong class="text-white">IATF 16949:2016</strong> Turnkey Implementation &amp; Stage 1/2 Audits</span>
+      <span class="text-slate-600">•</span>
+      <span class="flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-[#efc04b]"></span><strong class="text-white">Core Tools Coaching:</strong> APQP • PPAP • AIAG-VDA FMEA • SPC • MSA</span>
+      <span class="text-slate-600">•</span>
+      <span class="flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-emerald-400"></span><strong class="text-white">VDA 6.3 Process Auditing</strong> &amp; Tier-2 Supplier Quality Upgrades</span>
+      <span class="text-slate-600">•</span>
+      <span class="flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-[#efc04b]"></span><strong class="text-white">Lead Consultant:</strong> Govind Suvarnkar (+91 8975573469)</span>
+      <span class="text-slate-600">•</span>
+      <span class="flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-emerald-400"></span><strong class="text-white">Zero Repeat Rejection:</strong> 8D Problem Solving &amp; Pokayoke Mistake Proofing</span>
+      <span class="text-slate-600">•</span>
+    </div>
+  </div>
+</aside>
+
+  <!-- MAIN CONTENT -->
+  <main id="main-content">
+<div class="flex flex-col w-full">
+<!-- BREADCRUMB & PAGE INTRO BANNER -->
+<section class="w-full bg-surface-container-low py-space-xl px-6 lg:px-12 pt-space-xl">
+<div class="max-w-7xl mx-auto flex flex-col gap-space-lg">
+<!-- Breadcrumb Hierarchy -->
+<nav aria-label="Breadcrumb" class="flex items-center gap-space-xs font-label-technical text-label-technical text-on-surface-variant uppercase tracking-wider">
+<a class="hover:text-primary transition-colors" href="#">Home</a>
+<span class="text-outline-variant">/</span>
+<a class="hover:text-primary transition-colors" href="#">About Us</a>
+<span class="text-outline-variant">/</span>
+<span class="text-secondary font-bold">Our Vision, Mission &amp; Strategic Goals</span>
+</nav>
+<!-- Main Headline & Narrative Grid -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-space-lg items-end">
+<div class="lg:col-span-8 flex flex-col gap-space-sm">
+<div class="inline-flex items-center gap-2 self-start px-3 py-1 rounded bg-secondary-container text-on-secondary-container font-label-technical text-label-technical uppercase">
+<span class="material-symbols-outlined text-sm">verified</span>
+            Institutional Purpose &amp; Governance
+          </div>
+<h1 class="font-headline-xl text-headline-xl text-primary uppercase tracking-tight">
+            Our Vision, Mission &amp; Strategic Goals
+          </h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-3xl leading-relaxed">
+            At Nexaouraa, we believe that business excellence is achieved through strong quality systems, continuous improvement, capable people and effective implementation. Our purpose is to help organisations improve performance, develop people and achieve sustainable business growth.
+          </p>
+</div>
+<!-- Metric Accent Mini-Card -->
+<div class="lg:col-span-4 flex flex-col gap-space-xs bg-surface-container-lowest p-space-md rounded shadow-sm">
+<div class="flex items-center gap-2 text-secondary font-label-md text-label-md">
+<span class="material-symbols-outlined text-lg">flag_circle</span>
+            Strategic Horizon: 2025–2029
+          </div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+            Grounding shop-floor operations across Tier-1/Tier-2 manufacturing clusters in structured zero-defect protocols.
+          </p>
+</div>
+</div>
+<!-- Four Core Alignment Verticals Badges -->
+<div class="grid grid-cols-2 md:grid-cols-4 gap-space-sm pt-space-xs">
+<div class="flex items-center gap-space-xs p-space-sm rounded bg-surface-container-lowest shadow-sm">
+<div class="w-8 h-8 rounded bg-primary-container flex items-center justify-center text-tertiary-fixed shrink-0">
+<span class="material-symbols-outlined text-sm">precision_manufacturing</span>
+</div>
+<div class="min-w-0">
+<div class="font-label-technical text-label-technical text-outline uppercase">Vertical 01</div>
+<div class="font-title-md text-body-sm text-primary font-bold truncate">Quality Excellence</div>
+</div>
+</div>
+<div class="flex items-center gap-space-xs p-space-sm rounded bg-surface-container-lowest shadow-sm">
+<div class="w-8 h-8 rounded bg-secondary flex items-center justify-center text-on-secondary shrink-0">
+<span class="material-symbols-outlined text-sm">speed</span>
+</div>
+<div class="min-w-0">
+<div class="font-label-technical text-label-technical text-outline uppercase">Vertical 02</div>
+<div class="font-title-md text-body-sm text-primary font-bold truncate">Operational Excellence</div>
+</div>
+</div>
+<div class="flex items-center gap-space-xs p-space-sm rounded bg-surface-container-lowest shadow-sm">
+<div class="w-8 h-8 rounded bg-primary flex items-center justify-center text-surface-bright shrink-0">
+<span class="material-symbols-outlined text-sm">groups</span>
+</div>
+<div class="min-w-0">
+<div class="font-label-technical text-label-technical text-outline uppercase">Vertical 03</div>
+<div class="font-title-md text-body-sm text-primary font-bold truncate">Training &amp; Development</div>
+</div>
+</div>
+<div class="flex items-center gap-space-xs p-space-sm rounded bg-surface-container-lowest shadow-sm">
+<div class="w-8 h-8 rounded bg-tertiary-container flex items-center justify-center text-tertiary-fixed shrink-0">
+<span class="material-symbols-outlined text-sm">trending_up</span>
+</div>
+<div class="min-w-0">
+<div class="font-label-technical text-label-technical text-outline uppercase">Vertical 04</div>
+<div class="font-title-md text-body-sm text-primary font-bold truncate">Business Improvement</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- PROMINENT VISION SECTION -->
+<section class="w-full bg-primary text-on-primary py-space-xl px-6 lg:px-12 relative overflow-hidden">
+<!-- Background Image Layer with Dark Overlay -->
+<div class="absolute inset-0 z-0">
+<img alt="Automotive assembly line verification" class="w-full h-full object-cover opacity-20 filter grayscale contrast-125" src="assets/images/industry/lead-auditor-review.png">
+<div class="absolute inset-0 bg-gradient-to-r from-primary via-primary-container/95 to-primary/90"></div>
+</div>
+<div class="max-w-7xl mx-auto relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-space-xl items-center">
+<div class="lg:col-span-8 flex flex-col gap-space-md">
+<div class="flex items-center gap-3">
+<span class="w-8 h-0.5 bg-tertiary-fixed-dim"></span>
+<span class="font-label-technical text-label-technical text-tertiary-fixed uppercase tracking-widest">Aspirational Outlook</span>
+</div>
+<h2 class="font-headline-xl text-headline-xl text-surface-bright tracking-tight">
+          OUR VISION
+        </h2>
+<div class="relative pl-6">
+<div class="absolute left-0 top-0 bottom-0 w-1 bg-tertiary-fixed-dim"></div>
+<p class="font-headline-md text-headline-md text-primary-fixed leading-snug">
+            "To become a trusted and preferred partner for Business &amp; Operational Excellence by transforming organisations into world-class businesses through quality, innovation, people development and sustainable performance improvement."
+          </p>
+</div>
+<p class="font-body-lg text-body-lg text-surface-variant font-medium pt-space-xs">
+          Our vision is to build organisations where quality is a culture, improvement is continuous and excellence is a way of working.
+        </p>
+</div>
+<!-- Visual Trust Panel -->
+<div class="lg:col-span-4 flex flex-col gap-space-sm bg-primary-container p-space-lg rounded shadow-xl">
+<div class="flex items-center justify-between pb-space-xs">
+<span class="font-label-technical text-label-technical text-tertiary-fixed uppercase">Zero Defect Charter</span>
+<span class="material-symbols-outlined text-secondary-fixed text-lg">verified_user</span>
+</div>
+<div class="flex flex-col gap-3 font-body-sm text-body-sm text-primary-fixed-dim">
+<div class="flex items-start gap-2.5">
+<span class="material-symbols-outlined text-secondary-fixed text-base shrink-0 mt-0.5">check_circle</span>
+<span class="">Transforming compliance checklists into active shop-floor habits.</span>
+</div>
+<div class="flex items-start gap-2.5">
+<span class="material-symbols-outlined text-secondary-fixed text-base shrink-0 mt-0.5">check_circle</span>
+<span class="">Bridging executive strategy with Tier-1 engineering precision.</span>
+</div>
+<div class="flex items-start gap-2.5">
+<span class="material-symbols-outlined text-secondary-fixed text-base shrink-0 mt-0.5">check_circle</span>
+<span class="">Measurable return on quality and systemic yield optimization.</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- MISSION SECTION -->
+<section class="w-full bg-surface py-space-xl px-6 lg:px-12">
+<div class="max-w-7xl mx-auto flex flex-col gap-space-xl">
+<!-- Section Header -->
+<div class="flex flex-col gap-space-xs max-w-3xl">
+<div class="flex items-center gap-2 text-secondary font-label-technical text-label-technical uppercase">
+<span class="w-4 h-0.5 bg-secondary"></span>
+          Operational Mandate
+        </div>
+<h2 class="font-headline-xl text-headline-xl text-primary tracking-tight">
+          OUR MISSION
+        </h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant">
+          To empower organisations through practical, result-oriented and implementation-driven solutions that improve quality, productivity, operational efficiency and business performance.
+        </p>
+</div>
+<!-- Six Mission Pillar Cards -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-space-lg">
+<!-- Pillar 1 -->
+<div class="bg-surface-container-lowest p-space-lg rounded shadow-sm hover:shadow-md transition-shadow flex flex-col justify-between gap-space-md">
+<div class="flex flex-col gap-space-sm">
+<div class="w-12 h-12 rounded bg-primary-container text-tertiary-fixed flex items-center justify-center shadow-xs">
+<span class="material-symbols-outlined text-2xl">verified</span>
+</div>
+<div class="font-label-technical text-label-technical text-secondary uppercase font-bold">Pillar 01</div>
+<h3 class="font-headline-sm text-headline-sm text-primary">QUALITY EXCELLENCE</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">
+              Establishing and strengthening robust Quality Management Systems (QMS), IATF 16949, ISO standards, and Integrated Management Systems across Tier-1/Tier-2 supplier lines.
+            </p>
+</div>
+<div class="pt-space-xs">
+<span class="inline-flex items-center gap-1 font-label-technical text-label-technical text-primary font-bold">
+              SYSTEM INTEGRATION <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</span>
+</div>
+</div>
+<!-- Pillar 2 -->
+<div class="bg-surface-container-lowest p-space-lg rounded shadow-sm hover:shadow-md transition-shadow flex flex-col justify-between gap-space-md">
+<div class="flex flex-col gap-space-sm">
+<div class="w-12 h-12 rounded bg-secondary text-on-secondary flex items-center justify-center shadow-xs">
+<span class="material-symbols-outlined text-2xl">precision_manufacturing</span>
+</div>
+<div class="font-label-technical text-label-technical text-secondary uppercase font-bold">Pillar 02</div>
+<h3 class="font-headline-sm text-headline-sm text-primary">OPERATIONAL EXCELLENCE</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">
+              Improving shop-floor performance through Lean Manufacturing, Six Sigma DMAIC methodologies, TPM, 5S workplace organisation, Kaizen events, and rigorous waste elimination.
+            </p>
+</div>
+<div class="pt-space-xs">
+<span class="inline-flex items-center gap-1 font-label-technical text-label-technical text-secondary font-bold">
+              SHOP-FLOOR LEAN <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</span>
+</div>
+</div>
+<!-- Pillar 3 -->
+<div class="bg-surface-container-lowest p-space-lg rounded shadow-sm hover:shadow-md transition-shadow flex flex-col justify-between gap-space-md">
+<div class="flex flex-col gap-space-sm">
+<div class="w-12 h-12 rounded bg-primary text-tertiary-fixed flex items-center justify-center shadow-xs">
+<span class="material-symbols-outlined text-2xl">analytics</span>
+</div>
+<div class="font-label-technical text-label-technical text-secondary uppercase font-bold">Pillar 03</div>
+<h3 class="font-headline-sm text-headline-sm text-primary">BUSINESS IMPROVEMENT</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">
+              Delivering measurable improvements in productivity, manufacturing cost, delivery compliance (OTIF), quality baseline yields, and Tier-1 customer satisfaction ratings.
+            </p>
+</div>
+<div class="pt-space-xs">
+<span class="inline-flex items-center gap-1 font-label-technical text-label-technical text-primary font-bold">
+              METRIC DRIVEN <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</span>
+</div>
+</div>
+<!-- Pillar 4 -->
+<div class="bg-surface-container-lowest p-space-lg rounded shadow-sm hover:shadow-md transition-shadow flex flex-col justify-between gap-space-md">
+<div class="flex flex-col gap-space-sm">
+<div class="w-12 h-12 rounded bg-tertiary-container text-tertiary-fixed flex items-center justify-center shadow-xs">
+<span class="material-symbols-outlined text-2xl">school</span>
+</div>
+<div class="font-label-technical text-label-technical text-secondary uppercase font-bold">Pillar 04</div>
+<h3 class="font-headline-sm text-headline-sm text-primary">PEOPLE DEVELOPMENT</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">
+              Developing competent employees, leaders, certified internal auditors, trainers, and future industry professionals through technical industrial, corporate, and academic cohorts.
+            </p>
+</div>
+<div class="pt-space-xs">
+<span class="inline-flex items-center gap-1 font-label-technical text-label-technical text-tertiary-fixed-dim font-bold">
+              TALENT PIPELINE <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</span>
+</div>
+</div>
+<!-- Pillar 5 -->
+<div class="bg-surface-container-lowest p-space-lg rounded shadow-sm hover:shadow-md transition-shadow flex flex-col justify-between gap-space-md">
+<div class="flex flex-col gap-space-sm">
+<div class="w-12 h-12 rounded bg-primary-container text-secondary-fixed flex items-center justify-center shadow-xs">
+<span class="material-symbols-outlined text-2xl">handshake</span>
+</div>
+<div class="font-label-technical text-label-technical text-secondary uppercase font-bold">Pillar 05</div>
+<h3 class="font-headline-sm text-headline-sm text-primary">IMPLEMENTATION FOCUS</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">
+              Converting complex documented systems, procedures, control plans, and executive strategies into seamless, self-sustaining shop-floor working habits and behaviors.
+            </p>
+</div>
+<div class="pt-space-xs">
+<span class="inline-flex items-center gap-1 font-label-technical text-label-technical text-secondary font-bold">
+              HANDS-ON MENTORING <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</span>
+</div>
+</div>
+<!-- Pillar 6 -->
+<div class="bg-surface-container-lowest p-space-lg rounded shadow-sm hover:shadow-md transition-shadow flex flex-col justify-between gap-space-md">
+<div class="flex flex-col gap-space-sm">
+<div class="w-12 h-12 rounded bg-surface-container-high text-primary flex items-center justify-center shadow-xs">
+<span class="material-symbols-outlined text-2xl">corporate_fare</span>
+</div>
+<div class="font-label-technical text-label-technical text-secondary uppercase font-bold">Pillar 06</div>
+<h3 class="font-headline-sm text-headline-sm text-primary">SUSTAINABLE GROWTH</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">
+              Building enduring multi-year partnerships and enabling organisations to achieve consistent, scalable, audit-resilient, and profitable manufacturing outcomes.
+            </p>
+</div>
+<div class="pt-space-xs">
+<span class="inline-flex items-center gap-1 font-label-technical text-label-technical text-primary font-bold">
+              LONG-TERM VALUE <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- STRATEGIC GOALS SECTION -->
+<section class="w-full bg-surface-container-low py-space-xl px-6 lg:px-12">
+<div class="max-w-7xl mx-auto flex flex-col gap-space-xl">
+<!-- Section Header -->
+<div class="flex flex-col gap-space-xs max-w-3xl">
+<div class="flex items-center gap-2 text-secondary font-label-technical text-label-technical uppercase">
+<span class="w-4 h-0.5 bg-secondary"></span>
+          Enterprise Milestones
+        </div>
+<h2 class="font-headline-xl text-headline-xl text-primary tracking-tight">
+          OUR STRATEGIC GOALS
+        </h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant">
+          Our strategic goals are designed around six key pillars to create measurable value for customers, develop professional capabilities and establish sustainable business growth.
+        </p>
+</div>
+<!-- 6 Visually Attractive Strategic Goal Cards with Industrial Imagery -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-space-lg">
+<!-- Goal Card 1: System Excellence (Image 7) -->
+<div class="bg-surface-container-lowest rounded overflow-hidden shadow-sm hover:shadow-md transition-all flex flex-col">
+<div class="h-48 w-full relative overflow-hidden bg-primary-container">
+<img alt="Quality Engineer Shopfloor Audit" class="w-full h-full object-cover" src="assets/images/industry/lead-auditor-review.png">
+<div class="absolute inset-0 bg-gradient-to-t from-primary/90 via-primary/30 to-transparent"></div>
+<div class="absolute bottom-3 left-4 right-4 flex items-center justify-between text-surface-bright">
+<span class="font-label-technical text-label-technical uppercase tracking-wider bg-primary/80 px-2 py-0.5 rounded">Pillar 01</span>
+<span class="material-symbols-outlined text-tertiary-fixed">verified</span>
+</div>
+</div>
+<div class="p-space-lg flex flex-col gap-space-sm flex-1 justify-between">
+<div class="flex flex-col gap-2">
+<h3 class="font-headline-sm text-headline-sm text-primary">QUALITY &amp; SYSTEM EXCELLENCE</h3>
+<ul class="flex flex-col gap-2 font-body-sm text-body-sm text-on-surface-variant pt-2">
+<li class="flex items-start gap-2">
+<span class="material-symbols-outlined text-secondary text-sm shrink-0 mt-0.5">check_circle</span>
+<span class="">Strengthen QMS, IATF 16949 and ISO implementation across plants</span>
+</li>
+<li class="flex items-start gap-2">
+<span class="material-symbols-outlined text-secondary text-sm shrink-0 mt-0.5">check_circle</span>
+<span class="">Improve external audit readiness and statutory compliance</span>
+</li>
+<li class="flex items-start gap-2">
+<span class="material-symbols-outlined text-secondary text-sm shrink-0 mt-0.5">check_circle</span>
+<span class="">Develop resilient, self-sustaining quality operating systems</span>
+</li>
+<li class="flex items-start gap-2">
+<span class="material-symbols-outlined text-secondary text-sm shrink-0 mt-0.5">check_circle</span>
+<span class="">Reduce customer complaints, shop-floor rejection and rework scrap</span>
+</li>
+</ul>
+</div>
+<div class="pt-space-sm">
+<div class="px-3 py-1.5 rounded bg-surface-container font-label-technical text-label-technical text-on-surface-variant">Target: Zero Major Audit Non-Conformances</div>
+</div>
+</div>
+</div>
+<!-- Goal Card 2: Operational Excellence (Image 8) -->
+<div class="bg-surface-container-lowest rounded overflow-hidden shadow-sm hover:shadow-md transition-all flex flex-col">
+<div class="h-48 w-full relative overflow-hidden bg-primary-container">
+<img alt="Heavy Industrial Stamping Press" class="w-full h-full object-cover" src="assets/images/industry/lead-auditor-review.png">
+<div class="absolute inset-0 bg-gradient-to-t from-primary/90 via-primary/30 to-transparent"></div>
+<div class="absolute bottom-3 left-4 right-4 flex items-center justify-between text-surface-bright">
+<span class="font-label-technical text-label-technical uppercase tracking-wider bg-primary/80 px-2 py-0.5 rounded">Pillar 02</span>
+<span class="material-symbols-outlined text-secondary-fixed">bolt</span>
+</div>
+</div>
+<div class="p-space-lg flex flex-col gap-space-sm flex-1 justify-between">
+<div class="flex flex-col gap-2">
+<h3 class="font-headline-sm text-headline-sm text-primary">OPERATIONAL EXCELLENCE</h3>
+<ul class="flex flex-col gap-2 font-body-sm text-body-sm text-on-surface-variant pt-2">
+<li class="flex items-start gap-2">
+<span class="material-symbols-outlined text-secondary text-sm shrink-0 mt-0.5">check_circle</span>
+<span class="">Drive Lean Manufacturing and Six Sigma process optimization</span>
+</li>
+<li class="flex items-start gap-2">
+<span class="material-symbols-outlined text-secondary text-sm shrink-0 mt-0.5">check_circle</span>
+<span class="">Improve machine productivity (OEE) and takt-time efficiency</span>
+</li>
+<li class="flex items-start gap-2">
+<span class="material-symbols-outlined text-secondary text-sm shrink-0 mt-0.5">check_circle</span>
+<span class="">Reduce shop-floor waste, inventory losses and operational costs</span>
+</li>
+<li class="flex items-start gap-2">
+<span class="material-symbols-outlined text-secondary text-sm shrink-0 mt-0.5">check_circle</span>
+<span class="">Establish an active culture of continuous Kaizen improvement</span>
+</li>
+</ul>
+</div>
+<div class="pt-space-sm">
+<div class="px-3 py-1.5 rounded bg-surface-container font-label-technical text-label-technical text-on-surface-variant">Focus: Muda Elimination &amp; Single-Digit PPM</div>
+</div>
+</div>
+</div>
+<!-- Goal Card 3: Industrial Training & Skill Development (Image 9) -->
+<div class="bg-surface-container-lowest rounded overflow-hidden shadow-sm hover:shadow-md transition-all flex flex-col">
+<div class="h-48 w-full relative overflow-hidden bg-primary-container">
+<img alt="Lead Auditor Technical Review" class="w-full h-full object-cover" src="assets/images/industry/lead-auditor-review.png">
+<div class="absolute inset-0 bg-gradient-to-t from-primary/90 via-primary/30 to-transparent"></div>
+<div class="absolute bottom-3 left-4 right-4 flex items-center justify-between text-surface-bright">
+<span class="font-label-technical text-label-technical uppercase tracking-wider bg-primary/80 px-2 py-0.5 rounded">Pillar 03</span>
+<span class="material-symbols-outlined text-tertiary-fixed">psychology</span>
+</div>
+</div>
+<div class="p-space-lg flex flex-col gap-space-sm flex-1 justify-between">
+<div class="flex flex-col gap-2">
+<h3 class="font-headline-sm text-headline-sm text-primary">INDUSTRIAL TRAINING &amp; SKILL DEVELOPMENT</h3>
+<ul class="flex flex-col gap-2 font-body-sm text-body-sm text-on-surface-variant pt-2">
+<li class="flex items-start gap-2">
+<span class="material-symbols-outlined text-secondary text-sm shrink-0 mt-0.5">check_circle</span>
+<span class="">Practical AIAG-VDA Core Tools (APQP, PPAP, FMEA, MSA, SPC)</span>
+</li>
+<li class="flex items-start gap-2">
+<span class="material-symbols-outlined text-secondary text-sm shrink-0 mt-0.5">check_circle</span>
+<span class="">Certified Internal Auditor, 5S, Kaizen and Six Sigma cohorts</span>
+</li>
+<li class="flex items-start gap-2">
+<span class="material-symbols-outlined text-secondary text-sm shrink-0 mt-0.5">check_circle</span>
+<span class="">Customised corporate plant workshops on real manufacturing defects</span>
+</li>
+<li class="flex items-start gap-2">
+<span class="material-symbols-outlined text-secondary text-sm shrink-0 mt-0.5">check_circle</span>
+<span class="">Industry-ready bridging programmes for polytechnics &amp; graduates</span>
+</li>
+</ul>
+</div>
+<div class="pt-space-sm">
+<div class="px-3 py-1.5 rounded bg-surface-container font-label-technical text-label-technical text-on-surface-variant">Format: Hands-on Component Validation</div>
+</div>
+</div>
+</div>
+<!-- Goal Card 4: Customer & Business Growth (Image 10) -->
+<div class="bg-surface-container-lowest rounded overflow-hidden shadow-sm hover:shadow-md transition-all flex flex-col">
+<div class="h-48 w-full relative overflow-hidden bg-primary-container">
+<img alt="Gear Hobbing Precision Machinery" class="w-full h-full object-cover" src="assets/images/industry/lead-auditor-review.png">
+<div class="absolute inset-0 bg-gradient-to-t from-primary/90 via-primary/30 to-transparent"></div>
+<div class="absolute bottom-3 left-4 right-4 flex items-center justify-between text-surface-bright">
+<span class="font-label-technical text-label-technical uppercase tracking-wider bg-primary/80 px-2 py-0.5 rounded">Pillar 04</span>
+<span class="material-symbols-outlined text-tertiary-fixed">storefront</span>
+</div>
+</div>
+<div class="p-space-lg flex flex-col gap-space-sm flex-1 justify-between">
+<div class="flex flex-col gap-2">
+<h3 class="font-headline-sm text-headline-sm text-primary">CUSTOMER &amp; BUSINESS GROWTH</h3>
+<ul class="flex flex-col gap-2 font-body-sm text-body-sm text-on-surface-variant pt-2">
+<li class="flex items-start gap-2">
+<span class="material-symbols-outlined text-secondary text-sm shrink-0 mt-0.5">check_circle</span>
+<span class="">Build high-trust, long-term manufacturing advisory partnerships</span>
+</li>
+<li class="flex items-start gap-2">
+<span class="material-symbols-outlined text-secondary text-sm shrink-0 mt-0.5">check_circle</span>
+<span class="">Expand across auto, engineering, oil &amp; gas, process and food sectors</span>
+</li>
+<li class="flex items-start gap-2">
+<span class="material-symbols-outlined text-secondary text-sm shrink-0 mt-0.5">check_circle</span>
+<span class="">Support greenfield plant setups and assembly line expansions</span>
+</li>
+<li class="flex items-start gap-2">
+<span class="material-symbols-outlined text-secondary text-sm shrink-0 mt-0.5">check_circle</span>
+<span class="">Deliver quantifiable ROI and audited cost-savings on every client project</span>
+</li>
+</ul>
+</div>
+<div class="pt-space-sm">
+<div class="px-3 py-1.5 rounded bg-surface-container font-label-technical text-label-technical text-on-surface-variant">Sectors: Discrete &amp; Heavy Engineering</div>
+</div>
+</div>
+</div>
+<!-- Goal Card 5: Professional Team & Network Development -->
+<div class="bg-surface-container-lowest rounded overflow-hidden shadow-sm hover:shadow-md transition-all flex flex-col">
+<div class="h-48 w-full relative overflow-hidden bg-primary-container"><img alt="Lead auditor reviewing technical blueprints and reports" class="w-full h-full object-cover" src="assets/images/industry/lead-auditor-review.png"><div class="absolute inset-0 bg-gradient-to-t from-primary/90 via-primary/30 to-transparent"></div><div class="absolute bottom-3 left-4 right-4 flex items-center justify-between text-surface-bright"><span class="font-label-technical text-label-technical uppercase tracking-wider bg-primary/80 px-2 py-0.5 rounded">Pillar 05</span><span class="material-symbols-outlined text-secondary-fixed">hub</span></div></div>
+<div class="p-space-lg flex flex-col gap-space-sm flex-1 justify-between">
+<div class="flex flex-col gap-2">
+<h3 class="font-headline-sm text-headline-sm text-primary">PROFESSIONAL TEAM &amp; NETWORK</h3>
+<ul class="flex flex-col gap-2 font-body-sm text-body-sm text-on-surface-variant pt-2">
+<li class="flex items-start gap-2">
+<span class="material-symbols-outlined text-secondary text-sm shrink-0 mt-0.5">check_circle</span>
+<span class="">Develop a strong network of senior OEM and Tier-1 quality leaders</span>
+</li>
+<li class="flex items-start gap-2">
+<span class="material-symbols-outlined text-secondary text-sm shrink-0 mt-0.5">check_circle</span>
+<span class="">Build certified cadre of freelance auditors and subject matter trainers</span>
+</li>
+<li class="flex items-start gap-2">
+<span class="material-symbols-outlined text-secondary text-sm shrink-0 mt-0.5">check_circle</span>
+<span class="">Maintain uncompromised professional ethics and strict confidentiality</span>
+</li>
+<li class="flex items-start gap-2">
+<span class="material-symbols-outlined text-secondary text-sm shrink-0 mt-0.5">check_circle</span>
+<span class="">Create structured forums for cross-industry quality intelligence</span>
+</li>
+</ul>
+</div>
+<div class="pt-space-sm">
+<div class="px-3 py-1.5 rounded bg-surface-container font-label-technical text-label-technical text-on-surface-variant">Standards: AIAG-VDA, ISO/TC 176 Compliance</div>
+</div>
+</div>
+</div>
+<!-- Goal Card 6: Sustainable & Profitable Growth -->
+<div class="bg-surface-container-lowest rounded overflow-hidden shadow-sm hover:shadow-md transition-all flex flex-col">
+<div class="h-48 w-full relative overflow-hidden bg-primary-container">
+<img alt="Industrial Brand Leadership &amp; Quality Assembly" class="w-full h-full object-cover" src="assets/images/industry/lead-auditor-review.png">
+<div class="absolute inset-0 bg-gradient-to-t from-primary/90 via-primary/30 to-transparent"></div>
+<div class="absolute inset-0 p-6 flex flex-col justify-between text-surface-bright z-10">
+<div class="flex items-center justify-between">
+<span class="font-label-technical text-label-technical uppercase tracking-wider bg-primary/80 px-2 py-0.5 rounded">Pillar 06</span>
+<span class="material-symbols-outlined text-secondary-fixed">query_stats</span>
+</div>
+<div>
+<div class="font-label-technical text-label-technical text-secondary-fixed uppercase font-bold">Scaling Enterprise</div>
+<div class="font-headline-md text-surface-bright">Industrial Brand Leadership</div>
+</div>
+</div>
+</div>
+<div class="p-space-lg flex flex-col gap-space-sm flex-1 justify-between">
+<div class="flex flex-col gap-2">
+<h3 class="font-headline-sm text-headline-sm text-primary">SUSTAINABLE &amp; PROFITABLE GROWTH</h3>
+<ul class="flex flex-col gap-2 font-body-sm text-body-sm text-on-surface-variant pt-2">
+<li class="flex items-start gap-2">
+<span class="material-symbols-outlined text-secondary text-sm shrink-0 mt-0.5">check_circle</span>
+<span class="">Establish Nexaouraa as India's premier manufacturing quality brand</span>
+</li>
+<li class="flex items-start gap-2">
+<span class="material-symbols-outlined text-secondary text-sm shrink-0 mt-0.5">check_circle</span>
+<span class="">Expand operational footprints across major Western and Southern hubs</span>
+</li>
+<li class="flex items-start gap-2">
+<span class="material-symbols-outlined text-secondary text-sm shrink-0 mt-0.5">check_circle</span>
+<span class="">Package turnkey diagnostic and plant improvement advisory services</span>
+</li>
+<li class="flex items-start gap-2">
+<span class="material-symbols-outlined text-secondary text-sm shrink-0 mt-0.5">check_circle</span>
+<span class="">Build scalable, high-reputation institutional governance</span>
+</li>
+</ul>
+</div>
+<div class="pt-space-sm">
+<div class="px-3 py-1.5 rounded bg-surface-container font-label-technical text-label-technical text-on-surface-variant">Footprint: Pune, Chakan, Sanand, Chennai, NCR</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- CORE VALUES SECTION -->
+<section class="w-full bg-surface py-space-xl px-6 lg:px-12">
+<div class="max-w-7xl mx-auto flex flex-col gap-space-xl">
+<!-- Section Header -->
+<div class="text-center max-w-2xl mx-auto flex flex-col gap-space-xs">
+<span class="font-label-technical text-label-technical text-secondary uppercase font-bold">Guiding Ethics &amp; Code of Practice</span>
+<h2 class="font-headline-xl text-headline-xl text-primary tracking-tight">
+          OUR CORE VALUES
+        </h2>
+<p class="font-body-md text-body-md text-on-surface-variant">
+          The principles that guide our decisions, relationships and professional commitments across every plant floor and executive boardroom.
+        </p>
+</div>
+<!-- Seven Core Values Grid -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-space-md">
+<!-- 1. Integrity -->
+<div class="bg-surface-container-lowest p-space-md rounded shadow-sm flex flex-col gap-space-sm hover:translate-y-[-2px] transition-transform">
+<div class="w-10 h-10 rounded bg-primary-container text-tertiary-fixed flex items-center justify-center">
+<span class="material-symbols-outlined">gavel</span>
+</div>
+<div class="flex flex-col gap-1">
+<h3 class="font-title-md text-title-md text-primary font-bold">1. INTEGRITY</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">
+              Always work with uncompromising honesty, transparent reporting, and strict audit objectivity.
+            </p>
+</div>
+</div>
+<!-- 2. Customer Focus -->
+<div class="bg-surface-container-lowest p-space-md rounded shadow-sm flex flex-col gap-space-sm hover:translate-y-[-2px] transition-transform">
+<div class="w-10 h-10 rounded bg-secondary text-on-secondary flex items-center justify-center">
+<span class="material-symbols-outlined">support_agent</span>
+</div>
+<div class="flex flex-col gap-1">
+<h3 class="font-title-md text-title-md text-primary font-bold">2. CUSTOMER FOCUS</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">
+              Understand unique customer manufacturing challenges and deliver tangible, lasting shop-floor value.
+            </p>
+</div>
+</div>
+<!-- 3. Excellence -->
+<div class="bg-surface-container-lowest p-space-md rounded shadow-sm flex flex-col gap-space-sm hover:translate-y-[-2px] transition-transform">
+<div class="w-10 h-10 rounded bg-primary text-surface-bright flex items-center justify-center">
+<span class="material-symbols-outlined">military_tech</span>
+</div>
+<div class="flex flex-col gap-1">
+<h3 class="font-title-md text-title-md text-primary font-bold">3. EXCELLENCE</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">
+              Maintain world-class professional standards grounded in AIAG-VDA and ISO benchmark specifications.
+            </p>
+</div>
+</div>
+<!-- 4. Ownership -->
+<div class="bg-surface-container-lowest p-space-md rounded shadow-sm flex flex-col gap-space-sm hover:translate-y-[-2px] transition-transform">
+<div class="w-10 h-10 rounded bg-tertiary-container text-tertiary-fixed flex items-center justify-center">
+<span class="material-symbols-outlined">assignment_turned_in</span>
+</div>
+<div class="flex flex-col gap-1">
+<h3 class="font-title-md text-title-md text-primary font-bold">4. OWNERSHIP</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">
+              Take complete responsibility for implementation results, timeline commitments, and corrective actions.
+            </p>
+</div>
+</div>
+<!-- 5. Teamwork -->
+<div class="bg-surface-container-lowest p-space-md rounded shadow-sm flex flex-col gap-space-sm hover:translate-y-[-2px] transition-transform">
+<div class="w-10 h-10 rounded bg-surface-container-high text-primary flex items-center justify-center">
+<span class="material-symbols-outlined">diversity_3</span>
+</div>
+<div class="flex flex-col gap-1">
+<h3 class="font-title-md text-title-md text-primary font-bold">5. TEAMWORK</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">
+              Come together, improve together, and grow together across shop floor technicians and leadership teams.
+            </p>
+</div>
+</div>
+<!-- 6. Innovation -->
+<div class="bg-surface-container-lowest p-space-md rounded shadow-sm flex flex-col gap-space-sm hover:translate-y-[-2px] transition-transform">
+<div class="w-10 h-10 rounded bg-secondary-container text-on-secondary-container flex items-center justify-center">
+<span class="material-symbols-outlined">lightbulb</span>
+</div>
+<div class="flex flex-col gap-1">
+<h3 class="font-title-md text-title-md text-primary font-bold">6. INNOVATION</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">
+              Encourage new digital tooling ideas, automated inspection protocols, and smarter working methods.
+            </p>
+</div>
+</div>
+<!-- 7. Continuous Improvement (Double Column Span on Desktop) -->
+<div class="bg-surface-container-lowest p-space-md rounded shadow-sm flex flex-col gap-space-sm hover:translate-y-[-2px] transition-transform sm:col-span-2 lg:col-span-2">
+<div class="w-10 h-10 rounded bg-primary text-secondary-fixed flex items-center justify-center">
+<span class="material-symbols-outlined">autorenew</span>
+</div>
+<div class="flex flex-col gap-1">
+<h3 class="font-title-md text-title-md text-primary font-bold">7. CONTINUOUS IMPROVEMENT</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">
+              Never stop learning, challenging the baseline status quo, and elevating performance metrics through perpetual Kaizen culture.
+            </p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- PROMINENT PHILOSOPHY / MANIFESTO CALLOUT SECTION -->
+<section class="w-full bg-primary text-on-primary py-space-xl px-6 lg:px-12 relative overflow-hidden">
+<!-- Background Industrial Image Accent -->
+<div class="absolute inset-0 z-0">
+
+<div class="absolute inset-0 bg-gradient-to-r from-primary via-primary-container/95 to-primary"></div>
+</div>
+
+</section>
+<!-- GROWTH ROADMAP 2027–2029 (KPI DASHBOARD) -->
+
+<!-- FINAL BRAND SECTION & 4 BUSINESS VERTICALS CONFIRMATION -->
+<section class="w-full bg-surface py-space-xl px-6 lg:px-12">
+<div class="max-w-7xl mx-auto flex flex-col gap-space-xl">
+<!-- Main Brand Narrative Banner -->
+<div class="bg-primary text-on-primary p-space-lg lg:p-space-xl rounded-lg shadow-xl flex flex-col gap-space-md relative overflow-hidden">
+<div class="flex flex-col gap-space-xs relative z-10">
+<span class="font-label-technical text-label-technical text-tertiary-fixed uppercase font-bold">NEXAOURAA CONSULTANCY</span>
+<h2 class="font-headline-xl text-headline-xl text-surface-bright tracking-tight font-extrabold">
+            COME TOGETHER. IMPROVE TOGETHER. GROW TOGETHER.
+          </h2>
+<p class="font-headline-md text-headline-md text-primary-fixed-dim">
+            BUILDING QUALITY. IMPROVING PERFORMANCE. DRIVING BUSINESS EXCELLENCE.
+          </p>
+<p class="font-body-lg text-body-lg text-secondary-fixed pt-space-xs font-semibold">
+            Practical Solutions. Measurable Results. Sustainable Growth.
+          </p>
+</div>
+<div class="flex flex-wrap items-center gap-space-sm pt-space-sm relative z-10">
+<a class="px-5 py-3 rounded bg-[#B48206] text-white font-title-md text-title-md hover:bg-[#976D05] transition-all shadow-md inline-flex items-center gap-2" href="#booking-form">
+<span class="material-symbols-outlined text-base">calendar_month</span>
+            Schedule Diagnostic Plant Audit
+          </a>
+<a class="px-5 py-3 rounded bg-secondary text-on-secondary font-title-md text-title-md hover:bg-on-secondary-fixed-variant transition-all shadow-md inline-flex items-center gap-2" href="#">
+<span class="material-symbols-outlined text-base">description</span>
+            Download Company Profile (PDF)
+          </a>
+<a class="px-5 py-3 rounded bg-[#0E6A38] text-white font-title-md text-title-md hover:bg-[#0A522B] transition-all shadow-md inline-flex items-center gap-2" href="https://wa.me/918975573469" target="_blank">
+<span class="material-symbols-outlined text-base">chat</span>
+            WhatsApp Lead Consultant+Trainer (+91 8975573469)
+          </a>
+</div>
+</div>
+<!-- Confirmation Grid: 4 Integrated Verticals -->
+<div class="flex flex-col gap-space-md">
+<div class="flex items-center justify-between">
+<h3 class="font-headline-lg text-headline-lg text-primary tracking-tight">
+            Integrated Business Verticals Summary
+          </h3>
+<span class="font-label-technical text-label-technical text-outline uppercase hidden sm:inline">Execution Matrix</span>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-space-md">
+<!-- Card 1 -->
+<div class="bg-surface-container-lowest p-space-md rounded shadow-sm flex flex-col gap-space-xs">
+<div class="w-8 h-8 rounded bg-primary-container text-tertiary-fixed flex items-center justify-center">
+<span class="material-symbols-outlined text-base">verified</span>
+</div>
+<div class="font-title-md text-title-md text-primary font-bold">1. QUALITY EXCELLENCE</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+              QMS, IATF 16949, ISO Standards, Integrated Management Systems (IMS), APQP, PPAP, AIAG-VDA Core Tools.
+            </p>
+</div>
+<!-- Card 2 -->
+<div class="bg-surface-container-lowest p-space-md rounded shadow-sm flex flex-col gap-space-xs">
+<div class="w-8 h-8 rounded bg-secondary text-on-secondary flex items-center justify-center">
+<span class="material-symbols-outlined text-base">speed</span>
+</div>
+<div class="font-title-md text-title-md text-primary font-bold">2. OPERATIONAL EXCELLENCE</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+              Lean Manufacturing, Six Sigma (DMAIC), TPM, TQM, 5S Visual Management, Kaizen Events, Productivity Gains.
+            </p>
+</div>
+<!-- Card 3 -->
+<div class="bg-surface-container-lowest p-space-md rounded shadow-sm flex flex-col gap-space-xs">
+<div class="w-8 h-8 rounded bg-primary text-surface-bright flex items-center justify-center">
+<span class="material-symbols-outlined text-base">school</span>
+</div>
+<div class="font-title-md text-title-md text-primary font-bold">3. TRAINING &amp; DEVELOPMENT</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+              Industrial Cohorts, Customised Corporate Training, Academic Curriculum, ITI &amp; Polytechnic Skill Bridge.
+            </p>
+</div>
+<!-- Card 4 -->
+<div class="bg-surface-container-lowest p-space-md rounded shadow-sm flex flex-col gap-space-xs">
+<div class="w-8 h-8 rounded bg-tertiary-container text-tertiary-fixed flex items-center justify-center">
+<span class="material-symbols-outlined text-base">trending_up</span>
+</div>
+<div class="font-title-md text-title-md text-primary font-bold">4. BUSINESS IMPROVEMENT</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+              Business Process Improvement, Manufacturing Transformation, Greenfield Plant Setup, Cost &amp; Scrap Reduction.
+            </p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- CONSULTATION / AUDIT BOOKING ANCHOR FORM -->
+<section class="w-full bg-surface-container-low py-space-xl px-6 lg:px-12" id="booking-form">
+<div class="max-w-4xl mx-auto bg-surface-container-lowest p-space-lg lg:p-space-xl rounded-lg shadow-sm flex flex-col gap-space-lg">
+<div class="flex flex-col gap-space-xs text-center max-w-2xl mx-auto">
+<span class="font-label-technical text-label-technical text-secondary uppercase font-bold">Confidential Plant Review</span>
+<h2 class="font-headline-lg text-headline-lg text-primary tracking-tight">
+          Request In-Plant Consultation</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+          Connect directly with Lead Auditor Govind Suvarnkar to evaluate your current IATF 16949 posture, Core Tools rigor, or shop-floor lean efficiency.
+        </p>
+</div>
+<form onsubmit="handleInquiryFormSubmit(event)" id="vision-inquiry-form">
+<div class="flex flex-col gap-1.5">
+<label class="font-label-technical text-label-technical text-on-surface-variant uppercase">Full Name &amp; Title</label>
+<input class="h-11 px-3.5 rounded bg-surface-container-low text-primary font-body-sm text-body-sm focus:outline-none focus:bg-surface-container-lowest" placeholder="e.g. Rajesh Kumar (Plant Head)" required="" type="text">
+</div>
+<div class="flex flex-col gap-1.5">
+<label class="font-label-technical text-label-technical text-on-surface-variant uppercase">Organisation / Manufacturing Unit</label>
+<input class="h-11 px-3.5 rounded bg-surface-container-low text-primary font-body-sm text-body-sm focus:outline-none focus:bg-surface-container-lowest" placeholder="e.g. Precision Auto Components Pvt Ltd" required="" type="text">
+</div>
+<div class="flex flex-col gap-1.5">
+<label class="font-label-technical text-label-technical text-on-surface-variant uppercase">Executive Email</label>
+<input class="h-11 px-3.5 rounded bg-surface-container-low text-primary font-body-sm text-body-sm focus:outline-none focus:bg-surface-container-lowest" placeholder="e.g. quality.head@company.com" required="" type="email">
+</div>
+<div class="flex flex-col gap-1.5">
+<label class="font-label-technical text-label-technical text-on-surface-variant uppercase">Contact Phone / WhatsApp</label>
+<input class="h-11 px-3.5 rounded bg-surface-container-low text-primary font-body-sm text-body-sm focus:outline-none focus:bg-surface-container-lowest" placeholder="e.g. +91 98XXXXXXXX" required="" type="tel">
+</div>
+<div class="flex flex-col gap-1.5 md:col-span-2">
+<label class="font-label-technical text-label-technical text-on-surface-variant uppercase">Advisory Focus Vertical</label>
+<select class="h-11 px-3.5 rounded bg-surface-container-low text-primary font-body-sm text-body-sm focus:outline-none focus:bg-surface-container-lowest">
+<option>IATF 16949 Turnkey Implementation &amp; Pre-Audit</option>
+<option>Core Tools Coaching (APQP, PPAP, FMEA, SPC, MSA)</option>
+<option>Lean Manufacturing, TPM &amp; 5S Kaizen Deployment</option>
+<option>Internal Auditor &amp; Corporate Skill Cohort</option>
+<option>New Manufacturing Plant Setup Advisory</option>
+</select>
+</div>
+<div class="flex flex-col gap-1.5 md:col-span-2">
+<label class="font-label-technical text-label-technical text-on-surface-variant uppercase">Key Quality / Operational Objective</label>
+<textarea class="p-3.5 rounded bg-surface-container-low text-primary font-body-sm text-body-sm focus:outline-none focus:bg-surface-container-lowest" placeholder="Briefly specify your audit deadline, PPM reduction target, or shop-floor challenge..." rows="3"></textarea>
+</div>
+<div class="md:col-span-2 flex flex-col sm:flex-row items-center justify-between gap-space-sm pt-space-xs">
+<div class="flex items-center gap-2 font-label-technical text-label-technical text-outline">
+<span class="material-symbols-outlined text-secondary text-base">lock</span>
+            Tier-1 Non-Disclosure &amp; Confidentiality Protected
+          </div>
+<button class="w-full sm:w-auto px-8 py-3 rounded bg-primary text-on-primary font-title-md text-title-md hover:bg-primary-container transition-all shadow-md" type="submit">
+            Submit Consultation Request
+          </button>
+</div>
+</form>
+</div>
+</section>
+</div>
+  </main>
+
+  <!-- UNIFIED FOOTER -->
+<footer class="w-full bg-[#000f1d] text-on-primary pt-space-xl pb-space-lg shadow-[0_-1px_12px_rgba(0,15,29,0.05)] border-t border-[#14283d]">
+  <div class="max-w-7xl mx-auto px-6 lg:px-12">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-space-xl pb-space-xl border-b border-[#14283d]">
+      <!-- Brand & Mission Column -->
+      <div class="flex flex-col gap-space-md">
+        <div class="flex items-center gap-3">
+          <img alt="Nexaouraa Consultancy Official Logo" class="w-10 h-10 object-contain rounded-full ring-1 ring-tertiary-fixed-dim/40 bg-white" src="assets/images/brand/nexaouraa-emblem.png">
+          <span class="font-title-md text-title-md text-surface-bright tracking-tight font-extrabold">NEXAOURAA CONSULTANCY</span>
+        </div>
+        <p class="font-body-sm text-body-sm text-primary-fixed-dim leading-relaxed">
+          Lead Auditor Govind Suvarnkar spearheads Tier-1 &amp; Tier-2 automotive manufacturing quality transformations. Dedicated to zero defects through IATF 16949, Core Tools (APQP, PPAP, FMEA, SPC, MSA), and Integrated Management Systems.
+        </p>
+        <div class="flex flex-wrap items-center gap-space-xs">
+          <span class="px-space-sm py-space-xs rounded bg-primary-container text-secondary-fixed font-label-technical text-label-technical border border-[#1a3852]">IATF 16949</span>
+          <span class="px-space-sm py-space-xs rounded bg-primary-container text-tertiary-fixed font-label-technical text-label-technical border border-[#1a3852]">ISO 9001 / IMS</span>
+          <span class="px-space-sm py-space-xs rounded bg-primary-container text-surface-variant font-label-technical text-label-technical border border-[#1a3852]">VDA 6.3</span>
+        </div>
+      </div>
+
+      <!-- Consulting Navigation -->
+      <div class="flex flex-col gap-space-md">
+        <span class="font-title-md text-title-md text-surface-bright border-l-2 border-tertiary-fixed-dim pl-space-sm font-bold">Consulting Navigation</span>
+        <nav class="flex flex-col gap-space-sm font-body-sm text-body-sm text-primary-fixed-dim">
+          <a class="hover:text-surface-bright transition-colors" href="index.html">Home Overview</a>
+          <a class="hover:text-surface-bright transition-colors" href="about.html">About Us &amp; Leadership</a>
+          <a class="hover:text-surface-bright transition-colors" href="vision-mission.html">Vision, Mission &amp; Goals</a>
+          <a class="hover:text-surface-bright transition-colors" href="services.html">Services &amp; Industry Coverage</a>
+          <a class="hover:text-surface-bright transition-colors" href="training.html">Training &amp; Development</a>
+          <a class="hover:text-surface-bright transition-colors" href="contact.html">Contact Us &amp; Plant Intake</a>
+        </nav>
+      </div>
+
+      <!-- Core Advisory Practices -->
+      <div class="flex flex-col gap-space-md">
+        <span class="font-title-md text-title-md text-surface-bright border-l-2 border-secondary-fixed pl-space-sm font-bold">Advisory Practices</span>
+        <ul class="flex flex-col gap-space-sm font-body-sm text-body-sm text-primary-fixed-dim">
+          <li><a href="services.html" class="hover:text-surface-bright transition-colors">Turnkey IATF 16949 Certification</a></li>
+          <li><a href="services.html" class="hover:text-surface-bright transition-colors">AIAG-VDA FMEA &amp; Core Tools</a></li>
+          <li><a href="services.html" class="hover:text-surface-bright transition-colors">VDA 6.3 Process &amp; Supplier Audits</a></li>
+          <li><a href="services.html" class="hover:text-surface-bright transition-colors">Zero-Defect Pokayoke &amp; RCA (8D)</a></li>
+          <li><a href="training.html" class="hover:text-surface-bright transition-colors">In-Plant Corporate Cohorts</a></li>
+          <li><a href="contact.html" class="hover:text-surface-bright transition-colors">Supplier Quality Turnaround</a></li>
+        </ul>
+      </div>
+
+      <!-- Auditor Direct Access Desk -->
+      <div class="flex flex-col gap-space-md">
+        <span class="font-title-md text-title-md text-surface-bright border-l-2 border-tertiary-fixed-dim pl-space-sm font-bold">Auditor Direct Desk</span>
+        <div class="flex flex-col gap-space-sm font-body-sm text-body-sm text-primary-fixed-dim">
+          <p class="font-semibold text-surface-bright">Govind Suvarnkar</p>
+          <p class="text-xs text-primary-fixed-dim -mt-1">Principal Consultant &amp; Lead Auditor</p>
+          <a class="flex items-center gap-2 hover:text-surface-bright transition-colors" href="tel:+918975573469">
+            <span class="material-symbols-outlined text-sm text-secondary-fixed">call</span>
+            +91 8975573469
+          </a>
+          <a class="flex items-center gap-2 hover:text-surface-bright transition-colors" href="https://wa.me/918975573469" target="_blank" rel="noopener noreferrer">
+            <span class="material-symbols-outlined text-sm text-secondary-fixed">chat</span>
+            WhatsApp Consultation
+          </a>
+          <a class="flex items-center gap-2 hover:text-surface-bright transition-colors truncate" href="mailto:sales@nexaouraaconsultancy.in">
+            <span class="material-symbols-outlined text-sm text-tertiary-fixed-dim">mail</span>
+            sales@nexaouraaconsultancy.in
+          </a>
+          <p class="text-xs text-primary-fixed-dim mt-2 flex items-start gap-1">
+            <span class="material-symbols-outlined text-sm text-tertiary-fixed-dim shrink-0">location_on</span>
+            <span>Hub: Pune Industrial Corridor (MH, India) • Pan-India Deployments</span>
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Copyright & Compliance -->
+    <div class="pt-space-md flex flex-col sm:flex-row items-center justify-between gap-space-sm text-xs text-primary-fixed-dim">
+      <p>&copy; 2026 Nexaouraa Consultancy. All rights reserved. Driving Precision. Delivering Excellence.</p>
+      <div class="flex items-center gap-space-md">
+        <a class="hover:text-surface-bright transition-colors" href="contact.html">Privacy &amp; NDA Protocol</a>
+        <span>•</span>
+        <a class="hover:text-surface-bright transition-colors" href="contact.html#diagnostic-intake">Schedule Audit</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+  <!-- SCRIPTS -->
+  <script src="assets/js/navigation.js"></script>
+  <script src="assets/js/ticker.js"></script>
+  <script src="assets/js/forms.js"></script>
+  
+  <script src="assets/js/chatbot.js"></script>
+</body>
+</html>

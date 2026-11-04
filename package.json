@@ -1,0 +1,25 @@
+{
+  "name": "nexaouraa-manufacturing-consultancy-platform",
+  "version": "1.0.0",
+  "description": "Nexaouraa Consultancy - Integrated Quality Solutions & Manufacturing Advisory Platform",
+  "type": "module",
+  "scripts": {
+    "start": "node scripts/serve.js",
+    "dev": "node scripts/serve.js",
+    "build": "python scripts/build_pages.py",
+    "validate": "node scripts/validate.js"
+  },
+  "keywords": [
+    "iatf16949",
+    "manufacturing",
+    "consulting",
+    "automotive",
+    "quality-management",
+    "fmea",
+    "spc",
+    "msa",
+    "vda6.3"
+  ],
+  "author": "Nexaouraa Consultancy",
+  "license": "ISC"
+}
