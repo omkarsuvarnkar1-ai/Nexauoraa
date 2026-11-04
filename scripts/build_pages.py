@@ -589,6 +589,12 @@ def build_index():
         '<select name="interest" class="w-full h-11 px-3 rounded bg-surface-container-low border border-outline-variant/30 text-body-sm font-body-sm text-primary focus:bg-surface-container focus:outline-none">'
     )
 
+    # Change four business vertical names under Plant Diagnostic section to pure white (#FFFFFF) for crystal-clear readability
+    main_content = main_content.replace(
+        '<p class="font-body-lg text-body-lg text-primary-fixed-dim leading-relaxed">Nexaouraa delivers integrated solutions across four business verticals: <span class="font-semibold text-primary">Quality Excellence</span>, <span class="font-semibold text-primary">Operational Excellence</span>, <span class="font-semibold text-primary">Training &amp; Development</span>, and <span class="font-semibold text-primary">Business Improvement</span>.<br class="hidden sm:inline"><span class="block mt-2 font-medium text-secondary text-base">Building Quality. Improving Performance. Developing People. Driving Business Excellence.</span></p>',
+        '<p class="font-body-lg text-body-lg text-primary-fixed-dim leading-relaxed">Nexaouraa delivers integrated solutions across four business verticals: <span class="font-semibold text-white" style="color: #FFFFFF;">Quality Excellence</span>, <span class="font-semibold text-white" style="color: #FFFFFF;">Operational Excellence</span>, <span class="font-semibold text-white" style="color: #FFFFFF;">Training &amp; Development</span>, and <span class="font-semibold text-white" style="color: #FFFFFF;">Business Improvement</span>.<br class="hidden sm:inline"><span class="block mt-2 font-medium text-secondary text-base">Building Quality. Improving Performance. Developing People. Driving Business Excellence.</span></p>'
+    )
+
     main_content = map_index_images(main_content)
 
     doc = build_html_document(
