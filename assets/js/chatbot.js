@@ -108,7 +108,7 @@
       content: `<p class="font-medium text-slate-800">Connect directly with Lead Auditor Govind Suvarnkar:</p>
       <ul class="list-disc pl-4 mt-1.5 space-y-1 text-slate-700">
         <li><strong>Phone:</strong> <a href="tel:+918975573469" class="text-secondary font-bold underline">+91 8975573469</a></li>
-        <li><strong>WhatsApp:</strong> <a href="https://wa.me/918975573469?text=Hello!%20%F0%9F%91%8B%20Welcome%20to%20Nexaouraa%20Consultancy.%0A%0AThank%20you%20for%20connecting%20with%20us.%20How%20can%20we%20assist%20you%20with%20your%20manufacturing%20and%20quality%20consultancy%20requirements%20today%3F" target="_blank" class="text-secondary font-bold underline">+91 8975573469</a></li>
+        <li><strong>WhatsApp:</strong> <a href="https://wa.me/918975573469?text=Hello!%20%F0%9F%91%8B%20I%20need%20help%20with%20your%20manufacturing%20and%20quality%20consultancy%20services.%0A%0ACould%20you%20please%20guide%20me%20regarding%20the%20available%20solutions%20and%20how%20Nexaouraa%20Consultancy%20can%20assist%20my%20business%3F%0A%0AThank%20you!" target="_blank" class="text-secondary font-bold underline">+91 8975573469</a></li>
         <li><strong>Email:</strong> <a href="mailto:sales@nexaouraaconsultancy.in" class="text-secondary font-bold underline">sales@nexaouraaconsultancy.in</a></li>
         <li><strong>Hub:</strong> Pune Industrial Corridor (Chakan, Talegaon, Bhosari, Sanand, NCR, Pan-India)</li>
         <li><strong>Intake Form:</strong> <a href="contact.html#diagnostic-intake" class="text-secondary font-bold underline">Submit Plant Inquiry (24h Response)</a></li>
@@ -151,7 +151,7 @@
           </div>
 
           <!-- Direct WhatsApp Header Alert -->
-          <a href="https://wa.me/918975573469?text=Hello!%20%F0%9F%91%8B%20Welcome%20to%20Nexaouraa%20Consultancy.%0A%0AThank%20you%20for%20connecting%20with%20us.%20How%20can%20we%20assist%20you%20with%20your%20manufacturing%20and%20quality%20consultancy%20requirements%20today%3F" target="_blank" rel="noopener noreferrer" class="bg-emerald-50 hover:bg-emerald-100 text-emerald-800 text-[11px] font-semibold px-3 py-1.5 flex items-center justify-between border-b border-emerald-200 transition-colors">
+          <a href="https://wa.me/918975573469?text=Hello!%20%F0%9F%91%8B%20I%20need%20help%20with%20your%20manufacturing%20and%20quality%20consultancy%20services.%0A%0ACould%20you%20please%20guide%20me%20regarding%20the%20available%20solutions%20and%20how%20Nexaouraa%20Consultancy%20can%20assist%20my%20business%3F%0A%0AThank%20you!" target="_blank" rel="noopener noreferrer" class="bg-emerald-50 hover:bg-emerald-100 text-emerald-800 text-[11px] font-semibold px-3 py-1.5 flex items-center justify-between border-b border-emerald-200 transition-colors">
             <span class="flex items-center gap-1">
               <span class="material-symbols-outlined text-emerald-600 text-sm">chat</span>
               Immediate WhatsApp Desk (+91 8975573469)
@@ -293,7 +293,7 @@
             <p class="font-bold text-primary">${title}</p>
             <div class="text-slate-600">${content}</div>
             <div class="pt-2 flex flex-wrap gap-1.5 border-t border-slate-100">
-              <a href="https://wa.me/918975573469?text=${encodeURIComponent('Hello Govind Sir, I have an inquiry regarding: ' + title)}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-1 px-2.5 py-1.5 rounded-lg bg-emerald-600 text-white font-bold text-[11px] hover:bg-emerald-700 transition-colors">
+              <a href="https://wa.me/918975573469?text=Hello!%20%F0%9F%91%8B%20I%20need%20help%20with%20your%20manufacturing%20and%20quality%20consultancy%20services.%0A%0ACould%20you%20please%20guide%20me%20regarding%20the%20available%20solutions%20and%20how%20Nexaouraa%20Consultancy%20can%20assist%20my%20business%3F%0A%0AThank%20you!'Hello Govind Sir, I have an inquiry regarding: ' + title)}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-1 px-2.5 py-1.5 rounded-lg bg-emerald-600 text-white font-bold text-[11px] hover:bg-emerald-700 transition-colors">
                 <span class="material-symbols-outlined text-xs">chat</span> WhatsApp Govind Sir
               </a>
               <a href="assets/docs/Nexaouraa_Consultancy_Profile.pdf" download="Nexaouraa_Consultancy_Company_Profile.pdf" target="_blank" class="inline-flex items-center justify-center gap-1 px-2.5 py-1 rounded-lg bg-red-50 text-red-700 border border-red-200 font-semibold text-[11px] hover:bg-red-100 transition-colors">

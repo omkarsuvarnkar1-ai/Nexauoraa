@@ -4,9 +4,11 @@ import urllib.parse
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-EXPECTED_MSG = """Hello! 👋 Welcome to Nexaouraa Consultancy.
+EXPECTED_MSG = """Hello! 👋 I need help with your manufacturing and quality consultancy services.
 
-Thank you for connecting with us. How can we assist you with your manufacturing and quality consultancy requirements today?"""
+Could you please guide me regarding the available solutions and how Nexaouraa Consultancy can assist my business?
+
+Thank you!"""
 
 EXPECTED_PHONE = "918975573469"
 
@@ -39,7 +41,7 @@ for fpath in files:
             print(f"[FAIL] {fname}: Wrong phone number {phone}")
             all_pass = False
         decoded = urllib.parse.unquote(raw_encoded)
-        if decoded.startswith("Hello! 👋 Welcome to Nexaouraa Consultancy."):
+        if decoded.startswith("Hello! 👋 I need help with your manufacturing"):
             welcome_count += 1
             if decoded != EXPECTED_MSG:
                 print(f"[FAIL] {fname}: Welcome message mismatch:\nGot: {repr(decoded)}\nExpected: {repr(EXPECTED_MSG)}")

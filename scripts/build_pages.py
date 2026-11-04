@@ -9,6 +9,8 @@ import re
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 STITCH_DIR = os.path.join(ROOT, "archive", "raw_stitch_export")
 
+NEW_WA_URL = "https://wa.me/918975573469?text=Hello!%20%F0%9F%91%8B%20I%20need%20help%20with%20your%20manufacturing%20and%20quality%20consultancy%20services.%0A%0ACould%20you%20please%20guide%20me%20regarding%20the%20available%20solutions%20and%20how%20Nexaouraa%20Consultancy%20can%20assist%20my%20business%3F%0A%0AThank%20you!"
+
 # -----------------------------------------------------------------------------
 # GLOBAL NEXAOURAA CONSULTANCY BRANDING HEADER & TICKER
 # Visual & structural order on EVERY page:
@@ -57,7 +59,7 @@ UNIFIED_HEADER = """<header class="sticky top-0 left-0 right-0 w-full z-40 shado
           <span class="material-symbols-outlined text-base text-red-600">picture_as_pdf</span>
           <span>Download Company Profile</span>
         </a>
-        <a class="flex items-center gap-1.5 px-3 py-2 rounded-lg bg-secondary text-on-secondary font-label-md text-label-md hover:bg-on-secondary-fixed-variant transition-all shadow-[0_2px_6px_rgba(18,108,58,0.2)]" href="https://wa.me/918975573469?text=Hello!%20%F0%9F%91%8B%20Welcome%20to%20Nexaouraa%20Consultancy.%0A%0AThank%20you%20for%20connecting%20with%20us.%20How%20can%20we%20assist%20you%20with%20your%20manufacturing%20and%20quality%20consultancy%20requirements%20today%3F" target="_blank" rel="noopener noreferrer">
+        <a class="flex items-center gap-1.5 px-3 py-2 rounded-lg bg-secondary text-on-secondary font-label-md text-label-md hover:bg-on-secondary-fixed-variant transition-all shadow-[0_2px_6px_rgba(18,108,58,0.2)]" href="https://wa.me/918975573469?text=Hello!%20%F0%9F%91%8B%20I%20need%20help%20with%20your%20manufacturing%20and%20quality%20consultancy%20services.%0A%0ACould%20you%20please%20guide%20me%20regarding%20the%20available%20solutions%20and%20how%20Nexaouraa%20Consultancy%20can%20assist%20my%20business%3F%0A%0AThank%20you!" target="_blank" rel="noopener noreferrer">
           <span class="material-symbols-outlined text-base">chat</span>
           <span class="hidden sm:inline">WhatsApp Desk</span>
           <span class="sm:hidden">WhatsApp</span>
@@ -179,7 +181,7 @@ FLOATING_LEFT_CONTROLS = """<aside aria-label="Floating Communication Controls" 
     <span class="hidden md:inline-block text-xs font-brand font-bold pr-1 whitespace-nowrap">Call Lead Consultant+Trainer</span>
   </a>
   <!-- Official WhatsApp Direct Desk -->
-  <a href="https://wa.me/918975573469?text=Hello!%20%F0%9F%91%8B%20Welcome%20to%20Nexaouraa%20Consultancy.%0A%0AThank%20you%20for%20connecting%20with%20us.%20How%20can%20we%20assist%20you%20with%20your%20manufacturing%20and%20quality%20consultancy%20requirements%20today%3F" target="_blank" rel="noopener noreferrer" aria-label="Chat with Nexaouraa on WhatsApp" class="group flex items-center gap-2.5 bg-[#126C3A] text-white px-3.5 py-3 rounded-full shadow-2xl hover:bg-[#15803D] hover:scale-105 active:scale-95 transition-all ring-2 ring-emerald-300">
+  <a href="https://wa.me/918975573469?text=Hello!%20%F0%9F%91%8B%20I%20need%20help%20with%20your%20manufacturing%20and%20quality%20consultancy%20services.%0A%0ACould%20you%20please%20guide%20me%20regarding%20the%20available%20solutions%20and%20how%20Nexaouraa%20Consultancy%20can%20assist%20my%20business%3F%0A%0AThank%20you!" target="_blank" rel="noopener noreferrer" aria-label="Chat with Nexaouraa on WhatsApp" class="group flex items-center gap-2.5 bg-[#126C3A] text-white px-3.5 py-3 rounded-full shadow-2xl hover:bg-[#15803D] hover:scale-105 active:scale-95 transition-all ring-2 ring-emerald-300">
     <span class="material-symbols-outlined text-2xl group-hover:scale-110 transition-transform">chat</span>
     <span class="hidden md:inline-block text-xs font-brand font-bold pr-1">WhatsApp Desk</span>
   </a>
@@ -247,7 +249,7 @@ UNIFIED_FOOTER = """<footer class="w-full bg-[#000f1d] text-on-primary pt-space-
             <span class="material-symbols-outlined text-sm text-secondary-fixed">call</span>
             +91 8975573469
           </a>
-          <a class="flex items-center gap-2 hover:text-surface-bright transition-colors" href="https://wa.me/918975573469?text=Hello!%20%F0%9F%91%8B%20Welcome%20to%20Nexaouraa%20Consultancy.%0A%0AThank%20you%20for%20connecting%20with%20us.%20How%20can%20we%20assist%20you%20with%20your%20manufacturing%20and%20quality%20consultancy%20requirements%20today%3F" target="_blank" rel="noopener noreferrer">
+          <a class="flex items-center gap-2 hover:text-surface-bright transition-colors" href="https://wa.me/918975573469?text=Hello!%20%F0%9F%91%8B%20I%20need%20help%20with%20your%20manufacturing%20and%20quality%20consultancy%20services.%0A%0ACould%20you%20please%20guide%20me%20regarding%20the%20available%20solutions%20and%20how%20Nexaouraa%20Consultancy%20can%20assist%20my%20business%3F%0A%0AThank%20you!" target="_blank" rel="noopener noreferrer">
             <span class="material-symbols-outlined text-sm text-secondary-fixed">chat</span>
             WhatsApp Direct Thread
           </a>
@@ -283,7 +285,7 @@ UNIFIED_FOOTER = """<footer class="w-full bg-[#000f1d] text-on-primary pt-space-
 # 2. Moving headline ticker (in UNIFIED_HEADER, directly below navigation)
 # 3. Page content / hero section (in <main id="main-content">)
 def build_html_document(title, main_content, current_page, is_home=False, extra_scripts=""):
-    return f"""<!DOCTYPE html>
+    doc = f"""<!DOCTYPE html>
 <html class="scroll-smooth" lang="en">
 <head>
   <meta charset="utf-8">
@@ -332,6 +334,8 @@ def build_html_document(title, main_content, current_page, is_home=False, extra_
 </body>
 </html>
 """
+    doc = re.sub(r'href="https://wa\.me/918975573469[^"]*"' , 'href="https://wa.me/918975573469?text=Hello!%20%F0%9F%91%8B%20I%20need%20help%20with%20your%20manufacturing%20and%20quality%20consultancy%20services.%0A%0ACould%20you%20please%20guide%20me%20regarding%20the%20available%20solutions%20and%20how%20Nexaouraa%20Consultancy%20can%20assist%20my%20business%3F%0A%0AThank%20you!"', doc)
+    return doc
 
 # -----------------------------------------------------------------------------
 # EXACT IMAGE MAPPING FUNCTIONS (Strictly Derived from Google Stitch Design)
@@ -566,7 +570,6 @@ def build_index():
     main_content = main_content.replace('href="#vision-mission"', 'href="vision-mission.html"')
     main_content = main_content.replace('href="#diagnostic-intake"', 'href="contact.html#diagnostic-intake"')
     main_content = main_content.replace('href="#contact"', 'href="contact.html"')
-    main_content = main_content.replace('href="https://wa.me/918975573469"', 'href="https://wa.me/918975573469?text=Hello!%20%F0%9F%91%8B%20Welcome%20to%20Nexaouraa%20Consultancy.%0A%0AThank%20you%20for%20connecting%20with%20us.%20How%20can%20we%20assist%20you%20with%20your%20manufacturing%20and%20quality%20consultancy%20requirements%20today%3F"')
 
     # Wire quick consultation intake form
     main_content = main_content.replace(
@@ -628,7 +631,6 @@ def build_about():
     main_content = main_content.replace('href="#diagnostic-intake"', 'href="contact.html#diagnostic-intake"')
     main_content = main_content.replace('href="#vision-mission"', 'href="vision-mission.html"')
     main_content = main_content.replace('href="#contact"', 'href="contact.html"')
-    main_content = main_content.replace('href="https://wa.me/918975573469"', 'href="https://wa.me/918975573469?text=Hello!%20%F0%9F%91%8B%20Welcome%20to%20Nexaouraa%20Consultancy.%0A%0AThank%20you%20for%20connecting%20with%20us.%20How%20can%20we%20assist%20you%20with%20your%20manufacturing%20and%20quality%20consultancy%20requirements%20today%3F"')
 
     # Wire official PDF download link
     main_content = re.sub(
@@ -689,7 +691,6 @@ def build_vision():
     main_content = main_content.replace('<select class="h-11 px-3.5 rounded bg-surface-container-low text-primary font-body-sm text-body-sm focus:outline-none focus:bg-surface-container-lowest">', '<select name="interest" class="h-11 px-3.5 rounded bg-surface-container-low text-primary font-body-sm text-body-sm focus:outline-none focus:bg-surface-container-lowest">')
     main_content = main_content.replace('<textarea class="p-3.5 rounded bg-surface-container-low text-primary font-body-sm text-body-sm focus:outline-none focus:bg-surface-container-lowest" placeholder="Briefly specify your audit deadline, PPM reduction target, or shop-floor challenge..." rows="3"></textarea>', '<textarea name="message" class="p-3.5 rounded bg-surface-container-low text-primary font-body-sm text-body-sm focus:outline-none focus:bg-surface-container-lowest" placeholder="Briefly specify your audit deadline, PPM reduction target, or shop-floor challenge..." rows="3"></textarea>')
 
-    main_content = main_content.replace('href="https://wa.me/918975573469"', 'href="https://wa.me/918975573469?text=Hello!%20%F0%9F%91%8B%20Welcome%20to%20Nexaouraa%20Consultancy.%0A%0AThank%20you%20for%20connecting%20with%20us.%20How%20can%20we%20assist%20you%20with%20your%20manufacturing%20and%20quality%20consultancy%20requirements%20today%3F"')
     main_content = map_vision_images(main_content)
 
     doc = build_html_document(
@@ -720,7 +721,7 @@ def build_services():
     main_content = main_content.replace('href="#training"', 'href="training.html"')
     main_content = main_content.replace('href="#about"', 'href="about.html"')
 
-    main_content = re.sub(r'href="https://wa\.me/918975573469\?text=Hello%20Nexaouraa[^"]*"', 'href="https://wa.me/918975573469?text=Hello!%20%F0%9F%91%8B%20Welcome%20to%20Nexaouraa%20Consultancy.%0A%0AThank%20you%20for%20connecting%20with%20us.%20How%20can%20we%20assist%20you%20with%20your%20manufacturing%20and%20quality%20consultancy%20requirements%20today%3F"', main_content)
+    main_content = re.sub(r'href="https://wa\.me/918975573469[^\"]*"' , 'href="https://wa.me/918975573469?text=Hello!%20%F0%9F%91%8B%20I%20need%20help%20with%20your%20manufacturing%20and%20quality%20consultancy%20services.%0A%0ACould%20you%20please%20guide%20me%20regarding%20the%20available%20solutions%20and%20how%20Nexaouraa%20Consultancy%20can%20assist%20my%20business%3F%0A%0AThank%20you!"', main_content)
     main_content = map_services_images(main_content)
 
     doc = build_html_document(
@@ -763,7 +764,6 @@ def build_training():
         'id="training-contact-pill" class="fixed z-40 flex items-center gap-space-xs bg-primary text-on-primary px-3 py-2 sm:px-space-md sm:py-space-sm rounded-full shadow-2xl border border-[#0F2537] transition-all duration-300 bottom-[74px] right-4 sm:bottom-[78px] sm:right-6 md:bottom-6 md:right-[212px]"'
     )
 
-    main_content = main_content.replace('href="https://wa.me/918975573469"', 'href="https://wa.me/918975573469?text=Hello!%20%F0%9F%91%8B%20Welcome%20to%20Nexaouraa%20Consultancy.%0A%0AThank%20you%20for%20connecting%20with%20us.%20How%20can%20we%20assist%20you%20with%20your%20manufacturing%20and%20quality%20consultancy%20requirements%20today%3F"')
     main_content = map_training_images(main_content)
 
     doc = build_html_document(
@@ -801,7 +801,6 @@ def build_contact():
     # Wire form submission
     main_content = re.sub(r'<form\b[^>]*id="inquiry-form"[^>]*>', '<form class="space-y-5" id="inquiry-form" onsubmit="handleInquiryFormSubmit(event)">', main_content)
 
-    main_content = main_content.replace('href="https://wa.me/918975573469"', 'href="https://wa.me/918975573469?text=Hello!%20%F0%9F%91%8B%20Welcome%20to%20Nexaouraa%20Consultancy.%0A%0AThank%20you%20for%20connecting%20with%20us.%20How%20can%20we%20assist%20you%20with%20your%20manufacturing%20and%20quality%20consultancy%20requirements%20today%3F"')
     main_content = map_contact_images(main_content)
 
     doc = build_html_document(
