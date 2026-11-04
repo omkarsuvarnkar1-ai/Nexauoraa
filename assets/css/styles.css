@@ -724,4 +724,127 @@ select.input-field-error {
   color: #ef4444;
 }
 
+/* --------------------------------------------------------------------------
+   Ask Anything? AI Assistant - Premium Chatbot Animations & Styling
+   -------------------------------------------------------------------------- */
+
+/* Message entrance animation (Subtle WhatsApp-like fade & slide) */
+@keyframes nexaMsgAppear {
+  0% {
+    opacity: 0;
+    transform: translateY(8px) scale(0.98);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.nexa-msg-appear {
+  animation: nexaMsgAppear 0.22s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  will-change: transform, opacity;
+}
+
+/* Chat Panel Pop-up & Close Transitions */
+#nexa-chat-panel {
+  transition: opacity 0.25s cubic-bezier(0.16, 1, 0.3, 1), transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.25s;
+}
+
+#nexa-chat-panel.nexa-panel-closed {
+  opacity: 0;
+  transform: scale(0.95) translateY(14px);
+  pointer-events: none;
+  visibility: hidden;
+  display: none !important;
+}
+
+#nexa-chat-panel.nexa-panel-open {
+  opacity: 1;
+  transform: scale(1) translateY(0);
+  pointer-events: auto;
+  visibility: visible;
+  display: flex !important;
+}
+
+/* Chat Input & Send Button Touch Targets */
+#nexa-chat-input {
+  min-height: 40px;
+  height: 40px;
+  box-sizing: border-box;
+  font-size: 0.8125rem;
+}
+
+#nexa-send-btn {
+  min-width: 36px;
+  min-height: 36px;
+  width: 36px;
+  height: 36px;
+}
+
+/* 3-Dot Natural Typing Indicator */
+@keyframes nexaDotPulse {
+  0%, 60%, 100% {
+    transform: translateY(0);
+    opacity: 0.35;
+  }
+  30% {
+    transform: translateY(-4px);
+    opacity: 1;
+  }
+}
+
+.nexa-typing-dot {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: #0f3b6c;
+  animation: nexaDotPulse 1.15s infinite ease-in-out;
+}
+
+.nexa-typing-dot:nth-child(1) {
+  animation-delay: 0s;
+}
+
+.nexa-typing-dot:nth-child(2) {
+  animation-delay: 0.18s;
+}
+
+.nexa-typing-dot:nth-child(3) {
+  animation-delay: 0.36s;
+}
+
+/* Launcher status pulse */
+@keyframes nexaPulseRing {
+  0% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.6);
+  }
+  70% {
+    transform: scale(1);
+    box-shadow: 0 0 0 7px rgba(16, 185, 129, 0);
+  }
+  100% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(16, 185, 129, 0);
+  }
+}
+
+.nexa-pulse-status {
+  animation: nexaPulseRing 2s infinite cubic-bezier(0.45, 0, 0.55, 1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nexa-msg-appear {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  .nexa-typing-dot,
+  .nexa-pulse-status {
+    animation: none !important;
+  }
+}
+
+
 
