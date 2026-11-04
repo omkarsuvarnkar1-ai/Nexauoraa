@@ -332,14 +332,215 @@ def build_html_document(title, main_content, current_page, is_home=False, extra_
 </html>
 """
 
-# Image & Asset Replacer
-def replace_assets(html):
-    html = re.sub(r'https://lh3\.googleusercontent\.com/aida-public/[^"\'\s>]+', 'assets/images/industry/cmm-metrology.png', html)
-    html = html.replace('whatsapp_image_2026_11_03_at_11.21.16_pm.jpeg', 'assets/images/brand/nexaouraa-logo.png')
-    html = html.replace('whatsapp_image_2026_11_03_at_11.21.15_pm.jpeg', 'assets/images/brand/nexaouraa-emblem.png')
-    html = html.replace('image.png_1', 'assets/images/brand/nexaouraa-emblem.png')
-    html = html.replace('image.png_2', 'assets/images/brand/nexaouraa-brand-poster.png')
-    html = html.replace('image.png_3', 'assets/images/brand/nexaouraa-logo.png')
+# -----------------------------------------------------------------------------
+# EXACT IMAGE MAPPING FUNCTIONS (Strictly Derived from Google Stitch Design)
+# -----------------------------------------------------------------------------
+
+def map_index_images(html):
+    # Slide 0: CMM Inspection on Powertrain Parts
+    html = re.sub(
+        r'<img\b[^>]*alt="Automotive quality control room with automated Coordinate Measuring Machine CMM inspection in action on powertrain parts"[^>]*>',
+        '<img alt="Automotive quality control room with automated Coordinate Measuring Machine CMM inspection in action on powertrain parts" class="absolute inset-0 w-full h-full object-cover opacity-35 mix-blend-luminosity" src="assets/images/industry/cmm-metrology.png">',
+        html
+    )
+    # Slide 1: CNC Machining Metrology Laboratory
+    html = re.sub(
+        r'<img\b[^>]*alt="Precision CNC machining metrology laboratory with dial indicators and digital vernier calipers verifying tight tolerances"[^>]*>',
+        '<img alt="Precision CNC machining metrology laboratory with dial indicators and digital vernier calipers verifying tight tolerances" class="absolute inset-0 w-full h-full object-cover opacity-35 mix-blend-luminosity" src="assets/images/industry/cnc-machining.png">',
+        html
+    )
+    # Slide 2: Automotive Assembly Line Plant Review
+    html = re.sub(
+        r'<img\b[^>]*alt="Automotive assembly line plant review with engineers auditing sub-tier components and supplier logistics"[^>]*>',
+        '<img alt="Automotive assembly line plant review with engineers auditing sub-tier components and supplier logistics" class="absolute inset-0 w-full h-full object-cover opacity-35 mix-blend-luminosity" src="assets/images/industry/assembly-line.png">',
+        html
+    )
+    # Slide 3: Industrial Shop Floor Problem Solving Team
+    html = re.sub(
+        r'<img\b[^>]*alt="Industrial shop floor problem solving team analyzing root cause fishbone diagrams and Pokayoke mistake proofing devices"[^>]*>',
+        '<img alt="Industrial shop floor problem solving team analyzing root cause fishbone diagrams and Pokayoke mistake proofing devices" class="absolute inset-0 w-full h-full object-cover opacity-35 mix-blend-luminosity" src="assets/images/industry/supplier-audit-qc.png">',
+        html
+    )
+    # Training Spotlight: Lead Auditor Technical Blueprint Review
+    html = re.sub(
+        r'<img\b[^>]*data-alt="Technical engineer training workshop inside a manufacturing plant boardroom examining precision machined metallic gears and AIAG-VDA FMEA engineering charts"[^>]*>',
+        '<img alt="Technical engineer training workshop inside a manufacturing plant boardroom examining precision machined metallic gears and AIAG-VDA FMEA engineering charts" class="w-full h-full object-cover opacity-85" src="assets/images/industry/lead-auditor-review.png">',
+        html
+    )
+    # Govind Suvarnkar Profile Card
+    html = re.sub(
+        r'<img\b[^>]*data-alt="Portrait of Govind Suvarnkar senior manufacturing quality lead consultant in industrial boardroom wearing business attire with engineering background"[^>]*>',
+        '<img alt="Govind Suvarnkar - Principal Consultant &amp; Lead Auditor, Nexaouraa Consultancy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" style="object-position: 50% 12%;" src="assets/images/brand/nexaouraa-brand-poster.png">',
+        html
+    )
+    # Fallback any remaining Google CDN img in main
+    html = re.sub(r'https://lh3\.googleusercontent\.com/[^\s"\'<>]+', 'assets/images/brand/nexaouraa-logo.png', html)
+    return html
+
+def map_about_images(html):
+    html = re.sub(r'https://lh3\.googleusercontent\.com/[^\s"\'<>]+', 'assets/images/brand/nexaouraa-logo.png', html)
+    return html
+
+def map_vision_images(html):
+    # Hero Vision Banner Background
+    html = re.sub(
+        r'<img\b[^>]*alt="Automotive assembly line verification"[^>]*>',
+        '<img alt="Automotive assembly line verification" class="w-full h-full object-cover opacity-20 filter grayscale contrast-125" src="assets/images/industry/assembly-line.png">',
+        html
+    )
+    # Pillar 01: Quality & System Excellence
+    html = re.sub(
+        r'<img\b[^>]*alt="Quality Engineer Shopfloor Audit"[^>]*>',
+        '<img alt="Quality Engineer Shopfloor Audit" class="w-full h-full object-cover" src="assets/images/industry/cmm-metrology.png">',
+        html
+    )
+    # Pillar 02: Operational Excellence
+    html = re.sub(
+        r'<img\b[^>]*alt="Heavy Industrial Stamping Press"[^>]*>',
+        '<img alt="Heavy Industrial Stamping Press" class="w-full h-full object-cover" src="assets/images/industry/stamping-press.png">',
+        html
+    )
+    # Pillar 03: Industrial Training & Skill Development
+    html = re.sub(
+        r'<img\b[^>]*alt="Lead Auditor Technical Review"[^>]*>',
+        '<img alt="Lead Auditor Technical Review" class="w-full h-full object-cover" src="assets/images/industry/lead-auditor-review.png">',
+        html
+    )
+    # Pillar 04: Customer & Business Growth
+    html = re.sub(
+        r'<img\b[^>]*alt="Gear Hobbing Precision Machinery"[^>]*>',
+        '<img alt="Gear Hobbing Precision Machinery" class="w-full h-full object-cover" src="assets/images/industry/gear-hobbing.png">',
+        html
+    )
+    # Pillar 05: Professional Team & Network
+    html = re.sub(
+        r'<img\b[^>]*alt="Lead auditor reviewing technical blueprints and reports"[^>]*>',
+        '<img alt="Lead auditor reviewing technical blueprints and reports" class="w-full h-full object-cover" src="assets/images/industry/supplier-audit-qc.png">',
+        html
+    )
+    # Pillar 06: Sustainable & Profitable Growth
+    html = re.sub(
+        r'<img\b[^>]*alt="Industrial Brand Leadership &amp; Quality Assembly"[^>]*>',
+        '<img alt="Industrial Brand Leadership &amp; Quality Assembly" class="w-full h-full object-cover" src="assets/images/industry/assembly-line.png">',
+        html
+    )
+    html = re.sub(r'https://lh3\.googleusercontent\.com/[^\s"\'<>]+', 'assets/images/brand/nexaouraa-logo.png', html)
+    return html
+
+def map_services_images(html):
+    # Track 1
+    html = re.sub(
+        r'<img\b[^>]*alt="Precision CNC machining"[^>]*>',
+        '<img alt="Precision CNC machining" class="w-full h-full object-cover" src="assets/images/industry/cnc-machining.png">',
+        html
+    )
+    html = re.sub(
+        r'<img\b[^>]*alt="Precision CNC machining duplicate"[^>]*>',
+        '<img alt="Precision CNC machining duplicate" class="w-full h-full object-cover" src="assets/images/industry/cnc-machining.png">',
+        html
+    )
+    html = re.sub(
+        r'<img\b[^>]*alt="Tier-1 assembly line"[^>]*>',
+        '<img alt="Tier-1 assembly line" class="w-full h-full object-cover" src="assets/images/industry/assembly-line.png">',
+        html
+    )
+    html = re.sub(
+        r'<img\b[^>]*alt="Tier-1 assembly line duplicate"[^>]*>',
+        '<img alt="Tier-1 assembly line duplicate" class="w-full h-full object-cover" src="assets/images/industry/assembly-line.png">',
+        html
+    )
+    html = re.sub(
+        r'<img\b[^>]*alt="Auditor inspection documentation"[^>]*>',
+        '<img alt="Auditor inspection documentation" class="w-full h-full object-cover" src="assets/images/industry/lead-auditor-review.png">',
+        html
+    )
+    html = re.sub(
+        r'<img\b[^>]*alt="Auditor inspection documentation duplicate"[^>]*>',
+        '<img alt="Auditor inspection documentation duplicate" class="w-full h-full object-cover" src="assets/images/industry/lead-auditor-review.png">',
+        html
+    )
+    html = re.sub(
+        r'<img\b[^>]*alt="Gear hobbing and grinding"[^>]*>',
+        '<img alt="Gear hobbing and grinding" class="w-full h-full object-cover" src="assets/images/industry/gear-hobbing.png">',
+        html
+    )
+    html = re.sub(
+        r'<img\b[^>]*alt="Gear hobbing duplicate"[^>]*>',
+        '<img alt="Gear hobbing duplicate" class="w-full h-full object-cover" src="assets/images/industry/gear-hobbing.png">',
+        html
+    )
+    html = re.sub(
+        r'<img\b[^>]*alt="Automotive stamping and press line"[^>]*>',
+        '<img alt="Automotive stamping and press line" class="w-full h-full object-cover" src="assets/images/industry/stamping-press.png">',
+        html
+    )
+    html = re.sub(
+        r'<img\b[^>]*alt="Automotive stamping duplicate"[^>]*>',
+        '<img alt="Automotive stamping duplicate" class="w-full h-full object-cover" src="assets/images/industry/stamping-press.png">',
+        html
+    )
+    html = re.sub(
+        r'<img\b[^>]*alt="Plant floor audit coaching"[^>]*>',
+        '<img alt="Plant floor audit coaching" class="w-full h-full object-cover" src="assets/images/industry/supplier-audit-qc.png">',
+        html
+    )
+    html = re.sub(
+        r'<img\b[^>]*alt="Plant floor audit duplicate"[^>]*>',
+        '<img alt="Plant floor audit duplicate" class="w-full h-full object-cover" src="assets/images/industry/supplier-audit-qc.png">',
+        html
+    )
+
+    # Track 2
+    html = re.sub(
+        r'<img\b[^>]*alt="Robotic welding cell in automotive manufacturing factory with bright sparks"[^>]*>',
+        '<img alt="Robotic welding cell in automotive manufacturing factory with bright sparks" class="w-full h-full object-cover" src="assets/images/industry/robotic-welding.png">',
+        html
+    )
+    html = re.sub(
+        r'<img\b[^>]*alt="Automotive engine block manufacturing and precision leak testing station"[^>]*>',
+        '<img alt="Automotive engine block manufacturing and precision leak testing station" class="w-full h-full object-cover" src="assets/images/industry/engine-leak-testing.png">',
+        html
+    )
+    html = re.sub(
+        r'<img\b[^>]*alt="Industrial paint shop automated robotic spraying line"[^>]*>',
+        '<img alt="Industrial paint shop automated robotic spraying line" class="w-full h-full object-cover" src="assets/images/industry/paint-shop-robotics.png">',
+        html
+    )
+    html = re.sub(
+        r'<img\b[^>]*alt="Clean electronics manufacturing SMT surface mount technology PCB assembly line"[^>]*>',
+        '<img alt="Clean electronics manufacturing SMT surface mount technology PCB assembly line" class="w-full h-full object-cover" src="assets/images/industry/smt-electronics-pcb.png">',
+        html
+    )
+
+    # 3 Highlight Practice Cards background styles:
+    # BG 1: Precision Machining & Casting -> cnc-machining.png
+    html = re.sub(
+        r'style="background-image:\s*url\(&quot;https://lh3\.googleusercontent\.com/aida-public/AB6AXuBJW[^&]+&quot;\);"',
+        'style="background-image: url(\'assets/images/industry/cnc-machining.png\');"',
+        html
+    )
+    # BG 2: Stamping & Sub-Assembly -> stamping-press.png
+    html = re.sub(
+        r'style="background-image:\s*url\(&quot;https://lh3\.googleusercontent\.com/aida-public/AB6AXuBv2bb[^&]+&quot;\);"',
+        'style="background-image: url(\'assets/images/industry/stamping-press.png\');"',
+        html
+    )
+    # BG 3: IATF Registrar Readiness -> lead-auditor-review.png
+    html = re.sub(
+        r'style="background-image:\s*url\(&quot;https://lh3\.googleusercontent\.com/aida-public/AB6AXuCrfYP[^&]+&quot;\);"',
+        'style="background-image: url(\'assets/images/industry/lead-auditor-review.png\');"',
+        html
+    )
+
+    html = re.sub(r'https://lh3\.googleusercontent\.com/[^\s"\'<>]+', 'assets/images/brand/nexaouraa-logo.png', html)
+    return html
+
+def map_training_images(html):
+    html = re.sub(r'https://lh3\.googleusercontent\.com/[^\s"\'<>]+', 'assets/images/brand/nexaouraa-logo.png', html)
+    return html
+
+def map_contact_images(html):
+    html = re.sub(r'https://lh3\.googleusercontent\.com/[^\s"\'<>]+', 'assets/images/brand/nexaouraa-logo.png', html)
     return html
 
 # -----------------------------------------------------------------------------
@@ -365,7 +566,7 @@ def build_index():
     main_content = main_content.replace('href="#diagnostic-intake"', 'href="contact.html#diagnostic-intake"')
     main_content = main_content.replace('href="#contact"', 'href="contact.html"')
 
-    main_content = replace_assets(main_content)
+    main_content = map_index_images(main_content)
 
     doc = build_html_document(
         "Nexaouraa Consultancy | Integrated Quality Solutions & Automotive Manufacturing Advisory",
@@ -398,7 +599,7 @@ def build_about():
     main_content = main_content.replace('href="#vision-mission"', 'href="vision-mission.html"')
     main_content = main_content.replace('href="#contact"', 'href="contact.html"')
 
-    main_content = replace_assets(main_content)
+    main_content = map_about_images(main_content)
 
     doc = build_html_document(
         "About Us & Executive Leadership | Nexaouraa Consultancy",
@@ -429,7 +630,7 @@ def build_vision():
     main_content = main_content.replace('href="#diagnostic-intake"', 'href="contact.html#diagnostic-intake"')
     main_content = main_content.replace('href="#about"', 'href="about.html"')
 
-    main_content = replace_assets(main_content)
+    main_content = map_vision_images(main_content)
 
     doc = build_html_document(
         "Vision, Mission & Strategic Goals (2027-2029) | Nexaouraa Consultancy",
@@ -459,7 +660,7 @@ def build_services():
     main_content = main_content.replace('href="#training"', 'href="training.html"')
     main_content = main_content.replace('href="#about"', 'href="about.html"')
 
-    main_content = replace_assets(main_content)
+    main_content = map_services_images(main_content)
 
     doc = build_html_document(
         "Services & Manufacturing Footprint | Nexaouraa Consultancy",
@@ -498,7 +699,7 @@ def build_training():
         'id="training-contact-pill" class="fixed z-40 flex items-center gap-space-xs bg-primary text-on-primary px-3 py-2 sm:px-space-md sm:py-space-sm rounded-full shadow-2xl border border-[#0F2537] transition-all duration-300 bottom-[74px] right-4 sm:bottom-[78px] sm:right-6 md:bottom-6 md:right-[212px]"'
     )
 
-    main_content = replace_assets(main_content)
+    main_content = map_training_images(main_content)
 
     doc = build_html_document(
         "Training & Development Curriculum | Nexaouraa Consultancy",
@@ -532,7 +733,7 @@ def build_contact():
     # Wire form submission
     main_content = re.sub(r'<form\b[^>]*id="inquiry-form"[^>]*>', '<form class="space-y-5" id="inquiry-form" onsubmit="handleInquiryFormSubmit(event)">', main_content)
 
-    main_content = replace_assets(main_content)
+    main_content = map_contact_images(main_content)
 
     doc = build_html_document(
         "Contact Us & Plant Diagnostic Intake | Nexaouraa Consultancy",
