@@ -12,6 +12,32 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const ROOT = path.resolve(__dirname, '..');
 const DATA_DIR = path.join(ROOT, 'data');
+
+// Automatically load .env file if present
+const ENV_FILE = path.join(ROOT, '.env');
+if (fs.existsSync(ENV_FILE)) {
+  try {
+    const envLines = fs.readFileSync(ENV_FILE, 'utf-8').split(/\r?\n/);
+    for (const line of envLines) {
+      const trimmed = line.trim();
+      if (!trimmed || trimmed.startsWith('#')) continue;
+      const eqIdx = trimmed.indexOf('=');
+      if (eqIdx !== -1) {
+        const key = trimmed.slice(0, eqIdx).trim();
+        let val = trimmed.slice(eqIdx + 1).trim();
+        if ((val.startsWith('"') && val.endsWith('"')) || (val.startsWith("'") && val.endsWith("'"))) {
+          val = val.slice(1, -1);
+        }
+        if (!process.env[key]) {
+          process.env[key] = val;
+        }
+      }
+    }
+  } catch (err) {
+    console.warn('[ENV] Warning loading .env:', err.message);
+  }
+}
+
 const PORT = process.env.PORT || 3000;
 
 // Ensure data storage directory exists
@@ -281,9 +307,11 @@ export const server = http.createServer(handleRequest);
 // Start listening if run as main entry point
 if (process.argv[1] && process.argv[1].endsWith('serve.js')) {
   server.listen(PORT, '127.0.0.1', () => {
+    const hasKey = !!process.env.GEMINI_API_KEY;
     console.log(`\n======================================================`);
     console.log(`  Nexaouraa Consultancy - Local Server & API`);
     console.log(`  Running at: http://localhost:${PORT}/`);
+    console.log(`  Chatbot Mode: ${hasKey ? 'Google Gemini AI (API Key Detected)' : 'Verified Local Knowledge Base (No key set)'}`);
     console.log(`  Endpoints:`);
     console.log(`    - POST /api/enquiry           (Diagnostic intake submissions)`);
     console.log(`    - POST /api/training-proposal (Curriculum proposal requests)`);
