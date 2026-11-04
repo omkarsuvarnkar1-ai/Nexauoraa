@@ -129,10 +129,16 @@ if (indexContent.includes('hero-main-heading') && stylesContent.includes('.hero-
   console.error('[FAIL] index.html or styles.css missing .hero-main-heading!');
   errors++;
 }
-if (stylesContent.includes('overflow-x: hidden')) {
-  console.log('[PASS] Global viewport overflow-x: hidden enforced.');
+if (stylesContent.includes('overflow-x: hidden') && stylesContent.includes('overflow-x: clip')) {
+  console.log('[PASS] Global viewport overflow clipping (clip + fallback) enforced.');
 } else {
-  console.error('[FAIL] styles.css missing overflow-x: hidden!');
+  console.error('[FAIL] styles.css missing overflow clipping configuration!');
+  errors++;
+}
+if (!stylesContent.includes('body {\n    overscroll-behavior: none;') && !stylesContent.includes('overscroll-behavior: none')) {
+  console.log('[PASS] Verified body has no overscroll-behavior scroll locks.');
+} else {
+  console.error('[FAIL] styles.css still contains overscroll-behavior: none!');
   errors++;
 }
 

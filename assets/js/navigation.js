@@ -36,6 +36,17 @@ document.addEventListener('DOMContentLoaded', function () {
   if (mobileMenuClose && mobileMenuDrawer) {
     mobileMenuClose.addEventListener('click', function () {
       mobileMenuDrawer.classList.add('hidden');
+      document.body.style.overflow = '';
+    });
+  }
+
+  // Close mobile drawer when clicking any link inside it & ensure body scroll remains active
+  if (mobileMenuDrawer) {
+    mobileMenuDrawer.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', function () {
+        mobileMenuDrawer.classList.add('hidden');
+        document.body.style.overflow = '';
+      });
     });
   }
 
