@@ -192,50 +192,134 @@ h2 {
 }
 
 /* ==========================================================================
-   EXECUTIVE ANIMATIONS & TRANSITIONS SUITE
-   Zero layout shift, GPU-accelerated entrance and interaction choreography
+   PREMIUM EXECUTIVE ANIMATION & MOTION SYSTEM
+   High-visibility, cinematic choreography with 0 layout shift (CLS = 0)
    ========================================================================== */
 
-/* 1. Page Entrance Transition */
+/* 1. Page Entrance */
 @keyframes pageFadeIn {
-  0% { opacity: 0; }
-  100% { opacity: 1; }
+  0% { opacity: 0; filter: blur(2px); }
+  100% { opacity: 1; filter: blur(0); }
 }
 
 body {
-  animation: pageFadeIn 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  animation: pageFadeIn 0.45s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* 2. Scroll-Reveal Base States (Only active when js-animate is present) */
-html.js-animate .reveal-on-scroll {
+/* 2. Word-by-Word Split Text Reveal Architecture */
+.word-wrapper {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: top;
+  margin-right: 0.28em;
+  padding-bottom: 0.12em;
+}
+
+.word-inner {
+  display: inline-block;
+  transform: translateY(125%);
   opacity: 0;
-  transform: translateY(22px);
-  transition: opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1), transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: transform 0.85s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform, opacity;
+}
+
+html.js-animate .word-inner.is-revealed,
+.is-revealed .word-inner {
+  transform: translateY(0) !important;
+  opacity: 1 !important;
+}
+
+/* 3. Hero Choreography Sequence (Across 100% of pages) */
+html.js-animate .hero-badge-enter {
+  opacity: 0;
+  transform: translateY(-16px);
+  transition: opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1) 0.1s, transform 0.75s cubic-bezier(0.16, 1, 0.3, 1) 0.1s;
   will-change: opacity, transform;
 }
 
+html.js-animate .hero-sub-enter {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1) 0.45s, transform 0.85s cubic-bezier(0.16, 1, 0.3, 1) 0.45s;
+  will-change: opacity, transform;
+}
+
+html.js-animate .hero-cta-enter {
+  opacity: 0;
+  transform: translateY(24px) scale(0.96);
+  transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1) 0.65s, transform 0.85s cubic-bezier(0.16, 1, 0.3, 1) 0.65s;
+  will-change: opacity, transform;
+}
+
+html.js-animate .hero-image-enter {
+  opacity: 0;
+  transform: scale(0.92) translateY(24px);
+  clip-path: inset(0 0 15% 0);
+  transition: opacity 1s cubic-bezier(0.16, 1, 0.3, 1) 0.75s, transform 1s cubic-bezier(0.16, 1, 0.3, 1) 0.75s, clip-path 1s cubic-bezier(0.16, 1, 0.3, 1) 0.75s;
+  will-change: opacity, transform, clip-path;
+}
+
+/* Revealed States for Hero */
+html.js-animate .hero-badge-enter.is-revealed,
+html.js-animate .hero-sub-enter.is-revealed,
+html.js-animate .hero-cta-enter.is-revealed {
+  opacity: 1 !important;
+  transform: translateY(0) scale(1) !important;
+}
+
+html.js-animate .hero-image-enter.is-revealed {
+  opacity: 1 !important;
+  transform: scale(1) translateY(0) !important;
+  clip-path: inset(0 0 0 0) !important;
+}
+
+/* 4. Noticeable Section Scroll Entrance */
+html.js-animate .reveal-on-scroll {
+  opacity: 0;
+  transform: translateY(38px);
+  transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1), transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+html.js-animate .reveal-left {
+  opacity: 0;
+  transform: translateX(-45px);
+  transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1), transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+html.js-animate .reveal-right {
+  opacity: 0;
+  transform: translateX(45px);
+  transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1), transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+/* Section Headings & Subtitles */
 html.js-animate .heading-reveal {
   opacity: 0;
-  transform: translateY(16px);
-  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  transform: translateY(24px);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
   will-change: opacity, transform;
 }
 
 html.js-animate .sub-reveal {
   opacity: 0;
-  transform: translateY(14px);
-  transition: opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1) 0.08s, transform 0.75s cubic-bezier(0.16, 1, 0.3, 1) 0.08s;
+  transform: translateY(20px);
+  transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1) 0.12s, transform 0.85s cubic-bezier(0.16, 1, 0.3, 1) 0.12s;
   will-change: opacity, transform;
 }
 
+/* Image Reveal (Smooth Scale & Clip Reveal) */
 html.js-animate .img-reveal {
   opacity: 0;
-  transform: scale(0.985);
-  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-  will-change: opacity, transform;
+  transform: scale(0.93) translateY(20px);
+  clip-path: inset(0 0 12% 0);
+  transition: opacity 0.95s cubic-bezier(0.16, 1, 0.3, 1), transform 0.95s cubic-bezier(0.16, 1, 0.3, 1), clip-path 0.95s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform, clip-path;
 }
 
-/* 3. Revealed States */
+/* Universal Revealed States */
 html.js-animate .reveal-on-scroll.is-revealed,
 html.js-animate .heading-reveal.is-revealed,
 html.js-animate .sub-reveal.is-revealed {
@@ -243,47 +327,95 @@ html.js-animate .sub-reveal.is-revealed {
   transform: translateY(0) !important;
 }
 
-html.js-animate .img-reveal.is-revealed {
+html.js-animate .reveal-left.is-revealed,
+html.js-animate .reveal-right.is-revealed {
   opacity: 1 !important;
-  transform: scale(1) !important;
+  transform: translateX(0) !important;
 }
 
-/* 4. Staggered Child Delays for Grids */
-html.js-animate .stagger-1 { transition-delay: 50ms !important; }
-html.js-animate .stagger-2 { transition-delay: 100ms !important; }
-html.js-animate .stagger-3 { transition-delay: 150ms !important; }
-html.js-animate .stagger-4 { transition-delay: 200ms !important; }
-html.js-animate .stagger-5 { transition-delay: 250ms !important; }
-html.js-animate .stagger-6 { transition-delay: 300ms !important; }
-html.js-animate .stagger-7 { transition-delay: 350ms !important; }
-html.js-animate .stagger-8 { transition-delay: 400ms !important; }
+html.js-animate .img-reveal.is-revealed {
+  opacity: 1 !important;
+  transform: scale(1) translateY(0) !important;
+  clip-path: inset(0 0 0 0) !important;
+}
 
-/* 5. Interactive Card Hover Transitions */
+/* 5. Staggered Card Entrances (Cards Cascade in) */
+html.js-animate .card-stagger-enter {
+  opacity: 0;
+  transform: translateY(36px) scale(0.95);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+html.js-animate .card-stagger-enter.is-revealed {
+  opacity: 1 !important;
+  transform: translateY(0) scale(1) !important;
+}
+
+/* Progressive Stagger Delays */
+html.js-animate .stagger-1 { transition-delay: 60ms !important; }
+html.js-animate .stagger-2 { transition-delay: 130ms !important; }
+html.js-animate .stagger-3 { transition-delay: 200ms !important; }
+html.js-animate .stagger-4 { transition-delay: 270ms !important; }
+html.js-animate .stagger-5 { transition-delay: 340ms !important; }
+html.js-animate .stagger-6 { transition-delay: 410ms !important; }
+html.js-animate .stagger-7 { transition-delay: 480ms !important; }
+html.js-animate .stagger-8 { transition-delay: 550ms !important; }
+
+/* 6. Interactive Card Hover Transitions (Noticeable & Silky) */
 .card-hover-effect {
-  transition: transform 0.32s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.32s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.28s ease !important;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease !important;
+  will-change: transform, box-shadow;
 }
 
 .card-hover-effect:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 16px 32px -4px rgba(15, 37, 55, 0.10), 0 6px 12px -2px rgba(197, 154, 39, 0.06);
+  transform: translateY(-8px);
+  box-shadow: 0 20px 35px -5px rgba(15, 37, 55, 0.16), 0 10px 15px -3px rgba(197, 154, 39, 0.10);
+  border-color: rgba(197, 154, 39, 0.45);
 }
 
-/* 6. Interactive Button Hover Transitions */
+.card-hover-effect .material-symbols-outlined {
+  transition: transform 0.32s cubic-bezier(0.16, 1, 0.3, 1), color 0.3s ease;
+}
+
+.card-hover-effect:hover .material-symbols-outlined {
+  transform: scale(1.15) rotate(3deg);
+  color: #C59A27;
+}
+
+.card-hover-effect img {
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.card-hover-effect:hover img {
+  transform: scale(1.05);
+}
+
+/* 7. Interactive Button Hover Transitions */
 .btn-hover-effect {
   position: relative;
-  transition: transform 0.22s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.22s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.2s ease, filter 0.2s ease !important;
+  transition: transform 0.24s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.24s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.2s ease, filter 0.2s ease !important;
+  will-change: transform, box-shadow;
 }
 
 .btn-hover-effect:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 18px -2px rgba(15, 37, 55, 0.18);
+  transform: translateY(-3px);
+  box-shadow: 0 10px 24px -2px rgba(15, 37, 55, 0.24), 0 4px 8px -1px rgba(197, 154, 39, 0.12);
 }
 
 .btn-hover-effect:active {
-  transform: translateY(0) scale(0.98);
+  transform: translateY(0) scale(0.97);
 }
 
-/* 7. Header Desktop Navigation Hover Transitions */
+.btn-hover-effect .material-symbols-outlined {
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.btn-hover-effect:hover .material-symbols-outlined {
+  transform: translateX(3px) scale(1.08);
+}
+
+/* 8. Header Desktop Navigation Hover Transitions */
 nav > a,
 nav > .group > button {
   position: relative;
@@ -294,12 +426,13 @@ nav > a::after,
 nav > .group > button::after {
   content: '';
   position: absolute;
-  bottom: 0px;
+  bottom: -2px;
   left: 50%;
   width: 0;
-  height: 2px;
-  background-color: #C59A27;
-  transition: width 0.25s cubic-bezier(0.16, 1, 0.3, 1), left 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  height: 2.5px;
+  background: linear-gradient(90deg, #ad840c, #c59a27);
+  border-radius: 2px;
+  transition: width 0.28s cubic-bezier(0.16, 1, 0.3, 1), left 0.28s cubic-bezier(0.16, 1, 0.3, 1);
   pointer-events: none;
 }
 
@@ -307,16 +440,6 @@ nav > a:hover::after,
 nav > .group:hover > button::after {
   width: 100%;
   left: 0;
-}
-
-/* 8. Interactive Icon Transitions */
-.material-symbols-outlined {
-  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.btn-hover-effect:hover .material-symbols-outlined,
-.card-hover-effect:hover .material-symbols-outlined {
-  transform: scale(1.08);
 }
 
 /* 9. Accessibility: Reduced-Motion Override */
@@ -330,12 +453,21 @@ nav > .group:hover > button::after {
     transition-delay: 0ms !important;
     scroll-behavior: auto !important;
   }
+  html.js-animate .word-inner,
+  html.js-animate .hero-badge-enter,
+  html.js-animate .hero-sub-enter,
+  html.js-animate .hero-cta-enter,
+  html.js-animate .hero-image-enter,
   html.js-animate .reveal-on-scroll,
+  html.js-animate .reveal-left,
+  html.js-animate .reveal-right,
   html.js-animate .heading-reveal,
   html.js-animate .sub-reveal,
-  html.js-animate .img-reveal {
+  html.js-animate .img-reveal,
+  html.js-animate .card-stagger-enter {
     opacity: 1 !important;
     transform: none !important;
+    clip-path: none !important;
     transition: none !important;
   }
   nav > a::after,
@@ -345,6 +477,7 @@ nav > .group:hover > button::after {
   .card-hover-effect:hover,
   .btn-hover-effect:hover {
     transform: none !important;
+    box-shadow: none !important;
   }
 }
 

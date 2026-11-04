@@ -1,9 +1,15 @@
 /**
- * Nexaouraa Consultancy - Executive Animations & Transitions Engine
+ * Nexaouraa Consultancy - Premium Executive Animation & Motion Engine
  * 
- * Provides smooth, GPU-accelerated entrance and interaction choreography
- * while strictly preserving all original design geometry, images, fonts,
- * colors, layouts, and interactive functionality.
+ * Delivers visible, high-impact, cinematic motion choreography across 100% of pages:
+ * - Word-by-word split text heading reveal
+ * - Coordinated hero entrance sequencing
+ * - Directional scroll reveals (left/right)
+ * - Staggered card entrance cascade
+ * - Dynamic image mask reveals
+ * - Enhanced interactive hover lift & feedback
+ * - Failsafe auto-reveal & zero layout shift (CLS = 0)
+ * - Full prefers-reduced-motion accessibility compliance
  */
 (function () {
   'use strict';
@@ -14,51 +20,177 @@
     return;
   }
 
-  // 2. Enable animation mode on root element
+  // 2. Enable animation mode on root
   document.documentElement.classList.add('js-animate');
 
+  /**
+   * Split-Text Engine: Splits element text into animated word spans
+   * Preserves all original HTML structure, tags, colors, and formatting.
+   */
+  function splitTextIntoWords(element, baseDelay = 180, stagger = 55) {
+    if (!element || element.dataset.wordsSplit === 'true') return;
+    element.dataset.wordsSplit = 'true';
+
+    let wordIndex = 0;
+
+    function processNode(node) {
+      if (node.nodeType === 3) { // Text node
+        const text = node.textContent;
+        if (!text.trim()) return node;
+
+        const tokens = text.split(/(\s+)/);
+        const frag = document.createDocumentFragment();
+
+        tokens.forEach(token => {
+          if (/^\s+$/.test(token)) {
+            frag.appendChild(document.createTextNode(token));
+          } else if (token.length > 0) {
+            const wrap = document.createElement('span');
+            wrap.className = 'word-wrapper';
+
+            const inner = document.createElement('span');
+            inner.className = 'word-inner';
+            inner.style.transitionDelay = `${baseDelay + (wordIndex * stagger)}ms`;
+            inner.textContent = token;
+
+            wrap.appendChild(inner);
+            frag.appendChild(wrap);
+            wordIndex++;
+          }
+        });
+        return frag;
+      } else if (node.nodeType === 1) { // Element node (e.g. span with custom color)
+        const children = Array.from(node.childNodes);
+        children.forEach(child => {
+          const replacement = processNode(child);
+          if (replacement !== child) {
+            node.replaceChild(replacement, child);
+          }
+        });
+        return node;
+      }
+      return node;
+    }
+
+    processNode(element);
+    return wordIndex;
+  }
+
   function initAnimations() {
-    // A. Discover sections for smooth scroll-reveal
-    const mainSections = document.querySelectorAll('main > section');
-    mainSections.forEach((sec, idx) => {
-      // Keep hero section visible immediately, reveal subsequent sections on scroll
+    const main = document.getElementById('main-content') || document.querySelector('main');
+    if (!main) return;
+
+    // ------------------------------------------------------------------------
+    // A. HERO SECTION CHOREOGRAPHY (Coordinated 6-Stage Entrance)
+    // ------------------------------------------------------------------------
+    const firstSection = main.querySelector('section, div.relative.overflow-hidden');
+    if (firstSection) {
+      // 1. Badge / Kicker
+      const heroBadge = firstSection.querySelector('span.font-label-technical, span.uppercase, span.text-tertiary-fixed, span.text-emerald-700');
+      if (heroBadge) heroBadge.classList.add('hero-badge-enter');
+
+      // 2. Main Heading (H1 or first prominent title)
+      const mainHeading = firstSection.querySelector('h1') || firstSection.querySelector('h2');
+      if (mainHeading) {
+        splitTextIntoWords(mainHeading, 180, 50);
+        mainHeading.classList.add('heading-reveal');
+      }
+
+      // 3. Subtitle / Paragraphs
+      const heroSub = firstSection.querySelectorAll('p.font-body-lg, p.text-body-lg, p.leading-relaxed');
+      heroSub.forEach(p => p.classList.add('hero-sub-enter'));
+
+      // 4. CTA Buttons & Touchpoints
+      const heroCtas = firstSection.querySelectorAll('div.flex.flex-wrap a, div.flex.flex-col.sm\\:flex-row a, div.flex.flex-wrap button');
+      heroCtas.forEach(cta => cta.classList.add('hero-cta-enter', 'btn-hover-effect'));
+
+      // 5. Hero Visual / Image / Card
+      const heroVisual = firstSection.querySelector('div.relative.aspect-\\[3\\/4\\], div.hero-slide-container, div.relative.overflow-hidden.shadow-2xl, div.lg\\:col-span-5 img, div.lg\\:col-span-6 img');
+      if (heroVisual) heroVisual.classList.add('hero-image-enter');
+    }
+
+    // ------------------------------------------------------------------------
+    // B. SECTION SCROLL & DIRECTIONAL REVEALS
+    // ------------------------------------------------------------------------
+    const allSections = main.querySelectorAll('section');
+    allSections.forEach((sec, idx) => {
       if (idx > 0) {
         sec.classList.add('reveal-on-scroll');
+
+        // Two-column directional reveal: left column from left, right from right
+        const twoColGrid = sec.querySelector('.grid.grid-cols-1.lg\\:grid-cols-12, .grid.grid-cols-1.lg\\:grid-cols-2');
+        if (twoColGrid && twoColGrid.children.length === 2) {
+          twoColGrid.children[0].classList.add('reveal-left');
+          twoColGrid.children[1].classList.add('reveal-right');
+        }
       }
     });
 
-    // B. Discover section headings & subtitles
-    const headings = document.querySelectorAll('main h2');
-    headings.forEach(h => {
-      h.classList.add('heading-reveal');
+    // ------------------------------------------------------------------------
+    // C. SECTION HEADINGS & SUBTITLES
+    // ------------------------------------------------------------------------
+    const headings = main.querySelectorAll('h2, h3');
+    headings.forEach((h, idx) => {
+      // Don't double-animate the hero heading if already processed
+      if (!h.classList.contains('heading-reveal')) {
+        h.classList.add('heading-reveal');
+        // Word reveal on prominent section titles
+        if (h.tagName === 'H2' && h.textContent.trim().length < 80) {
+          splitTextIntoWords(h, 100, 45);
+        }
+      }
+
       const nextSibling = h.nextElementSibling;
       if (nextSibling && (nextSibling.tagName === 'P' || nextSibling.tagName === 'DIV')) {
         nextSibling.classList.add('sub-reveal');
       }
     });
 
-    // C. Discover cards inside grids for staggered entrance & hover lift
-    const grids = document.querySelectorAll('main .grid');
+    // ------------------------------------------------------------------------
+    // D. STAGGERED CARDS & GRIDS
+    // ------------------------------------------------------------------------
+    const grids = main.querySelectorAll('.grid');
     grids.forEach(grid => {
-      const children = Array.from(grid.children);
-      if (children.length > 1) {
-        children.forEach((child, i) => {
-          child.classList.add('reveal-on-scroll');
-          child.classList.add(`stagger-${(i % 8) + 1}`);
+      // Skip 2-column directional layouts already handled
+      if (grid.classList.contains('lg:grid-cols-2') && grid.children.length === 2) return;
+      if (grid.classList.contains('lg:grid-cols-12') && grid.children.length === 2) return;
 
-          // Give card-like containers smooth hover lift
-          if (child.classList.contains('group') ||
-              child.classList.contains('rounded') ||
-              child.classList.contains('rounded-lg') ||
-              child.classList.contains('rounded-xl') ||
-              child.classList.contains('border')) {
-            child.classList.add('card-hover-effect');
+      const items = Array.from(grid.children);
+      if (items.length > 1) {
+        items.forEach((item, i) => {
+          item.classList.add('card-stagger-enter');
+          item.classList.add(`stagger-${(i % 8) + 1}`);
+
+          // Card hover elevation
+          if (item.classList.contains('group') ||
+              item.classList.contains('rounded') ||
+              item.classList.contains('rounded-lg') ||
+              item.classList.contains('rounded-xl') ||
+              item.classList.contains('border') ||
+              item.classList.contains('bg-surface') ||
+              item.classList.contains('bg-surface-container-low') ||
+              item.classList.contains('bg-surface-container-lowest') ||
+              item.classList.contains('shadow-md') ||
+              item.classList.contains('shadow-xs')) {
+            item.classList.add('card-hover-effect');
           }
         });
       }
     });
 
-    // D. Discover interactive buttons and action links
+    // ------------------------------------------------------------------------
+    // E. IMAGES (Smooth Scale & Clip Reveal)
+    // ------------------------------------------------------------------------
+    const images = main.querySelectorAll('img:not(.hero-slide img)');
+    images.forEach(img => {
+      if (!img.classList.contains('hero-image-enter')) {
+        img.classList.add('img-reveal');
+      }
+    });
+
+    // ------------------------------------------------------------------------
+    // F. BUTTONS & INTERACTIVE CALLS-TO-ACTION
+    // ------------------------------------------------------------------------
     const buttons = document.querySelectorAll(
       'main button, ' +
       'main a.rounded, ' +
@@ -66,25 +198,37 @@
       'main a.rounded-full, ' +
       'main a.shadow-md, ' +
       'main a.shadow-sm, ' +
+      'main a.shadow-xs, ' +
       'main a[href^="tel:"], ' +
       'main a[href*="wa.me"]'
     );
-    buttons.forEach(btn => {
-      btn.classList.add('btn-hover-effect');
-    });
+    buttons.forEach(btn => btn.classList.add('btn-hover-effect'));
 
-    // E. Discover images for smooth entrance (strictly preserving src, alt, sizing & object-position)
-    const images = document.querySelectorAll('main img');
-    images.forEach(img => {
-      img.classList.add('img-reveal');
-    });
+    // ------------------------------------------------------------------------
+    // G. INTERSECTION OBSERVER TRIGGER ENGINE
+    // ------------------------------------------------------------------------
+    const allAnimatedElements = document.querySelectorAll(
+      '.hero-badge-enter, ' +
+      '.hero-sub-enter, ' +
+      '.hero-cta-enter, ' +
+      '.hero-image-enter, ' +
+      '.heading-reveal, ' +
+      '.sub-reveal, ' +
+      '.reveal-on-scroll, ' +
+      '.reveal-left, ' +
+      '.reveal-right, ' +
+      '.card-stagger-enter, ' +
+      '.img-reveal'
+    );
 
-    // F. Setup IntersectionObserver
     if ('IntersectionObserver' in window) {
       const observer = new IntersectionObserver((entries, obs) => {
         entries.forEach(entry => {
           if (entry.isIntersecting) {
             entry.target.classList.add('is-revealed');
+            // Trigger child words if present
+            const innerWords = entry.target.querySelectorAll('.word-inner');
+            innerWords.forEach(w => w.classList.add('is-revealed'));
             obs.unobserve(entry.target);
           }
         });
@@ -93,39 +237,45 @@
         threshold: 0.08
       });
 
-      const revealElements = document.querySelectorAll(
-        '.reveal-on-scroll, .heading-reveal, .sub-reveal, .img-reveal'
-      );
-
-      revealElements.forEach(el => {
+      // Immediate reveal for elements already inside initial viewport
+      allAnimatedElements.forEach(el => {
         const rect = el.getBoundingClientRect();
-        // Immediately reveal elements already inside initial viewport
         if (rect.top < window.innerHeight && rect.bottom > 0) {
-          el.classList.add('is-revealed');
+          // Trigger initial hero elements with subtle sequence
+          requestAnimationFrame(() => {
+            el.classList.add('is-revealed');
+            const innerWords = el.querySelectorAll('.word-inner');
+            innerWords.forEach(w => w.classList.add('is-revealed'));
+          });
         } else {
           observer.observe(el);
         }
       });
 
-      // Safety timeout: Guarantee all elements are revealed within 1.5s
+      // ----------------------------------------------------------------------
+      // H. FAILSAFE GUARANTEE
+      // Guarantees all content is 100% visible even under extreme network lag
+      // ----------------------------------------------------------------------
       setTimeout(() => {
-        revealElements.forEach(el => {
+        allAnimatedElements.forEach(el => {
           if (!el.classList.contains('is-revealed')) {
             el.classList.add('is-revealed');
+            const innerWords = el.querySelectorAll('.word-inner');
+            innerWords.forEach(w => w.classList.add('is-revealed'));
           }
         });
-      }, 1500);
+      }, 1400);
     } else {
-      // Fallback for browsers without IntersectionObserver
-      document.querySelectorAll(
-        '.reveal-on-scroll, .heading-reveal, .sub-reveal, .img-reveal'
-      ).forEach(el => {
+      // Fallback for older browsers without IntersectionObserver
+      allAnimatedElements.forEach(el => {
         el.classList.add('is-revealed');
+        const innerWords = el.querySelectorAll('.word-inner');
+        innerWords.forEach(w => w.classList.add('is-revealed'));
       });
     }
   }
 
-  // Initialize once DOM is ready
+  // Initialize on DOM ready
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', initAnimations);
   } else {
