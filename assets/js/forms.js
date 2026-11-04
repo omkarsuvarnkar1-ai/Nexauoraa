@@ -38,9 +38,34 @@ function handleInquiryFormSubmit(event) {
     successBanner.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
   }
 
-  // Optional: Extract parameters to offer direct WhatsApp thread continuation
-  const company = form.querySelector('[name="companyName"]')?.value || 'Our Facility';
-  const interest = form.querySelector('[name="interest"]')?.value || 'Manufacturing Consulting';
+  // Extract parameters
+  const company = form ? (form.querySelector('[name="companyName"]')?.value || form.querySelector('#companyName')?.value || 'Our Facility') : 'Our Facility';
+  const fullName = form ? (form.querySelector('[name="fullName"]')?.value || form.querySelector('#fullName')?.value || '') : '';
+  const phone = form ? (form.querySelector('[name="phone"]')?.value || form.querySelector('#phone')?.value || '') : '';
+  const email = form ? (form.querySelector('[name="email"]')?.value || form.querySelector('#email')?.value || '') : '';
+  const sector = form ? (form.querySelector('[name="sector"]')?.value || form.querySelector('#sector')?.value || '') : '';
+  const interest = form ? (form.querySelector('[name="interest"]')?.value || form.querySelector('#interest')?.value || 'Manufacturing Consulting') : 'Manufacturing Consulting';
+  const message = form ? (form.querySelector('[name="message"]')?.value || form.querySelector('#message')?.value || '') : '';
+
+  // Async POST to local backend if running on web server
+  try {
+    fetch('/api/enquiry', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        fullName,
+        companyName: company,
+        phone,
+        email,
+        sector,
+        interest,
+        message,
+        url: window.location.pathname
+      })
+    }).catch(() => {});
+  } catch (_) {
+    // Non-blocking in offline/file: environments
+  }
 
   if (form) {
     form.reset();
@@ -61,7 +86,32 @@ function handleTrainingFormSubmit(event) {
   if (event) event.preventDefault();
   const successMsg = document.getElementById('proposalSuccessMessage');
   const submitBtn = document.getElementById('submitProposalBtn');
-  const form = document.getElementById('trainingProposalForm');
+  const form = document.getElementById('trainingProposalForm') || (event ? event.target : null);
+
+  const payload = {
+    enquiryName: form?.querySelector('#enquiryName')?.value || '',
+    enquiryOrg: form?.querySelector('#enquiryOrg')?.value || '',
+    enquiryPhone: form?.querySelector('#enquiryPhone')?.value || '',
+    enquiryEmail: form?.querySelector('#enquiryEmail')?.value || '',
+    enquirySegment: form?.querySelector('#enquirySegment')?.value || '',
+    enquiryProgramme: form?.querySelector('#enquiryProgramme')?.value || '',
+    enquiryParticipants: form?.querySelector('#enquiryParticipants')?.value || '',
+    enquiryMode: form?.querySelector('#enquiryMode')?.value || '',
+    enquiryDate: form?.querySelector('#enquiryDate')?.value || '',
+    enquiryMsg: form?.querySelector('#enquiryMsg')?.value || '',
+    url: window.location.pathname
+  };
+
+  // Async POST to local backend if running on web server
+  try {
+    fetch('/api/training-proposal', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    }).catch(() => {});
+  } catch (_) {
+    // Non-blocking in offline/file: environments
+  }
 
   if (submitBtn) {
     submitBtn.disabled = true;
@@ -121,4 +171,3 @@ window.copyEmailToClipboard = copyEmailToClipboard;
 window.handleInquiryFormSubmit = handleInquiryFormSubmit;
 window.handleTrainingFormSubmit = handleTrainingFormSubmit;
 window.filterServices = filterServices;
-

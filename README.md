@@ -7,22 +7,24 @@
 
 ## 1. Project Overview
 
-**Nexaouraa Consultancy** is an executive-tier manufacturing consultancy headquartered in Pune, India, led by Principal Consultant & Lead Auditor **Govind Suvarnkar**. The firm provides turnkey IATF 16949:2016 implementation, AIAG-VDA 7-Step Core Tools coaching (FMEA, SPC, MSA, APQP, PPAP), VDA 6.3 process auditing, supplier quality turnaround, and shopfloor zero-defect problem solving (8D, Pokayoke, COPQ reduction).
+**Nexaouraa Consultancy** (https://nexaouraaconsultancy.in/) is an executive manufacturing consultancy headquartered in Pune, India, led by Principal Consultant & Lead Auditor **Govind Suvarnkar** (19+ years experience, B.Tech Mech, Diploma Mech, EPGDM Symbiosis, Lead Auditor ISO 9001:2015, IATF 16949 Internal Auditor, IMS Auditor, Lean Six Sigma Black Belt & Green Belt ASCB UK, Global 8D OMNEX).
 
-This repository contains the reorganized, production-ready website platform.
+The firm delivers turnkey IATF 16949:2016 implementation, AIAG-VDA 7-Step Core Tools coaching (FMEA, SPC, MSA, APQP, PPAP), VDA 6.3 process auditing, supplier quality turnaround, and shopfloor zero-defect problem solving (8D, Pokayoke, COPQ reduction) for Tier-1 and Tier-2 automotive suppliers.
+
+This repository contains the reorganized, production-ready website platform redesigned with Google Stitch designs, exact company branding, official 11-page company profile PDF, and full interactive backend capabilities.
 
 ---
 
-## 2. Reorganized Folder & File Structure
+## 2. Production Folder & File Structure
 
 ```
 stitch_nexaouraa_manufacturing_consultancy_platform/
-├── index.html                   # Home Page (Hero Cross-Fade Slider, Dynamic Service Showcase, Chatbot)
-├── about.html                   # About Us & Executive Leadership (Govind Suvarnkar, Expert Team, Pillars)
-├── vision-mission.html          # Vision, Mission & Strategic Goals (2027-2029 Strategic Roadmap, Values)
-├── services.html                # Services & Diverse Industry Footprint (Interactive Category Filter, 14 Services)
-├── training.html                # Training & Development Curriculum (8 In-Plant Modules, Proposal Form)
-├── contact.html                 # Contact Us (Confidential B2B Plant Intake Form, Direct Auditor Access Desk)
+├── index.html                   # Home Page (Top Ticker, Full Logo, Hero Cross-Fade Slider, Dynamic Showcase, Chatbot)
+├── about.html                   # About Us & Leadership (Govind Suvarnkar 19+ Yrs Credentials, 14 Corporate Clients, Expert Team)
+├── vision-mission.html          # Vision, Mission & Strategic Goals (2027-2029 Strategic Roadmap, Core Values Matrix)
+├── services.html                # Services & Industry Footprint (Interactive Category Filter, 14 Services, 4-Step Methodology)
+├── training.html                # Training & Development Curriculum (8 In-Plant Modules, 40+ Corporate & 25+ EV Trainings, Proposal Form)
+├── contact.html                 # Contact Us & Plant Intake (Deduplicated Single Intake Form, 24h SLA Guarantee, Direct Auditor Desk)
 ├── DESIGN.md                    # Executive Precision Consulting Design Specification & Palette Guide
 ├── README.md                    # Project Architecture, Structure & Maintenance Guide
 ├── package.json                 # Project configuration, development scripts & validation
@@ -31,9 +33,11 @@ stitch_nexaouraa_manufacturing_consultancy_platform/
 ├── assets/                      # Production Static Assets
 │   ├── css/
 │   │   └── styles.css           # Core styling, keyframe animations, typography, shadows & responsive rules
+│   ├── docs/                    # Official Documents & Whitepapers
+│   │   └── Nexaouraa_Consultancy_Profile.pdf  # Verified 11-page Govind Suvarnkar Company Profile PDF (286 KB)
 │   ├── js/
-│   │   ├── chatbot.js           # Unified interactive AI Chatbot with full industrial advisory knowledge base
-│   │   ├── forms.js             # Form validation, copy-to-clipboard, & direct WhatsApp message builder
+│   │   ├── chatbot.js           # Interactive AI Chatbot with verified 11-page PDF knowledge base & server API proxy
+│   │   ├── forms.js             # Form validation, copy email to clipboard, & background API submission
 │   │   ├── navigation.js        # Active page highlighting, mobile drawer navigation, & dropdown menus
 │   │   ├── slider.js            # Dynamic Hero Plant Quality Showcase cross-fade slider & metrics
 │   │   ├── tailwind-theme.js    # Executive Precision Consulting design system palette configuration
@@ -42,10 +46,10 @@ stitch_nexaouraa_manufacturing_consultancy_platform/
 │       ├── brand/               # Official Brand Assets
 │       │   ├── nexaouraa-emblem.png      # Official circular emblem medallion (1254x1254)
 │       │   ├── nexaouraa-brand-poster.png# Official brand poster with advisory tracks (760x722)
-│       │   ├── nexaouraa-logo.png        # Official header logo with emblem & typography (564x103)
+│       │   ├── nexaouraa-logo.png        # Official header logo with emblem & serif typography (564x103)
 │       │   ├── banner-excellence.png     # Business Excellence header banner
 │       │   └── banner-impact.png         # Executive Impact header banner
-│       ├── industry/            # Authentic High-Resolution Manufacturing Photography (1376x768)
+│       ├── industry/            # Cryptographically Verified Manufacturing Photography (Byte-for-byte Stitch match)
 │       │   ├── assembly-line.png         # Modern automotive assembly line with robotic arms
 │       │   ├── cmm-metrology.png         # Vernier calipers & CMM coordinate measuring laboratory
 │       │   ├── cnc-machining.png         # High-precision industrial CNC milling machining center
@@ -65,70 +69,55 @@ stitch_nexaouraa_manufacturing_consultancy_platform/
 │           ├── training-screen.png
 │           └── contact-screen.png
 │
+├── data/                        # Local Persistent Data Store
+│   ├── enquiries.json           # Diagnostic intake and contact submissions
+│   └── training_proposals.json  # Corporate training curriculum requests
+│
 ├── archive/                     # Preserved Original Raw Export (Zero Data Loss)
 │   └── raw_stitch_export/       # Complete unedited original Stitch export files
+│
 └── scripts/                     # Developer Tooling & Build Scripts
-    ├── build_pages.py           # Single-command HTML compiler & asset linker
-    ├── serve.js                 # Zero-dependency local development web server (Node.js)
+    ├── build_pages.py           # Master page compiler & asset linker
+    ├── serve.js                 # Zero-dependency local development web server & API router (Node.js)
+    ├── test_api.js              # Self-contained integration test suite for server endpoints
     ├── validate.js              # Comprehensive link, route, image & asset verification suite
     └── verify_images.py         # SHA-256 cryptographic image integrity validator
 ```
 
 ---
 
-## 3. Comparison: Old vs. New Structure
+## 3. Strict Compliance Highlights
 
-| Feature / Aspect | Old Raw Export | New Clean Architecture |
-| :--- | :--- | :--- |
-| **Directory Nesting** | Deep double nesting (`stitch_.../stitch_.../`) | Flat, standard root web structure (`index.html`, etc.) |
-| **Entry Point** | None (only disconnected `code.html` files) | Direct `index.html` at root, opens in any browser |
-| **Inter-Page Routing** | Disconnected anchors (`#`, `#about`) | Fully linked relative routes across all pages |
-| **Assets Organization** | 16 separate folders named like long sentences, each with a single generic `screen.png` | Grouped cleanly under `assets/images/brand/`, `assets/images/industry/`, and `assets/images/previews/` |
-| **Image Sources** | Remote Google CDN URLs (`lh3.googleusercontent.com`) vulnerable to expiration or offline failure | 100% local, self-contained high-resolution PNG assets |
-| **CSS & Design System** | Duplicated `<style>` and `<script>` blocks in every HTML file | Modular `assets/css/styles.css` and `assets/js/tailwind-theme.js` |
-| **AI Chatbot** | 6 fragmented chatbot scripts with differing DOM IDs and partial knowledge bases | Single unified `assets/js/chatbot.js` with full knowledge base, instant WhatsApp handoff, and quick prompts |
-| **Form Handling** | Inline alert popups and 4 duplicate form sections in `contact_us` | Clean modular `assets/js/forms.js` with validated fields, success banners, and single deduplicated contact form |
-| **Developer Tooling** | No package manager or scripts | `npm start` (dev server), `npm run build` (compiler), `npm run validate` (route & link tester) |
-
----
-
-## 4. Summary of Changes: Moved, Merged, and Deduplicated
-
-### Merged & Unified
-1. **AI Chatbot (`assets/js/chatbot.js`)**:
-   - Combined knowledge bases from all 6 pages into a unified AI assistant widget.
-   - Interactive quick chips for IATF 16949, Core Tools, Audits, In-Plant Training, Govind Suvarnkar profile, and Scheduling.
-   - Preserved direct WhatsApp integration (`+91 8975573469`).
-
-2. **Navigation & Mobile Drawer (`assets/js/navigation.js`)**:
-   - Unified desktop header with working dropdown menus for "About Us" (`about.html` and `vision-mission.html`).
-   - Dynamic active page indicator matching the current URL.
-   - Added responsive mobile navigation drawer menu.
-
-3. **Headline Marquee (`assets/js/ticker.js` & `assets/css/styles.css`)**:
-   - Unified continuous moving credentials ticker across all 6 pages.
-   - Pause on hover and respect for `prefers-reduced-motion`.
-
-4. **Forms Logic (`assets/js/forms.js`)**:
-   - Unified submission handlers for B2B Diagnostic Intake (`#inquiry-form`) and Corporate Training Proposals (`#trainingProposalForm`).
-   - Added clipboard utility for `sales@nexaouraaconsultancy.in`.
-
-### Deduplicated & Fixed
-- **`contact.html` Deduplication**: In the original export, the B2B intake form and auditor access section was duplicated 4 times back-to-back. The 3 redundant copies were removed, leaving one authentic, fast-loading intake form.
-- **Character Encoding**: Fixed corrupted characters (`?` and encoding artifacts from export) in `about.html` and slider labels.
-- **Image Relinking**: Replaced external temporary Google CDN URLs with local high-resolution assets in `assets/images/`.
-
-### Files Preserved Safely
-- The original raw export folder `stitch_nexaouraa_manufacturing_consultancy_platform/` has been left completely intact and committed to git history (`39daa0f`). As per instructions, no files have been deleted.
+1. **Exact Route Preservation**: All 6 original pages (`index.html`, `about.html`, `vision-mission.html`, `services.html`, `training.html`, `contact.html`) are preserved with working relative links and navigation.
+2. **Global Official Branding**: Top-left of every page displays the official Nexaouraa logo (`assets/images/brand/nexaouraa-logo.png`) featuring circular emblem medallion, large serif NEXAOURAA typography, green and gold palette, CONSULTANCY subtitle, and decorative horizontal gold lines.
+3. **Homepage-Only Top Moving Ticker**: Placed strictly at the **VERY TOP of `index.html`, ABOVE the navigation bar**. It does not appear on any other page. Headlines feature verified metrics from the company profile.
+4. **Exact Image Integrity**: All 14 Stitch design images are 100% byte-for-byte SHA-256 identical to the raw export without any recoloring, cropping, distortion, or stock/AI substitutions (verified via `npm run verify:images`).
+5. **Authentic Company Profile PDF Integration**: Direct download button in the header, footer, mobile drawer, and chatbot links to `assets/docs/Nexaouraa_Consultancy_Profile.pdf` (286,933 bytes).
+6. **Communication Touchpoints**:
+   - Direct Call Desk: `tel:+918975573469`
+   - WhatsApp Direct Thread: `https://wa.me/918975573469`
+   - AI Chatbot: Floating bottom-right with verified 11-page profile knowledge base, chip navigation, PDF download, and WhatsApp escalation.
+   - Non-overlapping floating layout: Floating call & WhatsApp on bottom-left, Chatbot on bottom-right.
+7. **Contact Form Deduplication**: Removed 3 redundant copies of the intake form from `contact.html`, preserving one clean, responsive B2B diagnostic intake form.
 
 ---
 
-## 5. How to Run and Test
+## 4. Backend Endpoints (`scripts/serve.js`)
 
-### Option A: Direct Static Opening (No Node.js Required)
-Simply double-click `index.html` in any web browser (Chrome, Edge, Firefox, Safari). All styles, images, navigation, and chatbot functions work offline immediately.
+The built-in Node.js server (`scripts/serve.js`) provides zero-dependency native HTTP/JSON API endpoints:
+- `POST /api/enquiry`: Receives diagnostic intake submissions, assigns a tracking ID (e.g., `ENQ-MW1SASSG`), and persists to `data/enquiries.json`.
+- `POST /api/training-proposal`: Receives in-plant training requests and persists to `data/training_proposals.json`.
+- `POST /api/chat`: Technical query endpoint. If `GEMINI_API_KEY` is provided in the environment, proxies questions through Gemini 1.5 Flash with a strict Nexaouraa domain system prompt; otherwise returns fallback status allowing the rich client-side knowledge engine to respond instantly.
+- Static file server for all `.html`, `.css`, `.js`, `.json`, `.png`, `.jpg`, `.pdf`, and font files.
 
-### Option B: Local Node.js Server (Recommended for development)
+---
+
+## 5. Development & Testing Commands
+
+### Option A: Direct Static Opening (Offline / Double-Click)
+Double-click `index.html` in any web browser. All styles, images, navigation, interactive filters, and chatbot work immediately offline without Node.js.
+
+### Option B: Local Node.js Server & APIs
 Run the built-in development server:
 ```bash
 npm start
@@ -137,15 +126,25 @@ node scripts/serve.js
 ```
 Then navigate to: `http://localhost:3000/`
 
-### Option C: Validate All Routes & Assets
-Run the automated verification suite:
+### Option C: Run Full Integration & Server Tests
+```bash
+npm test
+```
+Tests in-memory request handling, PDF streaming, enquiry logging, training request recording, and chat query processing.
+
+### Option D: Validate All HTML Routes, Links & Scripts
 ```bash
 npm run validate
 ```
-This tests all 6 pages, link targets, CSS/JS inclusions, and asset paths.
+Tests all 6 pages for broken internal links, CSS/JS inclusions, and contact form deduplication.
 
-### Option D: Recompile Pages
-If you modify templates or scripts, regenerate the pages with:
+### Option E: Verify SHA-256 Image Integrity
+```bash
+npm run verify:images
+```
+Verifies byte-for-byte SHA-256 hash matching of all 14 images against the raw Stitch export.
+
+### Option F: Recompile HTML Pages
 ```bash
 npm run build
 ```
@@ -153,9 +152,8 @@ npm run build
 ---
 
 ## 6. Key Contact Information Preserved
-- **Principal Consultant & Lead Auditor**: Govind Suvarnkar
+- **Principal Consultant & Lead Auditor**: Govind Suvarnkar (19+ Yrs Experience)
 - **Direct Phone / Call Desk**: `+91 8975573469`
 - **WhatsApp Direct Desk**: `https://wa.me/918975573469`
 - **Corporate Email**: `sales@nexaouraaconsultancy.in`
 - **Operational Hub**: Pune Industrial Corridor (Chakan, Talegaon, Bhosari, Sanand, NCR, Pan-India)
-

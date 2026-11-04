@@ -7,7 +7,9 @@
     "start": "node scripts/serve.js",
     "dev": "node scripts/serve.js",
     "build": "python scripts/build_pages.py",
-    "validate": "node scripts/validate.js"
+    "validate": "node scripts/validate.js",
+    "test": "node scripts/test_api.js",
+    "verify:images": "python scripts/verify_images.py"
   },
   "keywords": [
     "iatf16949",
