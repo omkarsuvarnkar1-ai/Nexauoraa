@@ -498,6 +498,12 @@ def build_training():
     # Remove inline handler script to use the centralized forms.js API handler
     main_content = re.sub(r'<script>\s*function handleTrainingFormSubmit[\s\S]*?</script>', '', main_content)
 
+    # FIX UI OVERLAPPING: Position floating contact ticker cleanly without overlapping chatbot
+    main_content = main_content.replace(
+        'class="fixed bottom-6 right-24 z-40 hidden sm:flex items-center gap-space-xs bg-primary text-on-primary px-space-md py-space-sm rounded-full shadow-2xl border border-[#0F2537]"',
+        'id="training-contact-pill" class="fixed z-40 flex items-center gap-space-xs bg-primary text-on-primary px-3 py-2 sm:px-space-md sm:py-space-sm rounded-full shadow-2xl border border-[#0F2537] transition-all duration-300 bottom-[74px] right-4 sm:bottom-[78px] sm:right-6 md:bottom-6 md:right-[212px]"'
+    )
+
     main_content = replace_assets(main_content)
 
     doc = build_html_document(

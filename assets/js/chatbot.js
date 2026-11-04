@@ -121,10 +121,10 @@
     if (!widget) {
       widget = document.createElement('div');
       widget.id = 'nexaouraa-chat-widget';
-      widget.className = 'fixed bottom-6 right-6 z-50 flex flex-col items-end select-none font-sans';
+      widget.className = 'fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-50 flex flex-col items-end select-none font-sans';
       widget.innerHTML = `
         <!-- Expandable Chat Panel -->
-        <div id="nexa-chat-panel" class="hidden flex-col w-[360px] sm:w-[410px] h-[550px] max-h-[85vh] bg-surface-container-lowest rounded-2xl shadow-2xl border border-outline-variant/40 overflow-hidden mb-3.5 transition-all duration-300 origin-bottom-right">
+        <div id="nexa-chat-panel" class="hidden flex-col w-[calc(100vw-32px)] sm:w-[410px] max-w-[410px] h-[520px] sm:h-[550px] max-h-[82vh] bg-surface-container-lowest rounded-2xl shadow-2xl border border-outline-variant/40 overflow-hidden mb-3.5 transition-all duration-300 origin-bottom-right">
           <!-- Chat Header -->
           <div class="bg-primary-container text-on-primary px-4 py-3 flex items-center justify-between shrink-0 border-b border-secondary/20 shadow-sm">
             <div class="flex items-center gap-2.5">
@@ -244,17 +244,26 @@
     function toggleChat(force) {
       const isHidden = panel.classList.contains('hidden');
       const show = force !== undefined ? force : isHidden;
+      const trainingPill = document.getElementById('training-contact-pill');
 
       if (show) {
         panel.classList.remove('hidden');
         panel.classList.add('flex');
         if (badge) badge.classList.add('hidden');
         if (launcherIcon) launcherIcon.textContent = 'chat_bubble';
+        if (trainingPill) {
+          trainingPill.style.opacity = '0';
+          trainingPill.style.pointerEvents = 'none';
+        }
         setTimeout(() => input && input.focus(), 150);
       } else {
         panel.classList.add('hidden');
         panel.classList.remove('flex');
         if (launcherIcon) launcherIcon.textContent = 'smart_toy';
+        if (trainingPill) {
+          trainingPill.style.opacity = '1';
+          trainingPill.style.pointerEvents = 'auto';
+        }
       }
     }
 
