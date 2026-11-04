@@ -114,3 +114,4 @@ document.addEventListener('DOMContentLoaded', function () {
   updateSlideUI(0);
   resetTimer();
 });
+

@@ -5,7 +5,7 @@ import os
 import re
 
 ROOT = r"C:\Users\Omkar\Downloads\stitch_nexaouraa_manufacturing_consultancy_platform"
-STITCH_DIR = os.path.join(ROOT, "stitch_nexaouraa_manufacturing_consultancy_platform")
+STITCH_DIR = os.path.join(ROOT, "archive", "raw_stitch_export")
 
 # Standard shared Unified Navigation Header
 UNIFIED_HEADER = """<header class="sticky top-0 left-0 right-0 w-full z-40 shadow-[0_2px_12px_rgba(15,37,55,0.08)] bg-surface-container-lowest">

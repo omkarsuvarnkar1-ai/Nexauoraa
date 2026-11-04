@@ -121,3 +121,4 @@ window.copyEmailToClipboard = copyEmailToClipboard;
 window.handleInquiryFormSubmit = handleInquiryFormSubmit;
 window.handleTrainingFormSubmit = handleTrainingFormSubmit;
 window.filterServices = filterServices;
+
