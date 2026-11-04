@@ -108,7 +108,7 @@
       content: `<p class="font-medium text-slate-800">Connect directly with Lead Auditor Govind Suvarnkar:</p>
       <ul class="list-disc pl-4 mt-1.5 space-y-1 text-slate-700">
         <li><strong>Phone:</strong> <a href="tel:+918975573469" class="text-secondary font-bold underline">+91 8975573469</a></li>
-        <li><strong>WhatsApp:</strong> <a href="https://wa.me/918975573469" target="_blank" class="text-secondary font-bold underline">+91 8975573469</a></li>
+        <li><strong>WhatsApp:</strong> <a href="https://wa.me/918975573469?text=Hello!%20%F0%9F%91%8B%20Welcome%20to%20Nexaouraa%20Consultancy.%0A%0AThank%20you%20for%20connecting%20with%20us.%20How%20can%20we%20assist%20you%20with%20your%20manufacturing%20and%20quality%20consultancy%20requirements%20today%3F" target="_blank" class="text-secondary font-bold underline">+91 8975573469</a></li>
         <li><strong>Email:</strong> <a href="mailto:sales@nexaouraaconsultancy.in" class="text-secondary font-bold underline">sales@nexaouraaconsultancy.in</a></li>
         <li><strong>Hub:</strong> Pune Industrial Corridor (Chakan, Talegaon, Bhosari, Sanand, NCR, Pan-India)</li>
         <li><strong>Intake Form:</strong> <a href="contact.html#diagnostic-intake" class="text-secondary font-bold underline">Submit Plant Inquiry (24h Response)</a></li>
@@ -151,7 +151,7 @@
           </div>
 
           <!-- Direct WhatsApp Header Alert -->
-          <a href="https://wa.me/918975573469?text=Hello%20Govind%20Sir,%20inquiry%20from%20Nexaouraa%20Consultancy%20AI%20chat." target="_blank" rel="noopener noreferrer" class="bg-emerald-50 hover:bg-emerald-100 text-emerald-800 text-[11px] font-semibold px-3 py-1.5 flex items-center justify-between border-b border-emerald-200 transition-colors">
+          <a href="https://wa.me/918975573469?text=Hello!%20%F0%9F%91%8B%20Welcome%20to%20Nexaouraa%20Consultancy.%0A%0AThank%20you%20for%20connecting%20with%20us.%20How%20can%20we%20assist%20you%20with%20your%20manufacturing%20and%20quality%20consultancy%20requirements%20today%3F" target="_blank" rel="noopener noreferrer" class="bg-emerald-50 hover:bg-emerald-100 text-emerald-800 text-[11px] font-semibold px-3 py-1.5 flex items-center justify-between border-b border-emerald-200 transition-colors">
             <span class="flex items-center gap-1">
               <span class="material-symbols-outlined text-emerald-600 text-sm">chat</span>
               Immediate WhatsApp Desk (+91 8975573469)
