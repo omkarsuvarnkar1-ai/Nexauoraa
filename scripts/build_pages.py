@@ -744,6 +744,7 @@ def build_services():
     main_content = main_content.replace('href="#about"', 'href="about.html"')
 
     main_content = re.sub(r'href="https://wa\.me/918975573469[^\"]*"' , 'href="https://wa.me/918975573469?text=Hello!%20%F0%9F%91%8B%20I%20need%20help%20with%20your%20manufacturing%20and%20quality%20consultancy%20services.%0A%0ACould%20you%20please%20guide%20me%20regarding%20the%20available%20solutions%20and%20how%20Nexaouraa%20Consultancy%20can%20assist%20my%20business%3F%0A%0AThank%20you!"', main_content)
+    main_content = main_content.replace("Zero-DefPoka-Yoke", "Zero-Defect Poka-Yoke")
     main_content = map_services_images(main_content)
 
     doc = build_html_document(
