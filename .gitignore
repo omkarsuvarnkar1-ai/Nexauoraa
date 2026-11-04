@@ -1,19 +1,22 @@
-# Environment Variables & Secrets
+# Environment variables and secrets
 .env
-.env.local
-.env.*.local
+.env.*
+!.env.example
 
-# Dependency directories
+# Dependencies
 node_modules/
 
-# OS metadata
+# Netlify local development
+.netlify/
+
+# Logs and temporary files
+*.log
+
+# Python cache
+__pycache__/
+*.pyc
+
+# Operating system files
 .DS_Store
 Thumbs.db
 Desktop.ini
-
-# Logs & temp
-*.log
-
-
-# Local Netlify folder
-.netlify
