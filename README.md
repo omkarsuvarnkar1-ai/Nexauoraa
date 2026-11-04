@@ -65,12 +65,13 @@ stitch_nexaouraa_manufacturing_consultancy_platform/
 │           ├── training-screen.png
 │           └── contact-screen.png
 │
-├── scripts/                     # Developer Tooling & Build Scripts
-│   ├── build_pages.py           # Single-command HTML compiler & asset linker
-│   ├── serve.js                 # Zero-dependency local development web server (Node.js)
-│   └── validate.js              # Comprehensive link, route, image & asset verification suite
-│
-└── stitch_nexaouraa_manufacturing_consultancy_platform/  # Preserved original export (Pending confirmation)
+├── archive/                     # Preserved Original Raw Export (Zero Data Loss)
+│   └── raw_stitch_export/       # Complete unedited original Stitch export files
+└── scripts/                     # Developer Tooling & Build Scripts
+    ├── build_pages.py           # Single-command HTML compiler & asset linker
+    ├── serve.js                 # Zero-dependency local development web server (Node.js)
+    ├── validate.js              # Comprehensive link, route, image & asset verification suite
+    └── verify_images.py         # SHA-256 cryptographic image integrity validator
 ```
 
 ---
