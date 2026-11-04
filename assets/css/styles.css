@@ -766,6 +766,36 @@ select.input-field-error {
   display: flex !important;
 }
 
+/* New Chat Confirmation Modal Dialog */
+#nexa-confirm-dialog {
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  background-color: rgba(2, 6, 23, 0.6) !important;
+  z-index: 50 !important;
+  box-sizing: border-box !important;
+  transition: opacity 0.2s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.2s;
+}
+
+#nexa-confirm-dialog.hidden {
+  display: none !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+
+#nexa-confirm-dialog > div {
+  max-width: 280px;
+  width: calc(100% - 32px);
+  box-sizing: border-box;
+}
+
 /* Chat Input & Send Button Touch Targets */
 #nexa-chat-input {
   min-height: 40px;

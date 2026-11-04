@@ -201,6 +201,32 @@
           width: 36px;
           height: 36px;
         }
+        #nexa-confirm-dialog {
+          position: absolute !important;
+          top: 0 !important;
+          left: 0 !important;
+          right: 0 !important;
+          bottom: 0 !important;
+          width: 100% !important;
+          height: 100% !important;
+          display: flex !important;
+          align-items: center !important;
+          justify-content: center !important;
+          background-color: rgba(2, 6, 23, 0.6) !important;
+          z-index: 50 !important;
+          box-sizing: border-box !important;
+          transition: opacity 0.2s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.2s;
+        }
+        #nexa-confirm-dialog.hidden {
+          display: none !important;
+          opacity: 0 !important;
+          pointer-events: none !important;
+        }
+        #nexa-confirm-dialog > div {
+          max-width: 280px;
+          width: calc(100% - 32px);
+          box-sizing: border-box;
+        }
         @keyframes nexaDotPulse {
           0%, 60%, 100% { transform: translateY(0); opacity: 0.35; }
           30% { transform: translateY(-4px); opacity: 1; }
@@ -233,6 +259,102 @@
     }
   }
 
+  function getInitialConversationHtml() {
+    return `
+      <!-- Bot Welcome Card -->
+      <div class="flex items-start gap-2.5 max-w-[95%] nexa-msg-appear">
+        <img src="assets/images/brand/nexaouraa-emblem.png" class="w-7 h-7 rounded-full shrink-0 mt-0.5 shadow-xs bg-white ring-1 ring-slate-200" alt="Ask Anything?">
+        <div class="bg-white p-3.5 rounded-2xl rounded-tl-xs border border-slate-200/90 shadow-xs text-slate-800 space-y-2">
+          <div>
+            <h4 class="font-bold text-sm text-[#0f3b6c] tracking-tight flex items-center gap-1.5">
+              <span>Ask Anything?</span>
+            </h4>
+            <p class="text-xs text-slate-600 font-medium mt-0.5 leading-snug">
+              Your AI assistant for manufacturing, quality and consultancy solutions.
+            </p>
+          </div>
+          
+          <p class="text-[11px] text-slate-500 leading-relaxed border-t border-slate-100 pt-2">
+            Feel free to ask me questions regarding:
+          </p>
+          
+          <div class="grid grid-cols-2 gap-1.5 text-[10.5px] font-medium text-slate-700 bg-slate-50/80 p-2 rounded-xl border border-slate-200/60">
+            <div class="flex items-center gap-1.5">
+              <span class="w-1.5 h-1.5 rounded-full bg-[#0f3b6c]"></span>
+              <span>Manufacturing Consulting</span>
+            </div>
+            <div class="flex items-center gap-1.5">
+              <span class="w-1.5 h-1.5 rounded-full bg-[#0f3b6c]"></span>
+              <span>Quality Management</span>
+            </div>
+            <div class="flex items-center gap-1.5">
+              <span class="w-1.5 h-1.5 rounded-full bg-[#0f3b6c]"></span>
+              <span>Industrial Processes</span>
+            </div>
+            <div class="flex items-center gap-1.5">
+              <span class="w-1.5 h-1.5 rounded-full bg-[#0f3b6c]"></span>
+              <span>Training &amp; Development</span>
+            </div>
+            <div class="flex items-center gap-1.5">
+              <span class="w-1.5 h-1.5 rounded-full bg-[#0f3b6c]"></span>
+              <span>Business Improvement</span>
+            </div>
+            <div class="flex items-center gap-1.5">
+              <span class="w-1.5 h-1.5 rounded-full bg-[#0f3b6c]"></span>
+              <span>Nexaouraa Services</span>
+            </div>
+          </div>
+
+          <div class="flex items-center justify-between pt-1 text-[10px] text-slate-400 font-mono">
+            <span>Lead Consultant: Govind Suvarnkar (19+ Yrs)</span>
+            <span class="text-slate-400">${formatTimestamp()}</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Suggested Question Chips -->
+      <div id="nexa-quick-chips" class="flex flex-wrap gap-1.5 pl-9">
+        <button class="chat-chip bg-white hover:bg-[#0f3b6c] hover:text-white text-slate-700 font-medium px-2.5 py-1 rounded-full border border-slate-200 shadow-xs transition-all text-[11px] active:scale-95" data-topic="govind">
+          Govind Suvarnkar (19+ Yrs)
+        </button>
+        <button class="chat-chip bg-white hover:bg-[#0f3b6c] hover:text-white text-slate-700 font-medium px-2.5 py-1 rounded-full border border-slate-200 shadow-xs transition-all text-[11px] active:scale-95" data-topic="iatf">
+          IATF 16949 Turnkey Scope
+        </button>
+        <button class="chat-chip bg-white hover:bg-[#0f3b6c] hover:text-white text-slate-700 font-medium px-2.5 py-1 rounded-full border border-slate-200 shadow-xs transition-all text-[11px] active:scale-95" data-topic="coretools">
+          AIAG-VDA Core Tools
+        </button>
+        <button class="chat-chip bg-white hover:bg-[#0f3b6c] hover:text-white text-slate-700 font-medium px-2.5 py-1 rounded-full border border-slate-200 shadow-xs transition-all text-[11px] active:scale-95" data-topic="clients">
+          Clients (Mahindra, Bharat Forge)
+        </button>
+        <button class="chat-chip bg-white hover:bg-[#0f3b6c] hover:text-white text-slate-700 font-medium px-2.5 py-1 rounded-full border border-slate-200 shadow-xs transition-all text-[11px] active:scale-95" data-topic="results">
+          Proven Results (~50 PPM)
+        </button>
+        <button class="chat-chip bg-white hover:bg-[#0f3b6c] hover:text-white text-slate-700 font-medium px-2.5 py-1 rounded-full border border-slate-200 shadow-xs transition-all text-[11px] active:scale-95" data-topic="training">
+          Corporate Training (40+ Done)
+        </button>
+        <button class="chat-chip bg-white hover:bg-[#0f3b6c] hover:text-white text-slate-700 font-medium px-2.5 py-1 rounded-full border border-slate-200 shadow-xs transition-all text-[11px] active:scale-95" data-topic="download">
+          Download Company Profile PDF
+        </button>
+        <button class="chat-chip bg-white hover:bg-[#0f3b6c] hover:text-white text-slate-700 font-medium px-2.5 py-1 rounded-full border border-slate-200 shadow-xs transition-all text-[11px] active:scale-95" data-topic="contact">
+          Schedule Plant Audit
+        </button>
+      </div>
+
+      <!-- WhatsApp-Style Typing Indicator Bubble (Hidden by default) -->
+      <div id="nexa-typing-indicator" class="hidden items-start gap-2.5 max-w-[95%] py-1">
+        <img src="assets/images/brand/nexaouraa-emblem.png" class="w-6 h-6 rounded-full shrink-0 mt-0.5 shadow-xs bg-white ring-1 ring-slate-200" alt="Ask Anything?">
+        <div class="bg-white px-3.5 py-2.5 rounded-2xl rounded-tl-xs border border-slate-200 shadow-xs flex items-center gap-1.5 text-slate-600">
+          <div class="flex items-center gap-1">
+            <span class="nexa-typing-dot"></span>
+            <span class="nexa-typing-dot"></span>
+            <span class="nexa-typing-dot"></span>
+          </div>
+          <span class="text-[10px] text-slate-400 font-medium ml-1">Consulting profile...</span>
+        </div>
+      </div>
+    `;
+  }
+
   function initChatbot() {
     ensureStyles();
 
@@ -243,7 +365,7 @@
       widget.className = 'fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-50 flex flex-col items-end select-none font-sans';
       widget.innerHTML = `
         <!-- Expandable Chat Panel -->
-        <div id="nexa-chat-panel" class="nexa-panel-closed flex flex-col w-[calc(100vw-28px)] sm:w-[410px] max-w-[410px] h-[520px] sm:h-[560px] max-h-[82vh] bg-surface-container-lowest rounded-2xl shadow-2xl border border-outline-variant/40 overflow-hidden mb-3.5 transition-all duration-300 origin-bottom-right z-50">
+        <div id="nexa-chat-panel" class="nexa-panel-closed relative flex flex-col w-[calc(100vw-28px)] sm:w-[410px] max-w-[410px] h-[520px] sm:h-[560px] max-h-[82vh] bg-surface-container-lowest rounded-2xl shadow-2xl border border-outline-variant/40 overflow-hidden mb-3.5 transition-all duration-300 origin-bottom-right z-50">
           
           <!-- Chat Header: Premium Nexaouraa Blue Gradient -->
           <div class="text-white px-4 py-3 flex items-center justify-between shrink-0 border-b border-amber-400/20 shadow-md" style="background: linear-gradient(135deg, #07192f 0%, #0c2d54 50%, #174276 100%);">
@@ -257,14 +379,17 @@
                   <span class="font-brand font-bold text-sm text-white tracking-wide">Ask Anything?</span>
                   <span class="text-[9px] uppercase tracking-wider font-bold bg-amber-400/20 text-amber-300 border border-amber-400/30 px-1.5 py-0.2 rounded font-mono">AI ONLINE</span>
                 </div>
-                <span class="text-[11px] text-blue-100/80 truncate max-w-[210px]">Manufacturing &amp; Quality Intelligence</span>
+                <span class="text-[11px] text-blue-100/80 truncate max-w-[190px] sm:max-w-[210px]">Manufacturing &amp; Quality Intelligence</span>
               </div>
             </div>
             <div class="flex items-center gap-1 text-slate-300">
-              <button id="nexa-chat-minimize" aria-label="Minimize" class="hover:text-white p-1 rounded-lg hover:bg-white/10 transition-colors">
+              <button id="nexa-chat-new" aria-label="New Chat" title="Start a new chat" class="hover:text-white p-1 rounded-lg hover:bg-white/10 transition-colors flex items-center justify-center">
+                <span class="material-symbols-outlined text-lg">restart_alt</span>
+              </button>
+              <button id="nexa-chat-minimize" aria-label="Minimize" title="Minimize chat" class="hover:text-white p-1 rounded-lg hover:bg-white/10 transition-colors flex items-center justify-center">
                 <span class="material-symbols-outlined text-lg">remove</span>
               </button>
-              <button id="nexa-chat-close" aria-label="Close" class="hover:text-white p-1 rounded-lg hover:bg-white/10 transition-colors">
+              <button id="nexa-chat-close" aria-label="Close" title="Close chat" class="hover:text-white p-1 rounded-lg hover:bg-white/10 transition-colors flex items-center justify-center">
                 <span class="material-symbols-outlined text-lg">close</span>
               </button>
             </div>
@@ -281,96 +406,26 @@
 
           <!-- Chat Conversation Body -->
           <div id="nexa-chat-messages" class="flex-1 p-3.5 overflow-y-auto space-y-3 bg-[#f8faff] text-xs">
-            
-            <!-- Bot Welcome Card -->
-            <div class="flex items-start gap-2.5 max-w-[95%] nexa-msg-appear">
-              <img src="assets/images/brand/nexaouraa-emblem.png" class="w-7 h-7 rounded-full shrink-0 mt-0.5 shadow-xs bg-white ring-1 ring-slate-200" alt="Ask Anything?">
-              <div class="bg-white p-3.5 rounded-2xl rounded-tl-xs border border-slate-200/90 shadow-xs text-slate-800 space-y-2">
-                <div>
-                  <h4 class="font-bold text-sm text-[#0f3b6c] tracking-tight flex items-center gap-1.5">
-                    <span>Ask Anything?</span>
-                  </h4>
-                  <p class="text-xs text-slate-600 font-medium mt-0.5 leading-snug">
-                    Your AI assistant for manufacturing, quality and consultancy solutions.
-                  </p>
-                </div>
-                
-                <p class="text-[11px] text-slate-500 leading-relaxed border-t border-slate-100 pt-2">
-                  Feel free to ask me questions regarding:
-                </p>
-                
-                <div class="grid grid-cols-2 gap-1.5 text-[10.5px] font-medium text-slate-700 bg-slate-50/80 p-2 rounded-xl border border-slate-200/60">
-                  <div class="flex items-center gap-1.5">
-                    <span class="w-1.5 h-1.5 rounded-full bg-[#0f3b6c]"></span>
-                    <span>Manufacturing Consulting</span>
-                  </div>
-                  <div class="flex items-center gap-1.5">
-                    <span class="w-1.5 h-1.5 rounded-full bg-[#0f3b6c]"></span>
-                    <span>Quality Management</span>
-                  </div>
-                  <div class="flex items-center gap-1.5">
-                    <span class="w-1.5 h-1.5 rounded-full bg-[#0f3b6c]"></span>
-                    <span>Industrial Processes</span>
-                  </div>
-                  <div class="flex items-center gap-1.5">
-                    <span class="w-1.5 h-1.5 rounded-full bg-[#0f3b6c]"></span>
-                    <span>Training &amp; Development</span>
-                  </div>
-                  <div class="flex items-center gap-1.5">
-                    <span class="w-1.5 h-1.5 rounded-full bg-[#0f3b6c]"></span>
-                    <span>Business Improvement</span>
-                  </div>
-                  <div class="flex items-center gap-1.5">
-                    <span class="w-1.5 h-1.5 rounded-full bg-[#0f3b6c]"></span>
-                    <span>Nexaouraa Services</span>
-                  </div>
-                </div>
+            ${getInitialConversationHtml()}
+          </div>
 
-                <div class="flex items-center justify-between pt-1 text-[10px] text-slate-400 font-mono">
-                  <span>Lead Consultant: Govind Suvarnkar (19+ Yrs)</span>
-                  <span class="text-slate-400">${formatTimestamp()}</span>
-                </div>
+          <!-- New Chat Confirmation Modal Dialog -->
+          <div id="nexa-confirm-dialog" class="hidden absolute inset-0 bg-slate-950/60 backdrop-blur-xs flex items-center justify-center p-4 z-50 transition-all duration-200">
+            <div class="bg-white rounded-2xl p-4 shadow-2xl border border-slate-200 max-w-[280px] sm:max-w-[310px] w-full text-center space-y-3 nexa-msg-appear">
+              <div class="w-10 h-10 rounded-full bg-blue-50 text-[#0f3b6c] mx-auto flex items-center justify-center shadow-xs">
+                <span class="material-symbols-outlined text-xl">restart_alt</span>
               </div>
-            </div>
-
-            <!-- Suggested Question Chips -->
-            <div id="nexa-quick-chips" class="flex flex-wrap gap-1.5 pl-9">
-              <button class="chat-chip bg-white hover:bg-[#0f3b6c] hover:text-white text-slate-700 font-medium px-2.5 py-1 rounded-full border border-slate-200 shadow-xs transition-all text-[11px] active:scale-95" data-topic="govind">
-                Govind Suvarnkar (19+ Yrs)
-              </button>
-              <button class="chat-chip bg-white hover:bg-[#0f3b6c] hover:text-white text-slate-700 font-medium px-2.5 py-1 rounded-full border border-slate-200 shadow-xs transition-all text-[11px] active:scale-95" data-topic="iatf">
-                IATF 16949 Turnkey Scope
-              </button>
-              <button class="chat-chip bg-white hover:bg-[#0f3b6c] hover:text-white text-slate-700 font-medium px-2.5 py-1 rounded-full border border-slate-200 shadow-xs transition-all text-[11px] active:scale-95" data-topic="coretools">
-                AIAG-VDA Core Tools
-              </button>
-              <button class="chat-chip bg-white hover:bg-[#0f3b6c] hover:text-white text-slate-700 font-medium px-2.5 py-1 rounded-full border border-slate-200 shadow-xs transition-all text-[11px] active:scale-95" data-topic="clients">
-                Clients (Mahindra, Bharat Forge)
-              </button>
-              <button class="chat-chip bg-white hover:bg-[#0f3b6c] hover:text-white text-slate-700 font-medium px-2.5 py-1 rounded-full border border-slate-200 shadow-xs transition-all text-[11px] active:scale-95" data-topic="results">
-                Proven Results (~50 PPM)
-              </button>
-              <button class="chat-chip bg-white hover:bg-[#0f3b6c] hover:text-white text-slate-700 font-medium px-2.5 py-1 rounded-full border border-slate-200 shadow-xs transition-all text-[11px] active:scale-95" data-topic="training">
-                Corporate Training (40+ Done)
-              </button>
-              <button class="chat-chip bg-white hover:bg-[#0f3b6c] hover:text-white text-slate-700 font-medium px-2.5 py-1 rounded-full border border-slate-200 shadow-xs transition-all text-[11px] active:scale-95" data-topic="download">
-                Download Company Profile PDF
-              </button>
-              <button class="chat-chip bg-white hover:bg-[#0f3b6c] hover:text-white text-slate-700 font-medium px-2.5 py-1 rounded-full border border-slate-200 shadow-xs transition-all text-[11px] active:scale-95" data-topic="contact">
-                Schedule Plant Audit
-              </button>
-            </div>
-
-            <!-- WhatsApp-Style Typing Indicator Bubble (Hidden by default) -->
-            <div id="nexa-typing-indicator" class="hidden items-start gap-2.5 max-w-[95%] py-1">
-              <img src="assets/images/brand/nexaouraa-emblem.png" class="w-6 h-6 rounded-full shrink-0 mt-0.5 shadow-xs bg-white ring-1 ring-slate-200" alt="Ask Anything?">
-              <div class="bg-white px-3.5 py-2.5 rounded-2xl rounded-tl-xs border border-slate-200 shadow-xs flex items-center gap-1.5 text-slate-600">
-                <div class="flex items-center gap-1">
-                  <span class="nexa-typing-dot"></span>
-                  <span class="nexa-typing-dot"></span>
-                  <span class="nexa-typing-dot"></span>
-                </div>
-                <span class="text-[10px] text-slate-400 font-medium ml-1">Consulting profile...</span>
+              <div>
+                <h5 class="font-bold text-sm text-[#0f3b6c]">Start a new chat?</h5>
+                <p class="text-xs text-slate-600 mt-1 leading-relaxed">This will clear your current conversation. Would you like to continue?</p>
+              </div>
+              <div class="grid grid-cols-2 gap-2 pt-1">
+                <button id="nexa-confirm-cancel" type="button" class="px-3.5 py-2 rounded-xl border border-slate-200 text-slate-700 text-xs font-semibold hover:bg-slate-100 active:scale-95 transition-all">
+                  Cancel
+                </button>
+                <button id="nexa-confirm-ok" type="button" class="px-3.5 py-2 rounded-xl bg-[#0f3b6c] text-white text-xs font-semibold hover:bg-[#07192f] active:scale-95 transition-all shadow-xs">
+                  New Chat
+                </button>
               </div>
             </div>
           </div>
@@ -398,16 +453,23 @@
     const launcher = document.getElementById('nexa-chat-launcher');
     const launcherIcon = document.getElementById('nexa-launcher-icon');
     const badge = document.getElementById('nexa-badge');
+    const newChatBtn = document.getElementById('nexa-chat-new');
     const closeBtn = document.getElementById('nexa-chat-close');
     const minimizeBtn = document.getElementById('nexa-chat-minimize');
     const form = document.getElementById('nexa-chat-form');
     const input = document.getElementById('nexa-chat-input');
     const sendBtn = document.getElementById('nexa-send-btn');
     const messages = document.getElementById('nexa-chat-messages');
-    const typing = document.getElementById('nexa-typing-indicator');
+    let typing = document.getElementById('nexa-typing-indicator');
+
+    const confirmDialog = document.getElementById('nexa-confirm-dialog');
+    const confirmCancelBtn = document.getElementById('nexa-confirm-cancel');
+    const confirmOkBtn = document.getElementById('nexa-confirm-ok');
 
     let isProcessing = false;
     let currentAbortController = null;
+    let currentSessionId = 1;
+    let conversationHistory = [];
 
     function scrollToBottom(force = false) {
       if (!messages) return;
@@ -445,6 +507,7 @@
           }
         }, 150);
       } else {
+        closeConfirmDialog();
         panel.classList.remove('nexa-panel-open');
         panel.classList.add('nexa-panel-closed');
         if (launcherIcon) launcherIcon.textContent = 'chat';
@@ -458,6 +521,83 @@
     if (launcher) launcher.addEventListener('click', () => toggleChat());
     if (closeBtn) closeBtn.addEventListener('click', (e) => { e.stopPropagation(); toggleChat(false); });
     if (minimizeBtn) minimizeBtn.addEventListener('click', (e) => { e.stopPropagation(); toggleChat(false); });
+
+    function openConfirmDialog() {
+      if (confirmDialog) {
+        confirmDialog.classList.remove('hidden');
+        confirmDialog.classList.add('flex');
+      }
+    }
+
+    function closeConfirmDialog() {
+      if (confirmDialog) {
+        confirmDialog.classList.add('hidden');
+        confirmDialog.classList.remove('flex');
+      }
+    }
+
+    if (newChatBtn) {
+      newChatBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        openConfirmDialog();
+      });
+    }
+
+    if (confirmCancelBtn) {
+      confirmCancelBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        closeConfirmDialog();
+      });
+    }
+
+    if (confirmOkBtn) {
+      confirmOkBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        closeConfirmDialog();
+        clearConversation();
+      });
+    }
+
+    if (confirmDialog) {
+      confirmDialog.addEventListener('click', (e) => {
+        if (e.target === confirmDialog) {
+          closeConfirmDialog();
+        }
+      });
+    }
+
+    function clearConversation() {
+      // 1. Abort any currently in-flight API request
+      if (currentAbortController) {
+        try {
+          currentAbortController.abort();
+        } catch (_) {}
+        currentAbortController = null;
+      }
+
+      // 2. Invalidate session token so any pending asynchronous callbacks are ignored
+      currentSessionId++;
+
+      // 3. Reset internal processing state and conversation history
+      isProcessing = false;
+      conversationHistory = [];
+
+      // 4. Reset messages DOM back to initial welcome card and quick suggestion chips
+      messages.innerHTML = getInitialConversationHtml();
+      typing = document.getElementById('nexa-typing-indicator');
+
+      // 5. Reset input form, enable send button
+      setControlsDisabled(false);
+      if (input) {
+        input.value = '';
+        if (window.innerWidth >= 640) {
+          setTimeout(() => input.focus(), 100);
+        }
+      }
+
+      // 6. Reset scroll to top of conversation
+      messages.scrollTop = 0;
+    }
 
     function setControlsDisabled(disabled) {
       if (input) {
@@ -566,6 +706,8 @@
       if (!cleanQuery) return;
       if (isProcessing) return; // Prevent duplicate concurrent requests
 
+      const querySessionId = currentSessionId;
+
       isProcessing = true;
       setControlsDisabled(true);
 
@@ -591,9 +733,15 @@
         });
         clearTimeout(timeoutId);
 
+        // Guard: Discard response if visitor cleared the chat while request was pending
+        if (querySessionId !== currentSessionId) return;
+
         if (response.ok) {
           const data = await response.json();
+          if (querySessionId !== currentSessionId) return;
+
           if (data && data.reply) {
+            hideTypingIndicator();
             appendBotResponse(data.title || "AI Technical Advisor", data.reply);
             handledByApi = true;
           }
@@ -606,6 +754,9 @@
         currentAbortController = null;
       }
 
+      // Guard: Discard response if visitor cleared the chat during finally
+      if (querySessionId !== currentSessionId) return;
+
       if (handledByApi) {
         isProcessing = false;
         setControlsDisabled(false);
@@ -615,6 +766,7 @@
       // 4. Local Knowledge-Base fallback matching
       const matchedKB = findLocalMatch(cleanQuery);
       if (matchedKB) {
+        hideTypingIndicator();
         appendBotResponse(matchedKB.title, matchedKB.content);
         isProcessing = false;
         setControlsDisabled(false);
@@ -622,6 +774,8 @@
       }
 
       // 5. Handle network error or unmapped advisory enquiry
+      if (querySessionId !== currentSessionId) return;
+
       if (networkFailed) {
         appendErrorMessage(cleanQuery);
       } else {
@@ -646,6 +800,7 @@
         const chipText = chip.innerText.trim();
 
         if (KNOWLEDGE_BASE[topic]) {
+          const chipSessionId = currentSessionId;
           isProcessing = true;
           setControlsDisabled(true);
 
@@ -654,6 +809,7 @@
 
           // Natural micro-pause (220ms) for local chip response so the user sees smooth transition
           setTimeout(() => {
+            if (chipSessionId !== currentSessionId) return;
             appendBotResponse(KNOWLEDGE_BASE[topic].title, KNOWLEDGE_BASE[topic].content);
             isProcessing = false;
             setControlsDisabled(false);
@@ -694,6 +850,7 @@
     }
 
     window.toggleNexaChat = toggleChat;
+    window.clearNexaChat = clearConversation;
   }
 
   if (document.readyState === 'loading') {
