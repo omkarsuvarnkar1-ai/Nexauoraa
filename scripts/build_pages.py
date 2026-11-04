@@ -325,6 +325,7 @@ def build_html_document(title, main_content, current_page, is_home=False, extra_
   <script src="assets/js/navigation.js"></script>
   <script src="assets/js/ticker.js"></script>
   <script src="assets/js/forms.js"></script>
+  <script src="assets/js/animations.js"></script>
   {extra_scripts}
   <!-- AI CHATBOT (Floating on Right) -->
   <script src="assets/js/chatbot.js"></script>
