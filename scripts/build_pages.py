@@ -11,6 +11,7 @@ STITCH_DIR = os.path.join(ROOT, "archive", "raw_stitch_export")
 
 # -----------------------------------------------------------------------------
 # GLOBAL NEXAOURAA CONSULTANCY BRANDING HEADER (PHASE 4)
+# Note: Header has NO ticker. Ticker is homepage-only, placed ABOVE this header.
 # -----------------------------------------------------------------------------
 UNIFIED_HEADER = """<header class="sticky top-0 left-0 right-0 w-full z-40 shadow-[0_2px_12px_rgba(15,37,55,0.08)] bg-surface-container-lowest border-b border-slate-200/80">
   <div class="h-20 bg-surface-container-lowest">
@@ -87,48 +88,87 @@ UNIFIED_HEADER = """<header class="sticky top-0 left-0 right-0 w-full z-40 shado
 </header>"""
 
 # -----------------------------------------------------------------------------
-# HOMEPAGE-ONLY CONTINUOUS MOVING HEADLINE TICKER (PHASE 5)
-# Strictly at the VERY TOP of index.html, ABOVE the navigation bar.
+# HOMEPAGE-ONLY CONTINUOUS MOVING HEADLINE TICKER (CORRECTION TASK)
+# Matches Google Stitch design exactly:
+# - Strictly at the VERY TOP of index.html, ABOVE the navigation bar.
+# - Visible when the homepage initially loads.
+# - NOT displayed on any other page.
+# - Infinite seamless loop with Sequence 1 & Sequence 2, hover pause & reduced motion.
 # -----------------------------------------------------------------------------
-HOMEPAGE_TICKER = """<aside aria-label="Executive Credentials Ticker" class="w-full bg-[#06101B] border-b border-[#14283d] text-on-primary py-2 select-none overflow-hidden relative z-50">
-  <div class="ticker-parent relative overflow-hidden flex items-center">
-    <div class="absolute left-0 top-0 bottom-0 w-16 sm:w-28 bg-gradient-to-r from-[#06101B] via-[#06101B]/90 to-transparent z-10 pointer-events-none"></div>
-    <div class="absolute right-0 top-0 bottom-0 w-16 sm:w-28 bg-gradient-to-l from-[#06101B] via-[#06101B]/90 to-transparent z-10 pointer-events-none"></div>
+HOMEPAGE_TICKER = """<!-- HOMEPAGE-ONLY MOVING HEADLINE TICKER (Strictly at VERY TOP of index.html, ABOVE navigation) -->
+<aside aria-label="Executive Credentials Ticker" class="w-full bg-[#06101B] border-b border-[#14283d] text-on-primary py-2.5 select-none overflow-hidden relative z-50">
+  <style>
+    @keyframes top-ticker-scroll {
+      0% { transform: translate3d(0, 0, 0); }
+      100% { transform: translate3d(-50%, 0, 0); }
+    }
+    .ticker-track {
+      display: flex;
+      width: max-content;
+      animation: top-ticker-scroll 32s linear infinite;
+      will-change: transform;
+    }
+    .ticker-parent:hover .ticker-track {
+      animation-play-state: paused;
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .ticker-track {
+        animation: none !important;
+        flex-wrap: wrap;
+        justify-content: center;
+        width: 100%;
+      }
+    }
+  </style>
+  <div class="ticker-parent relative overflow-hidden flex items-center h-8">
+    <!-- Left Subtle Glow Fade -->
+    <div class="absolute left-0 top-0 bottom-0 w-16 sm:w-28 bg-gradient-to-r from-[#06101B] via-[#06101B]/95 to-transparent z-10 pointer-events-none"></div>
+    <!-- Right Subtle Glow Fade -->
+    <div class="absolute right-0 top-0 bottom-0 w-16 sm:w-28 bg-gradient-to-l from-[#06101B] via-[#06101B]/95 to-transparent z-10 pointer-events-none"></div>
 
-    <div class="ticker-track flex items-center gap-6 text-xs font-mono whitespace-nowrap">
-      <span class="flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-emerald-400"></span><strong class="text-white">Govind Suvarnkar:</strong> 19+ Years Manufacturing Quality &amp; Corporate Training Experience</span>
-      <span class="text-slate-600">•</span>
-      <span class="flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-[#efc04b]"></span><strong class="text-white">Corporate Clients:</strong> Mahindra • Tenneco • Bharat Forge • John Deere • CIE Automotive • ARaymond • Konecranes</span>
-      <span class="text-slate-600">•</span>
-      <span class="flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-emerald-400"></span><strong class="text-white">Turnkey IATF 16949:2016 &amp; QMS/IMS:</strong> Readiness &amp; Certification with Zero Major Nonconformities</span>
-      <span class="text-slate-600">•</span>
-      <span class="flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-[#efc04b]"></span><strong class="text-white">Automotive Core Tools:</strong> APQP • PPAP • AIAG-VDA DFMEA/PFMEA • SPC • MSA • Control Plans</span>
-      <span class="text-slate-600">•</span>
-      <span class="flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-emerald-400"></span><strong class="text-white">Measurable Yields:</strong> ~50 PPM • 99% FTT • 50% Rejection Reduction • 50% COPQ Savings</span>
-      <span class="text-slate-600">•</span>
-      <span class="flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-[#efc04b]"></span><strong class="text-white">Corporate Training:</strong> 40+ Corporate Trainings Delivered Across Electric Vehicle (EV) &amp; Automotive Sectors</span>
-      <span class="text-slate-600">•</span>
-      <span class="flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-emerald-400"></span><strong class="text-white">Certified Lead Auditor:</strong> ISO 9001 • Lean Six Sigma Black Belt (ASCB UK) • Global 8D (OMNEX)</span>
-      <span class="text-slate-600">•</span>
-      <span class="flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-[#efc04b]"></span><strong class="text-white">Auditor Direct Desk:</strong> +91 8975573469 | sales@nexaouraaconsultancy.in | Pune Industrial Corridor</span>
-      <span class="text-slate-600">•</span>
-      <!-- Duplicate Sequence for seamless infinite loop -->
-      <span class="flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-emerald-400"></span><strong class="text-white">Govind Suvarnkar:</strong> 19+ Years Manufacturing Quality &amp; Corporate Training Experience</span>
-      <span class="text-slate-600">•</span>
-      <span class="flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-[#efc04b]"></span><strong class="text-white">Corporate Clients:</strong> Mahindra • Tenneco • Bharat Forge • John Deere • CIE Automotive • ARaymond • Konecranes</span>
-      <span class="text-slate-600">•</span>
-      <span class="flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-emerald-400"></span><strong class="text-white">Turnkey IATF 16949:2016 &amp; QMS/IMS:</strong> Readiness &amp; Certification with Zero Major Nonconformities</span>
-      <span class="text-slate-600">•</span>
-      <span class="flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-[#efc04b]"></span><strong class="text-white">Automotive Core Tools:</strong> APQP • PPAP • AIAG-VDA DFMEA/PFMEA • SPC • MSA • Control Plans</span>
-      <span class="text-slate-600">•</span>
-      <span class="flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-emerald-400"></span><strong class="text-white">Measurable Yields:</strong> ~50 PPM • 99% FTT • 50% Rejection Reduction • 50% COPQ Savings</span>
-      <span class="text-slate-600">•</span>
-      <span class="flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-[#efc04b]"></span><strong class="text-white">Corporate Training:</strong> 40+ Corporate Trainings Delivered Across Electric Vehicle (EV) &amp; Automotive Sectors</span>
-      <span class="text-slate-600">•</span>
-      <span class="flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-emerald-400"></span><strong class="text-white">Certified Lead Auditor:</strong> ISO 9001 • Lean Six Sigma Black Belt (ASCB UK) • Global 8D (OMNEX)</span>
-      <span class="text-slate-600">•</span>
-      <span class="flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-[#efc04b]"></span><strong class="text-white">Auditor Direct Desk:</strong> +91 8975573469 | sales@nexaouraaconsultancy.in | Pune Industrial Corridor</span>
-      <span class="text-slate-600">•</span>
+    <div class="ticker-track flex items-center whitespace-nowrap text-label-technical font-label-technical tracking-wider text-surface-bright/95">
+      <!-- Sequence 1 -->
+      <div class="flex items-center gap-4 px-4 hover:text-tertiary-fixed transition-colors">
+        <span class="hover:text-tertiary-fixed font-bold">GOVIND SUVARNKAR (19+ YRS LEAD AUDITOR)</span>
+        <span class="text-tertiary-fixed-dim select-none text-xs drop-shadow-[0_0_4px_rgba(239,192,75,0.4)]">&#9670;</span>
+        <span class="hover:text-tertiary-fixed">CORPORATE CLIENTS: MAHINDRA &bull; BHARAT FORGE &bull; TENNECO &bull; JOHN DEERE &bull; CIE AUTOMOTIVE</span>
+        <span class="text-tertiary-fixed-dim select-none text-xs drop-shadow-[0_0_4px_rgba(239,192,75,0.4)]">&#9670;</span>
+        <span class="hover:text-tertiary-fixed font-bold">TURNKEY IATF 16949:2016 &amp; QMS/IMS CERTIFICATION</span>
+        <span class="text-tertiary-fixed-dim select-none text-xs drop-shadow-[0_0_4px_rgba(239,192,75,0.4)]">&#9670;</span>
+        <span class="hover:text-tertiary-fixed">AIAG-VDA CORE TOOLS: APQP &bull; PPAP &bull; FMEA &bull; SPC &bull; MSA</span>
+        <span class="text-tertiary-fixed-dim select-none text-xs drop-shadow-[0_0_4px_rgba(239,192,75,0.4)]">&#9670;</span>
+        <span class="hover:text-tertiary-fixed font-bold">VERIFIED YIELDS: ~50 PPM &amp; 99% FIRST-TIME-THROUGH</span>
+        <span class="text-tertiary-fixed-dim select-none text-xs drop-shadow-[0_0_4px_rgba(239,192,75,0.4)]">&#9670;</span>
+        <span class="hover:text-tertiary-fixed">50% COPQ REDUCTION &bull; 30% CMM CYCLE TIME REDUCTION</span>
+        <span class="text-tertiary-fixed-dim select-none text-xs drop-shadow-[0_0_4px_rgba(239,192,75,0.4)]">&#9670;</span>
+        <span class="hover:text-tertiary-fixed font-bold">40+ CORPORATE TRAININGS (25+ ON ELECTRIC VEHICLES)</span>
+        <span class="text-tertiary-fixed-dim select-none text-xs drop-shadow-[0_0_4px_rgba(239,192,75,0.4)]">&#9670;</span>
+        <span class="hover:text-tertiary-fixed">LEAN SIX SIGMA BLACK BELT (ASCB UK) &bull; GLOBAL 8D (OMNEX)</span>
+        <span class="text-tertiary-fixed-dim select-none text-xs drop-shadow-[0_0_4px_rgba(239,192,75,0.4)]">&#9670;</span>
+        <span class="hover:text-tertiary-fixed font-bold">AUDITOR DIRECT DESK: +91 8975573469</span>
+        <span class="text-tertiary-fixed-dim select-none text-xs drop-shadow-[0_0_4px_rgba(239,192,75,0.4)]">&#9670;</span>
+      </div>
+      <!-- Sequence 2 (Identical Duplicate for Seamless Infinite Loop) -->
+      <div aria-hidden="true" class="flex items-center gap-4 px-4 hover:text-tertiary-fixed transition-colors">
+        <span class="hover:text-tertiary-fixed font-bold">GOVIND SUVARNKAR (19+ YRS LEAD AUDITOR)</span>
+        <span class="text-tertiary-fixed-dim select-none text-xs drop-shadow-[0_0_4px_rgba(239,192,75,0.4)]">&#9670;</span>
+        <span class="hover:text-tertiary-fixed">CORPORATE CLIENTS: MAHINDRA &bull; BHARAT FORGE &bull; TENNECO &bull; JOHN DEERE &bull; CIE AUTOMOTIVE</span>
+        <span class="text-tertiary-fixed-dim select-none text-xs drop-shadow-[0_0_4px_rgba(239,192,75,0.4)]">&#9670;</span>
+        <span class="hover:text-tertiary-fixed font-bold">TURNKEY IATF 16949:2016 &amp; QMS/IMS CERTIFICATION</span>
+        <span class="text-tertiary-fixed-dim select-none text-xs drop-shadow-[0_0_4px_rgba(239,192,75,0.4)]">&#9670;</span>
+        <span class="hover:text-tertiary-fixed">AIAG-VDA CORE TOOLS: APQP &bull; PPAP &bull; FMEA &bull; SPC &bull; MSA</span>
+        <span class="text-tertiary-fixed-dim select-none text-xs drop-shadow-[0_0_4px_rgba(239,192,75,0.4)]">&#9670;</span>
+        <span class="hover:text-tertiary-fixed font-bold">VERIFIED YIELDS: ~50 PPM &amp; 99% FIRST-TIME-THROUGH</span>
+        <span class="text-tertiary-fixed-dim select-none text-xs drop-shadow-[0_0_4px_rgba(239,192,75,0.4)]">&#9670;</span>
+        <span class="hover:text-tertiary-fixed">50% COPQ REDUCTION &bull; 30% CMM CYCLE TIME REDUCTION</span>
+        <span class="text-tertiary-fixed-dim select-none text-xs drop-shadow-[0_0_4px_rgba(239,192,75,0.4)]">&#9670;</span>
+        <span class="hover:text-tertiary-fixed font-bold">40+ CORPORATE TRAININGS (25+ ON ELECTRIC VEHICLES)</span>
+        <span class="text-tertiary-fixed-dim select-none text-xs drop-shadow-[0_0_4px_rgba(239,192,75,0.4)]">&#9670;</span>
+        <span class="hover:text-tertiary-fixed">LEAN SIX SIGMA BLACK BELT (ASCB UK) &bull; GLOBAL 8D (OMNEX)</span>
+        <span class="text-tertiary-fixed-dim select-none text-xs drop-shadow-[0_0_4px_rgba(239,192,75,0.4)]">&#9670;</span>
+        <span class="hover:text-tertiary-fixed font-bold">AUDITOR DIRECT DESK: +91 8975573469</span>
+        <span class="text-tertiary-fixed-dim select-none text-xs drop-shadow-[0_0_4px_rgba(239,192,75,0.4)]">&#9670;</span>
+      </div>
     </div>
   </div>
 </aside>"""
@@ -244,6 +284,7 @@ UNIFIED_FOOTER = """<footer class="w-full bg-[#000f1d] text-on-primary pt-space-
 
 # Common HTML Template Wrapper
 def build_html_document(title, main_content, current_page, is_home=False, extra_scripts=""):
+    # Ticker strictly on homepage, directly ABOVE the navigation header
     ticker_block = HOMEPAGE_TICKER if is_home else ""
     return f"""<!DOCTYPE html>
 <html class="scroll-smooth" lang="en">
@@ -269,7 +310,7 @@ def build_html_document(title, main_content, current_page, is_home=False, extra_
 </head>
 <body class="bg-background font-body-md text-body-md text-on-surface antialiased">
 
-  <!-- HOMEPAGE-ONLY MOVING HEADLINE TICKER (Strictly at VERY TOP of index.html) -->
+  <!-- HOMEPAGE-ONLY MOVING HEADLINE TICKER (Strictly at VERY TOP of index.html, ABOVE navigation) -->
 {ticker_block}
 
   <!-- UNIFIED NAVIGATION HEADER -->
@@ -299,45 +340,16 @@ def build_html_document(title, main_content, current_page, is_home=False, extra_
 
 # Image & Asset Replacer
 def replace_assets(html):
-    # Fix corrupt UTF-8 characters
-    html = html.replace('?', '•').replace('â€¢', '•').replace('â‚¹', '₹')
-    
-    # Replace all CDN images with local high-res assets
-    replacements = [
-        # Brand
-        (r'https://lh3\.googleusercontent\.com/aida-public/AB6AXuBa9QOJkT[^\s"\'<>]+', 'assets/images/brand/nexaouraa-logo.png'),
-        (r'https://lh3\.googleusercontent\.com/aida-public/AB6AXuBBgsi2kd[^\s"\'<>]+', 'assets/images/brand/nexaouraa-logo.png'),
-        
-        # Industry Photos
-        (r'https://lh3\.googleusercontent\.com/aida-public/AB6AXuDs6CA2V2[^\s"\'<>]+', 'assets/images/industry/cmm-metrology.png'),
-        (r'https://lh3\.googleusercontent\.com/aida-public/AB6AXuB8KEcBc[^\s"\'<>]+', 'assets/images/industry/cnc-machining.png'),
-        (r'https://lh3\.googleusercontent\.com/aida-public/AB6AXuB47ACyt[^\s"\'<>]+', 'assets/images/industry/assembly-line.png'),
-        (r'https://lh3\.googleusercontent\.com/aida-public/AB6AXuBbCrSH[^\s"\'<>]+', 'assets/images/industry/stamping-press.png'),
-        (r'https://lh3\.googleusercontent\.com/aida-public/AB6AXuB-O8Vrf[^\s"\'<>]+', 'assets/images/industry/gear-hobbing.png'),
-        (r'https://lh3\.googleusercontent\.com/aida-public/AB6AXuBQEN7j[^\s"\'<>]+', 'assets/images/industry/robotic-welding.png'),
-        (r'https://lh3\.googleusercontent\.com/aida-public/AB6AXuCYFUP[^\s"\'<>]+', 'assets/images/industry/engine-leak-testing.png'),
-        (r'https://lh3\.googleusercontent\.com/aida-public/AB6AXuCqOqwk[^\s"\'<>]+', 'assets/images/industry/paint-shop-robotics.png'),
-        (r'https://lh3\.googleusercontent\.com/aida-public/AB6AXuCoeHXZ[^\s"\'<>]+', 'assets/images/industry/smt-electronics-pcb.png'),
-        (r'https://lh3\.googleusercontent\.com/aida-public/AB6AXuDc7PmK[^\s"\'<>]+', 'assets/images/industry/lead-auditor-review.png'),
-        (r'https://lh3\.googleusercontent\.com/aida-public/AB6AXuDCXFHW[^\s"\'<>]+', 'assets/images/industry/supplier-audit-qc.png'),
-        (r'https://lh3\.googleusercontent\.com/aida-public/AB6AXuDhG_9F[^\s"\'<>]+', 'assets/images/industry/assembly-line.png'),
-        (r'https://lh3\.googleusercontent\.com/aida-public/AB6AXuDKQeCH[^\s"\'<>]+', 'assets/images/industry/cnc-machining.png'),
-        (r'https://lh3\.googleusercontent\.com/aida-public/AB6AXuDTEHuH[^\s"\'<>]+', 'assets/images/industry/stamping-press.png'),
-        (r'https://lh3\.googleusercontent\.com/aida-public/AB6AXuDTxKqJ[^\s"\'<>]+', 'assets/images/industry/gear-hobbing.png'),
-        (r'https://lh3\.googleusercontent\.com/aida/AEtjO1[^\s"\'<>]+', 'assets/images/industry/lead-auditor-review.png'),
-    ]
-
-    for pat, rep in replacements:
-        html = re.sub(pat, rep, html)
-
-    # Link all PDF download links to official PDF
-    html = re.sub(r'href="#diagnostic-intake"\s+data-path="download-company-profile"', 'href="assets/docs/Nexaouraa_Consultancy_Profile.pdf" download="Nexaouraa_Consultancy_Company_Profile.pdf" target="_blank"', html)
-    html = re.sub(r'data-path="download-company-profile"\s+href="#diagnostic-intake"', 'href="assets/docs/Nexaouraa_Consultancy_Profile.pdf" download="Nexaouraa_Consultancy_Company_Profile.pdf" target="_blank"', html)
-
+    html = re.sub(r'https://lh3\.googleusercontent\.com/aida-public/[^"\'\s>]+', 'assets/images/industry/cmm-metrology.png', html)
+    html = html.replace('whatsapp_image_2026_11_03_at_11.21.16_pm.jpeg', 'assets/images/brand/nexaouraa-logo.png')
+    html = html.replace('whatsapp_image_2026_11_03_at_11.21.15_pm.jpeg', 'assets/images/brand/nexaouraa-emblem.png')
+    html = html.replace('image.png_1', 'assets/images/brand/nexaouraa-emblem.png')
+    html = html.replace('image.png_2', 'assets/images/brand/nexaouraa-brand-poster.png')
+    html = html.replace('image.png_3', 'assets/images/brand/nexaouraa-logo.png')
     return html
 
 # -----------------------------------------------------------------------------
-# 1. BUILD INDEX.HTML (Home)
+# 1. BUILD INDEX.HTML (Home Page)
 # -----------------------------------------------------------------------------
 def build_index():
     src_file = os.path.join(STITCH_DIR, "nexaouraa_consultancy_home_dynamic_service_showcase", "code.html")
@@ -346,18 +358,18 @@ def build_index():
 
     main_m = re.search(r'<main\b[^>]*>([\s\S]*?)</main>', c)
     if not main_m:
-        raise Exception("Could not find <main> in home")
+        raise Exception("Could not find <main> in index")
     main_content = main_m.group(1)
 
-    # Replace local links in home
+    # Route replacements
     main_content = main_content.replace('href="#featured-services"', 'href="services.html"')
+    main_content = main_content.replace('href="#services"', 'href="services.html"')
     main_content = main_content.replace('href="#training-spotlight"', 'href="training.html"')
-    main_content = main_content.replace('href="#diagnostic-intake"', 'href="contact.html#diagnostic-intake"')
+    main_content = main_content.replace('href="#training"', 'href="training.html"')
     main_content = main_content.replace('href="#about"', 'href="about.html"')
     main_content = main_content.replace('href="#vision-mission"', 'href="vision-mission.html"')
-    
-    # Wire form
-    main_content = re.sub(r'<form\b[^>]*onsubmit="[^"]*"', '<form onsubmit="handleInquiryFormSubmit(event)" id="home-inquiry-form"', main_content)
+    main_content = main_content.replace('href="#diagnostic-intake"', 'href="contact.html#diagnostic-intake"')
+    main_content = main_content.replace('href="#contact"', 'href="contact.html"')
 
     main_content = replace_assets(main_content)
 
@@ -371,7 +383,7 @@ def build_index():
 
     with open(os.path.join(ROOT, "index.html"), "w", encoding="utf-8") as f:
         f.write(doc)
-    print("[OK] Created index.html (with homepage-only ticker & complete branding)")
+    print("[OK] Created index.html (with exact Stitch homepage-only ticker at very top above nav)")
 
 # -----------------------------------------------------------------------------
 # 2. BUILD ABOUT.HTML (About Us & Leadership)
@@ -388,9 +400,9 @@ def build_about():
 
     main_content = main_content.replace('href="#services"', 'href="services.html"')
     main_content = main_content.replace('href="#training"', 'href="training.html"')
-    main_content = main_content.replace('href="#contact"', 'href="contact.html"')
     main_content = main_content.replace('href="#diagnostic-intake"', 'href="contact.html#diagnostic-intake"')
     main_content = main_content.replace('href="#vision-mission"', 'href="vision-mission.html"')
+    main_content = main_content.replace('href="#contact"', 'href="contact.html"')
 
     main_content = replace_assets(main_content)
 
@@ -403,7 +415,7 @@ def build_about():
 
     with open(os.path.join(ROOT, "about.html"), "w", encoding="utf-8") as f:
         f.write(doc)
-    print("[OK] Created about.html (without ticker, full branding & credentials)")
+    print("[OK] Created about.html (without ticker)")
 
 # -----------------------------------------------------------------------------
 # 3. BUILD VISION-MISSION.HTML (Vision, Mission & Strategic Goals)
@@ -420,16 +432,13 @@ def build_vision():
 
     main_content = main_content.replace('href="#services"', 'href="services.html"')
     main_content = main_content.replace('href="#training"', 'href="training.html"')
-    main_content = main_content.replace('href="#contact"', 'href="contact.html"')
     main_content = main_content.replace('href="#diagnostic-intake"', 'href="contact.html#diagnostic-intake"')
-
-    # Wire form
-    main_content = re.sub(r'<form\b[^>]*onsubmit="[^"]*"', '<form onsubmit="handleInquiryFormSubmit(event)" id="vision-inquiry-form"', main_content)
+    main_content = main_content.replace('href="#about"', 'href="about.html"')
 
     main_content = replace_assets(main_content)
 
     doc = build_html_document(
-        "Vision, Mission & Strategic Goals | Nexaouraa Consultancy",
+        "Vision, Mission & Strategic Goals (2027-2029) | Nexaouraa Consultancy",
         main_content,
         "vision-mission.html",
         is_home=False
@@ -437,7 +446,7 @@ def build_vision():
 
     with open(os.path.join(ROOT, "vision-mission.html"), "w", encoding="utf-8") as f:
         f.write(doc)
-    print("[OK] Created vision-mission.html")
+    print("[OK] Created vision-mission.html (without ticker)")
 
 # -----------------------------------------------------------------------------
 # 4. BUILD SERVICES.HTML (Services & Industry Coverage)
@@ -459,7 +468,7 @@ def build_services():
     main_content = replace_assets(main_content)
 
     doc = build_html_document(
-        "Services & Diverse Industry Footprint | Nexaouraa Consultancy",
+        "Services & Manufacturing Footprint | Nexaouraa Consultancy",
         main_content,
         "services.html",
         is_home=False
@@ -467,7 +476,7 @@ def build_services():
 
     with open(os.path.join(ROOT, "services.html"), "w", encoding="utf-8") as f:
         f.write(doc)
-    print("[OK] Created services.html")
+    print("[OK] Created services.html (without ticker)")
 
 # -----------------------------------------------------------------------------
 # 5. BUILD TRAINING.HTML (Training & Development)
@@ -500,7 +509,7 @@ def build_training():
 
     with open(os.path.join(ROOT, "training.html"), "w", encoding="utf-8") as f:
         f.write(doc)
-    print("[OK] Created training.html")
+    print("[OK] Created training.html (without ticker)")
 
 # -----------------------------------------------------------------------------
 # 6. BUILD CONTACT.HTML (Contact Us & Diagnostic Intake)
@@ -515,11 +524,10 @@ def build_contact():
         raise Exception("Could not find <main> in contact")
     main_content = main_m.group(1)
 
-    # REMOVE THE 3 REDUNDANT DUPLICATE SECTIONS (Lines 275-870 in original)
+    # DEDUPLICATE: Remove redundant duplicate sections
     sec2_start = main_content.find('<section class="w-full bg-surface-bright py-12 lg:py-20 px-6 lg:px-12">')
     if sec2_start != -1:
         main_content = main_content[:sec2_start]
-        print("[OK] Deduplicated contact page: retained authentic intake grid and removed 3 duplicate sections.")
 
     # Wire form submission
     main_content = re.sub(r'<form\b[^>]*id="inquiry-form"[^>]*>', '<form class="space-y-5" id="inquiry-form" onsubmit="handleInquiryFormSubmit(event)">', main_content)
@@ -535,7 +543,7 @@ def build_contact():
 
     with open(os.path.join(ROOT, "contact.html"), "w", encoding="utf-8") as f:
         f.write(doc)
-    print("[OK] Created contact.html")
+    print("[OK] Created contact.html (without ticker)")
 
 if __name__ == "__main__":
     build_index()
