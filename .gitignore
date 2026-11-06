@@ -6,8 +6,7 @@
 # Dependencies
 node_modules/
 
-# Netlify and Vercel local development
-.netlify/
+# Vercel local development
 .vercel/
 
 # Logs and temporary files
