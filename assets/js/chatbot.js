@@ -263,7 +263,7 @@
     return `
       <!-- Bot Welcome Card -->
       <div class="flex items-start gap-2.5 max-w-[95%] nexa-msg-appear">
-        <img src="assets/images/brand/nexaouraa-emblem.png" class="w-7 h-7 rounded-full shrink-0 mt-0.5 shadow-xs bg-white ring-1 ring-slate-200" alt="Ask Anything?">
+        <img src="assets/images/brand/nexaouraa-emblem.webp" width="28" height="28" decoding="async" class="w-7 h-7 rounded-full shrink-0 mt-0.5 shadow-xs bg-white ring-1 ring-slate-200" alt="Ask Anything?">
         <div class="bg-white p-3.5 rounded-2xl rounded-tl-xs border border-slate-200/90 shadow-xs text-slate-800 space-y-2">
           <div>
             <h4 class="font-bold text-sm text-[#0f3b6c] tracking-tight flex items-center gap-1.5">
@@ -342,7 +342,7 @@
 
       <!-- WhatsApp-Style Typing Indicator Bubble (Hidden by default) -->
       <div id="nexa-typing-indicator" class="hidden items-start gap-2.5 max-w-[95%] py-1">
-        <img src="assets/images/brand/nexaouraa-emblem.png" class="w-6 h-6 rounded-full shrink-0 mt-0.5 shadow-xs bg-white ring-1 ring-slate-200" alt="Ask Anything?">
+        <img src="assets/images/brand/nexaouraa-emblem.webp" width="24" height="24" decoding="async" class="w-6 h-6 rounded-full shrink-0 mt-0.5 shadow-xs bg-white ring-1 ring-slate-200" alt="Ask Anything?">
         <div class="bg-white px-3.5 py-2.5 rounded-2xl rounded-tl-xs border border-slate-200 shadow-xs flex items-center gap-1.5 text-slate-600">
           <div class="flex items-center gap-1">
             <span class="nexa-typing-dot"></span>
@@ -371,7 +371,7 @@
           <div class="text-white px-4 py-3 flex items-center justify-between shrink-0 border-b border-amber-400/20 shadow-md" style="background: linear-gradient(135deg, #07192f 0%, #0c2d54 50%, #174276 100%);">
             <div class="flex items-center gap-2.5">
               <div class="relative">
-                <img src="assets/images/brand/nexaouraa-emblem.png" alt="Nexaouraa" class="w-9 h-9 rounded-full object-cover ring-2 ring-amber-400/90 bg-white shadow-xs">
+                <img src="assets/images/brand/nexaouraa-emblem.webp" width="36" height="36" decoding="async" alt="Nexaouraa" class="w-9 h-9 rounded-full object-cover ring-2 ring-amber-400/90 bg-white shadow-xs">
                 <span class="absolute bottom-0 right-0 w-2.5 h-2.5 bg-emerald-500 rounded-full ring-2 ring-[#07192f] nexa-pulse-status"></span>
               </div>
               <div class="flex flex-col">
@@ -647,7 +647,7 @@
       const botDiv = document.createElement('div');
       botDiv.className = 'nexa-bot-message flex items-start gap-2.5 max-w-[95%] nexa-msg-appear';
       botDiv.innerHTML = `
-        <img src="assets/images/brand/nexaouraa-emblem.png" class="w-6 h-6 rounded-full shrink-0 mt-0.5 shadow-xs bg-white ring-1 ring-slate-200" alt="Ask Anything?">
+        <img src="assets/images/brand/nexaouraa-emblem.webp" width="24" height="24" decoding="async" class="w-6 h-6 rounded-full shrink-0 mt-0.5 shadow-xs bg-white ring-1 ring-slate-200" alt="Ask Anything?">
         <div class="flex flex-col gap-1 w-full">
           <div class="bg-white p-3 rounded-2xl rounded-tl-xs border border-slate-200 shadow-xs text-slate-800 space-y-1.5 leading-relaxed">
             <p class="font-bold text-[#0f3b6c] flex items-center gap-1.5 text-xs">
@@ -677,7 +677,7 @@
       const errorDiv = document.createElement('div');
       errorDiv.className = 'flex items-start gap-2.5 max-w-[95%] nexa-msg-appear';
       errorDiv.innerHTML = `
-        <img src="assets/images/brand/nexaouraa-emblem.png" class="w-6 h-6 rounded-full shrink-0 mt-0.5 shadow-xs bg-white ring-1 ring-slate-200" alt="Ask Anything?">
+        <img src="assets/images/brand/nexaouraa-emblem.webp" width="24" height="24" decoding="async" class="w-6 h-6 rounded-full shrink-0 mt-0.5 shadow-xs bg-white ring-1 ring-slate-200" alt="Ask Anything?">
         <div class="flex flex-col gap-1 w-full">
           <div class="bg-white p-3 rounded-2xl rounded-tl-xs border border-red-200 shadow-xs text-slate-800 space-y-2 leading-relaxed">
             <div class="flex items-center gap-1.5 text-red-600 font-semibold text-xs">
