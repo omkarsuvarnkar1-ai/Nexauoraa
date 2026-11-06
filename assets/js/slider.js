@@ -44,7 +44,7 @@ document.addEventListener('DOMContentLoaded', function () {
   ];
 
   let currentSlide = 0;
-  const slideDuration = 10000;
+  const slideDuration = 5000;
   let isPaused = false;
   let timer = null;
 
