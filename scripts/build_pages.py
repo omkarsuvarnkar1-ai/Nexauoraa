@@ -621,6 +621,10 @@ def build_index():
         '<span class="heading-line heading-line-flex text-[#ad840c]"><span class="heading-slash text-outline-variant font-light select-none text-2xl mr-1.5 sm:mr-2">/</span>Quality Transformation</span>'
     )
 
+        # Remove information overlay blocks from all carousel slides on homepage
+    hero_readout_pattern = r'\s*<!-- [^>]*Readout[^>]*-->\s*<div class="relative z-10 bg-primary/95 backdrop-blur-md rounded p-space-md text-on-primary border border-outline-variant/20 shadow-lg mt-auto">[\s\S]*?</div>\s*</div>\s*</div>\s*</div>\s*</div>(?=\s*</div>)'
+    main_content = re.sub(hero_readout_pattern, '', main_content)
+
     # Replace Founder Director Profile Section with exact requested content
     founder_pat = r'<span class="font-label-technical text-label-technical text-secondary uppercase font-bold tracking-wider mt-1">Lead Consultant &amp; Trainer</span>[\s\S]*?Read Detailed Bio <span class="material-symbols-outlined text-sm">arrow_forward</span>\s*</a>\s*</div>\s*</div>'
     new_founder_section = """<span class="font-label-technical text-label-technical text-secondary uppercase font-bold tracking-wider mt-1">Founder Director</span>
@@ -833,10 +837,11 @@ def build_training():
     # Remove inline handler script to use the centralized forms.js API handler
     main_content = re.sub(r'<script>\s*function handleTrainingFormSubmit[\s\S]*?</script>', '', main_content)
 
-    # FIX UI OVERLAPPING: Position floating contact ticker cleanly without overlapping chatbot
-    main_content = main_content.replace(
-        'class="fixed bottom-6 right-24 z-40 hidden sm:flex items-center gap-space-xs bg-primary text-on-primary px-space-md py-space-sm rounded-full shadow-2xl border border-[#0F2537]"',
-        'id="training-contact-pill" class="fixed z-40 flex items-center gap-space-xs bg-primary text-on-primary px-3 py-2 sm:px-space-md sm:py-space-sm rounded-full shadow-2xl border border-[#0F2537] transition-all duration-300 bottom-[74px] right-4 sm:bottom-[78px] sm:right-6 md:bottom-6 md:right-[212px]"'
+    # Remove floating "Govind Suvarnkar : no." contact pill
+    main_content = re.sub(
+        r'<div class="fixed bottom-6 right-24[^"]*"[\s\S]*?</a>\s*</div>',
+        '',
+        main_content
     )
 
     main_content = map_training_images(main_content)
